@@ -1,0 +1,25 @@
+$white: #d8d4cf;
+$white-border: rgba($white, 0.5);
+$dark1: #1e1e1e;
+$dark2: #252526;
+$dark3: #333333;
+
+html {
+  font-size: 20px;
+}
+body {
+  margin: 0;
+  color: $white;
+}
+a {
+  text-decoration: none;
+  color: $white;
+}
+svg {
+  width: 24px;
+  height: 24px;
+  vertical-align: text-bottom;
+  &, path {
+    fill: $white;
+  }
+}

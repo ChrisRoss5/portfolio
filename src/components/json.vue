@@ -16,6 +16,6 @@ export default defineComponent({
 <style lang="scss">
 #json {
   width: 25%;
-  background: #1e1e1e;
+  background: $dark1;
 }
 </style>
