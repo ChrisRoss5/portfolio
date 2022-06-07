@@ -1,18 +1,23 @@
 export interface App {
   name: string;
-  created: string;
-  lastUpdated: string;
+  created: Date | null;
+  lastUpdated: Date | null;
   users: number;
-  links: { chrome?: string; firefox?: string; download?: string };
-  tech: string;
+  links: {
+    chrome?: string;
+    firefox?: string;
+    github?: string;
+    download?: string;
+  };
+  tech: string[];
 }
 
-export interface Projects {
-  [key: string]: App[];
-}
+export type Apps = {
+  [key in "extensions" | "themes" | "web" | "desktop"]: App[];
+};
 
 export interface Column {
-  name: string;
+  name: keyof App;
   unsortable?: boolean;
   browserAppSpecific?: boolean;
 }
@@ -26,72 +31,76 @@ export const columns: Column[] = [
   { name: "tech" },
 ];
 
-export const itemTemplate: App = {
+export const appTemplate: App = {
   name: "",
-  created: "",
-  lastUpdated: "",
+  created: null,
+  lastUpdated: null,
   users: 0,
   links: { chrome: "", firefox: "", download: "" },
-  tech: "",
+  tech: [],
 };
 
-export const projects: Projects = {
+export const apps: Apps = {
   extensions: [
     {
       name: "e-Dnevnik Plus",
-      created: "18 March 2019",
-      lastUpdated: "",
+      created: new Date("March 18, 2019"),
+      lastUpdated: null,
       users: 0,
       links: {
         chrome:
           "https://chrome.google.com/webstore/detail/bcnccmamhmcabokipgjechdeealcmdbe",
+        github:
+          "https://github.com/ChrisRoss5/e-Dnevnik-Plus",
       },
-      tech: "TypeScript",
+      tech: ["TypeScript"],
     },
     {
       name: "e-Dnevnik Plus za nastavnike",
-      created: "26 May 2019",
-      lastUpdated: "",
+      created: new Date("May 26, 2019"),
+      lastUpdated: null,
       users: 0,
       links: {
         chrome:
           "https://chrome.google.com/webstore/detail/jefappmpehdgllijkjpekdmkbmbigbnl",
       },
-      tech: "JavaScript",
+      tech: ["JavaScript"],
     },
     {
       name: "Gifs autoplay for Google™",
-      created: "31 August 2020",
-      lastUpdated: "",
+      created: new Date("August 31, 2020"),
+      lastUpdated: null,
       users: 0,
       links: {
         chrome:
           "https://chrome.google.com/webstore/detail/mfaepkdaodjclepbclabjbigjeohfdje",
       },
-      tech: "JavaScript",
+      tech: ["JavaScript"],
     },
     {
       name: "SmoothZoom – Quick Page Zoom",
-      created: "20 March 2022",
-      lastUpdated: "",
+      created: new Date("March 20, 2022"),
+      lastUpdated: null,
       users: 0,
       links: {
         chrome:
           "https://chrome.google.com/webstore/detail/nlloamlgdioincflcopfgkbikjgaiihg",
       },
-      tech: "TypeScript",
+      tech: ["TypeScript"],
     },
     {
       name: "Search by Subtitles/CC for Youtube™",
-      created: "8 March 2022",
-      lastUpdated: "",
+      created: new Date("March 8, 2022"),
+      lastUpdated: null,
       users: 0,
       links: {
         chrome:
           "https://chrome.google.com/webstore/detail/mapeihpdilaoodlmokclkmbabakgciad",
       },
-      tech: "TypeScript",
+      tech: ["TypeScript"],
     },
   ],
   themes: [],
+  web: [],
+  desktop: [],
 };

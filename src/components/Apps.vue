@@ -1,5 +1,5 @@
 <template>
-  <div id="projects">
+  <div id="apps">
     <div id="navbar">
       <router-link to="/extensions">Browser Extensions</router-link>
       <router-link to="/themes">Browser Themes</router-link>
@@ -16,7 +16,7 @@
             :class="{ sortable: !column.unsortable }"
             @click="!column.unsortable && sort(column.name)"
           >
-            {{ getTitleCase(column.name) }}
+            {{ formatTitle(column.name) }}
             <svg
               v-if="sortedColumn.name == column.name"
               viewBox="0 0 451.847 451.847"
@@ -32,40 +32,41 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="project in projects[path || 'extensions']"
-          :key="project.name"
-        >
+        <tr v-for="app in currentApps" :key="app.name">
           <td
             v-for="column in columns"
             :key="column.name"
             v-show="!column.browserAppSpecific || isBrowserApp"
-            :class="{ sortable: !column.unsortable }"
-            :style="{
-              textAlign: ['users', 'links'].includes(column.name)
-                ? 'center'
-                : 'left',
-            }"
-            @click="!column.unsortable && sort(column.name)"
           >
-            <template v-if="column.name == 'name'">
-              <div id="app-icon">
-                <img :src="getAppImg(project[column.name])" />
-                {{ project[column.name] }}
-              </div>
+            <div v-if="column.name == 'name'" id="app-icon">
+              <img :src="getAppImg(app[column.name])" />
+              {{ app[column.name] }}
+            </div>
+            <a
+              v-else-if="column.name == 'links'"
+              v-for="(value, key) in app[column.name]"
+              :key="key"
+              :href="value"
+              target="_blank"
+            >
+              <img class="icon" :src="require(`@/assets/icons/${key}.svg`)" />
+            </a>
+            <img
+              v-else-if="column.name == 'tech'"
+              v-for="tech in app[column.name]"
+              :key="tech"
+              class="icon"
+              :src="require(`@/assets/icons/${tech}.svg`)"
+            />
+            <template v-else-if="column.name == 'users' && app[column.name]">
+              {{ app[column.name] + (app[column.name] % 100 == 0 ? "+" : "") }}
             </template>
-            <template v-else-if="column.name == 'links'">
-              <a
-                v-for="(value, key) in project[column.name]"
-                :key="key"
-                :href="value"
-                target="_blank"
-              >
-                <img class="icon" :src="require(`@/assets/icons/${key}.svg`)" />
-              </a>
-            </template>
-            <template v-else-if="project[column.name]">
-              {{ project[column.name] }}
+            <template v-else-if="app[column.name]">
+              {{
+                ["created", "lastUpdated"].includes(column.name)
+                  ? (app[column.name] as Date).toLocaleDateString('en-CA')
+                  : app[column.name]
+              }}
             </template>
             <LoadingSVGVue v-else></LoadingSVGVue>
           </td>
@@ -77,48 +78,53 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { App, columns, projects } from "../scripts/data";
+import { App, apps, columns } from "../scripts/data";
 import LoadingSVGVue from "./LoadingSVG.vue";
 const parser = new DOMParser();
 
 export default defineComponent({
-  name: "ProjectsVue",
+  name: "AppsVue",
   components: { LoadingSVGVue },
   data() {
     return {
       columns,
-      projects,
+      apps,
       sortedColumn: { name: "users", descending: true },
     };
   },
   mounted() {
-    for (const key in this.projects)
+    for (const key in this.apps)
       if (key == "extensions" || key == "themes")
-        for (const app of this.projects[key]) this.getBrowserAppInfo(app);
+        for (const app of this.apps[key]) this.getBrowserAppInfo(app);
   },
   methods: {
-    getTitleCase(text: string) {
+    formatTitle(text: string) {
       const result = text.replace(/([A-Z])/g, " $1");
       return result.charAt(0).toUpperCase() + result.slice(1);
     },
-    sort(columnName: string) {
+    sort(columnName: keyof App) {
       const isSameColumn = columnName == this.sortedColumn.name;
       const descending = isSameColumn ? !this.sortedColumn.descending : true;
       this.sortedColumn = { name: columnName, descending };
+      this.currentApps.sort((a, b) => {
+        if (a[columnName]! < b[columnName]!) return descending ? -1 : 1;
+        if (a[columnName]! > b[columnName]!) return descending ? 1 : -1;
+        return 0;
+      });
     },
     getAppImg(name: string) {
       return require(`@/assets/apps/${name.replace("/", "")}.webp`);
     },
     getBrowserAppInfo(app: App) {
       if (!app.links.chrome) return;
-      fetch(app.links.chrome)
+      fetch(/* "https://cors-anywhere.herokuapp.com/" + */ app.links.chrome)
         .then((response) => response.text())
         .then((html) => {
           const doc = parser.parseFromString(html, "text/html");
           const users = doc.querySelector(".e-f-ih")!.textContent as string;
           const updated = doc.querySelector(".h-C-b-p-D-xh-hh")!.textContent;
           app.users = parseInt(users.replace(/\D/g, ""));
-          app.lastUpdated = updated as string;
+          app.lastUpdated = new Date(updated as string);
         });
     },
   },
@@ -129,12 +135,15 @@ export default defineComponent({
     isBrowserApp(): boolean {
       return this.path == "extensions" || this.path == "themes";
     },
+    currentApps(): App[] {
+      return (this.apps as any)[this.path] || this.apps.extensions;
+    },
   },
 });
 </script>
 
 <style lang="scss">
-#projects {
+#apps {
   flex: 1;
   background: $dark3;
 }
@@ -155,10 +164,12 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-style: none hidden;
+  text-align: center;
 }
 thead {
-  text-align: center;
+  user-select: none;
   td {
+    padding: 10px;
     border-bottom: 10px solid $dark2;
     &.sortable {
       cursor: pointer;
@@ -170,15 +181,14 @@ thead {
     margin-left: 5px;
   }
 }
-td {
-  padding: 5px 10px;
-  border-left: 1px solid rgba($white, 0.25);
-  border-right: 1px solid rgba($white, 0.25);
-  .icon {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-  }
+tbody td {
+  padding: 20px;
+  border-bottom: 1px solid rgba($white, 0.25);
+}
+td .icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
 }
 #app-icon {
   display: flex;

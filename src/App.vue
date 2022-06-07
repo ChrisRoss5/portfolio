@@ -91,20 +91,20 @@
         </div>
       </div>
     </div>
-    <ProjectsVue></ProjectsVue>
+    <AppsVue></AppsVue>
   </div>
   <JsonVue></JsonVue>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import AppsVue from "./components/Apps.vue";
 import JsonVue from "./components/Json.vue";
-import ProjectsVue from "./components/Projects.vue";
 
 export default defineComponent({
   components: {
     JsonVue,
-    ProjectsVue,
+    AppsVue,
   },
 });
 </script>
