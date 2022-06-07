@@ -39,7 +39,7 @@
             v-show="!column.browserAppSpecific || isBrowserApp"
           >
             <div v-if="column.name == 'name'" id="app-icon">
-              <img :src="getAppImg(app[column.name])" />
+              <img :src="getAppImg(app.img)" />
               {{ app[column.name] }}
             </div>
             <a
@@ -49,17 +49,20 @@
               :href="value"
               target="_blank"
             >
-              <img class="icon" :src="require(`@/assets/icons/${key}.svg`)" />
+              <img :src="require(`@/assets/icons/${key}.svg`)" class="icon" />
             </a>
             <img
               v-else-if="column.name == 'tech'"
               v-for="tech in app[column.name]"
               :key="tech"
               class="icon"
-              :src="require(`@/assets/icons/${tech}.svg`)"
+              :src="require(`@/assets/icons/tech/${tech}.svg`)"
+              :title="tech"
             />
-            <template v-else-if="column.name == 'users' && app[column.name]">
-              {{ app[column.name] + (app[column.name] % 100 == 0 ? "+" : "") }}
+            <template
+              v-else-if="column.name == 'weeklyUsers' && app[column.name]"
+            >
+              {{ app[column.name] + (app[column.name]! % 100 == 0 ? "+" : "") }}
             </template>
             <template v-else-if="app[column.name]">
               {{
@@ -89,7 +92,7 @@ export default defineComponent({
     return {
       columns,
       apps,
-      sortedColumn: { name: "users", descending: true },
+      sortedColumn: { name: "weeklyUsers", descending: true },
     };
   },
   mounted() {
@@ -121,9 +124,10 @@ export default defineComponent({
         .then((response) => response.text())
         .then((html) => {
           const doc = parser.parseFromString(html, "text/html");
-          const users = doc.querySelector(".e-f-ih")!.textContent as string;
+          const weeklyUsers = doc.querySelector(".e-f-ih")!
+            .textContent as string;
           const updated = doc.querySelector(".h-C-b-p-D-xh-hh")!.textContent;
-          app.users = parseInt(users.replace(/\D/g, ""));
+          app.weeklyUsers = parseInt(weeklyUsers.replace(/\D/g, ""));
           app.lastUpdated = new Date(updated as string);
         });
     },
@@ -157,8 +161,8 @@ export default defineComponent({
   }
 }
 .router-link-active {
-  background: linear-gradient(92deg, $dark1, #0000, $dark1);
   font-weight: bold;
+  color: white;
 }
 table {
   width: 100%;
@@ -169,7 +173,7 @@ table {
 thead {
   user-select: none;
   td {
-    padding: 10px;
+    padding: 10px 20px;
     border-bottom: 10px solid $dark2;
     &.sortable {
       cursor: pointer;
@@ -185,14 +189,22 @@ tbody td {
   padding: 20px;
   border-bottom: 1px solid rgba($white, 0.25);
 }
-td .icon {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
+td {
+  a:not(:last-of-type),
+  img:not(:last-of-type) {
+    margin-right: 10px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+  }
 }
 #app-icon {
   display: flex;
   align-items: center;
   gap: 30px;
+  text-align: left;
 }
 </style>

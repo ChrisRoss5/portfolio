@@ -111,7 +111,6 @@ export default defineComponent({
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   display: flex;
   height: 100vh;
   overflow: hidden;
@@ -137,15 +136,16 @@ export default defineComponent({
   svg {
     margin-right: 10px;
   }
-  div {
-    &:nth-child(3) {
-      margin: 0 30px;
-      padding: 0 30px;
-      border-right: 1px solid $white-border;
-      border-left: 1px solid $white-border;
-    }
-    svg {
-      margin-right: 10px;
+  div:nth-child(3) {
+    margin: 0 30px;
+    padding: 0 30px;
+    border-right: 1px solid $white-border;
+    border-left: 1px solid $white-border;
+  }
+  a:hover {
+    color: white;
+    svg, svg path {
+      fill: white;
     }
   }
 }
