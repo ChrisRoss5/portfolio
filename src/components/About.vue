@@ -71,6 +71,7 @@ export default defineComponent({
 
 <style lang="scss">
 #about {
+  grid-area: b;
   width: 400px;
   background: $dark1;
   white-space: pre;
@@ -88,8 +89,9 @@ export default defineComponent({
   align-items: center;
 }
 .number {
+  user-select: none;
   justify-content: right;
-  padding: 0 10px;
+  padding-right: 10px;
   width: 2rem;
   background: #2a2139;
   color: #8a8592;
@@ -99,6 +101,7 @@ export default defineComponent({
   gap: 6px;
 }
 .dot {
+  user-select: none;
   color: #444250;
   &:nth-child(1)::before,
   &:nth-child(3)::before {

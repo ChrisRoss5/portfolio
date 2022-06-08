@@ -31,7 +31,6 @@ export default defineComponent({
 <style lang="scss">
 #navbar {
   display: flex;
-  border-bottom: 10px solid $dark2;
   a {
     position: relative;
     flex: 1;

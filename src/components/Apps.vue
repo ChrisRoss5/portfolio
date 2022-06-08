@@ -27,7 +27,7 @@
       </div>
     </div>
     <div id="table">
-      <TransitionGroup name="table">
+      <TransitionGroup name="table" :key="path">
         <div v-for="app in currentApps" :key="app.name">
           <div
             v-for="column in columns"
@@ -167,6 +167,7 @@ export default defineComponent({
 #columns {
   text-align: center;
   user-select: none;
+  border-top: 10px solid $dark2;
   border-bottom: 10px solid $dark2;
   & > div {
     padding: 10px 20px;
@@ -180,6 +181,7 @@ export default defineComponent({
 #table {
   overflow: auto;
   & > div {
+    background: $dark3;
     border-bottom: 5px solid $dark2;
     & > div {
       transition: none !important;
@@ -215,13 +217,7 @@ export default defineComponent({
   opacity: 0 !important;
 }
 
-.table-move, /* apply transition to moving elements */
-.table-enter-active,
-.table-leave-active {
-  transition: 150ms;
-}
-
-.table-leave-active {
-  position: absolute;
+.table-move {
+  transition: transform 150ms;
 }
 </style>
