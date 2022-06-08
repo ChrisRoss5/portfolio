@@ -1,8 +1,11 @@
 $white: #d8d4cf;
 $white-border: rgba($white, 0.5);
-$dark1: #1e1e1e;
+/* $dark1: #1e1e1e;
 $dark2: #252526;
-$dark3: #333333;
+$dark3: #333333; */
+$dark1: #262335;
+$dark2: #241b2f;
+$dark3: #171520;
 
 html {
   font-size: 20px;
@@ -20,7 +23,29 @@ svg {
   width: 24px;
   height: 24px;
   vertical-align: text-bottom;
-  &, path {
+  &,
+  path {
     fill: $white;
   }
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3d3651;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4b4364;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #353048;
 }

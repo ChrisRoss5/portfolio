@@ -1,47 +1,43 @@
 <template>
   <div id="apps">
-    <div id="navbar">
-      <router-link to="/extensions">Browser Extensions</router-link>
-      <router-link to="/themes">Browser Themes</router-link>
-      <router-link to="/web">Web Apps</router-link>
-      <router-link to="/desktop">Desktop Apps</router-link>
+    <NavbarVue :path="path"></NavbarVue>
+    <div id="columns">
+      <div
+        v-for="column in columns"
+        :key="column.name"
+        v-show="!column.browserAppSpecific || isBrowserApp"
+        :class="{ sortable: !column.unsortable }"
+        @click="!column.unsortable && sort(column.name)"
+      >
+        {{ formatTitle(column.name) }}
+        <Transition name="sort-icon">
+          <svg
+            v-if="sortedColumn.name == column.name"
+            viewBox="0 0 451.847 451.847"
+            :style="{
+              transform: `scale(${sortedColumn.descending ? 1 : -1})`,
+            }"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751 c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0 c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
+            />
+          </svg>
+        </Transition>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <td
-            v-for="column in columns"
-            :key="column.name"
-            v-show="!column.browserAppSpecific || isBrowserApp"
-            :class="{ sortable: !column.unsortable }"
-            @click="!column.unsortable && sort(column.name)"
-          >
-            {{ formatTitle(column.name) }}
-            <svg
-              v-if="sortedColumn.name == column.name"
-              viewBox="0 0 451.847 451.847"
-              :style="{
-                transform: `rotate(${sortedColumn.descending ? 0 : 180}deg)`,
-              }"
-            >
-              <path
-                d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751 c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0 c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
-              />
-            </svg>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="app in currentApps" :key="app.name">
-          <td
+    <div id="table">
+      <TransitionGroup name="table">
+        <div v-for="app in currentApps" :key="app.name">
+          <div
             v-for="column in columns"
             :key="column.name"
             v-show="!column.browserAppSpecific || isBrowserApp"
           >
-            <div v-if="column.name == 'name'" id="app-icon">
+            <template v-if="column.name == 'name'">
               <img :src="getAppImg(app.img)" />
               {{ app[column.name] }}
-            </div>
+            </template>
             <a
               v-else-if="column.name == 'links'"
               v-for="(value, key) in app[column.name]"
@@ -72,22 +68,23 @@
               }}
             </template>
             <LoadingSVGVue v-else></LoadingSVGVue>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
+      </TransitionGroup>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { App, apps, columns } from "../scripts/data";
+import { App, apps, columns } from "../scripts/apps";
+import NavbarVue from "./Navbar.vue";
 import LoadingSVGVue from "./LoadingSVG.vue";
 const parser = new DOMParser();
 
 export default defineComponent({
   name: "AppsVue",
-  components: { LoadingSVGVue },
+  components: { NavbarVue, LoadingSVGVue },
   data() {
     return {
       columns,
@@ -150,54 +147,53 @@ export default defineComponent({
 #apps {
   flex: 1;
   background: $dark3;
-}
-#navbar {
-  background: $dark3;
   display: flex;
-  border-bottom: 10px solid $dark2;
-  a {
+  flex-direction: column;
+  overflow: hidden;
+}
+#columns,
+#table > div {
+  display: flex;
+  & > div {
     flex: 1;
-    text-align: center;
-    padding: 20px 10px;
-  }
-}
-.router-link-active {
-  font-weight: bold;
-  color: white;
-}
-table {
-  table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-  border-style: none hidden;
-  text-align: center;
-}
-thead {
-  user-select: none;
-  td {
-    padding: 10px 20px;
-    border-bottom: 10px solid $dark2;
+    &:first-of-type {
+      flex: 1 0 20%;
+    }
     &.sortable {
       cursor: pointer;
     }
   }
+}
+#columns {
+  text-align: center;
+  user-select: none;
+  border-bottom: 10px solid $dark2;
+  & > div {
+    padding: 10px 20px;
+  }
   svg {
     width: 18px;
     height: 18px;
-    margin-left: 5px;
+    transition: transform 150ms, opacity 150ms, width 150ms;
   }
 }
-tbody td {
-  padding: 20px;
-  border-bottom: 1px solid rgba($white, 0.25);
-}
-td {
-  &:first-of-type {
-    width: 30%;
-  }
-  a:not(:last-of-type),
-  img:not(:last-of-type) {
-    margin-right: 10px;
+#table {
+  overflow: auto;
+  & > div {
+    border-bottom: 5px solid $dark2;
+    & > div {
+      transition: none !important;
+      @extend .flex-center;
+      padding: 20px;
+      &:first-of-type {
+        gap: 20px;
+        justify-content: left;
+      }
+      a:not(:last-of-type),
+      img:not(:last-of-type) {
+        margin-right: 10px;
+      }
+    }
   }
   .icon {
     width: 24px;
@@ -208,7 +204,24 @@ td {
 #app-icon {
   display: flex;
   align-items: center;
-  gap: 30px;
   text-align: left;
+}
+
+/* transitions */
+
+.sort-icon-enter-from,
+.sort-icon-leave-to {
+  width: 0 !important;
+  opacity: 0 !important;
+}
+
+.table-move, /* apply transition to moving elements */
+.table-enter-active,
+.table-leave-active {
+  transition: 150ms;
+}
+
+.table-leave-active {
+  position: absolute;
 }
 </style>

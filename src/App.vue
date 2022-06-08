@@ -93,17 +93,17 @@
     </div>
     <AppsVue></AppsVue>
   </div>
-  <JsonVue></JsonVue>
+  <AboutVue></AboutVue>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import AppsVue from "./components/Apps.vue";
-import JsonVue from "./components/Json.vue";
+import AboutVue from "./components/About.vue";
 
 export default defineComponent({
   components: {
-    JsonVue,
+    AboutVue,
     AppsVue,
   },
 });
@@ -119,20 +119,18 @@ export default defineComponent({
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 5% 0 0 5%;
   background: $dark2;
 }
 #intro {
-  padding-right: 5%;
+  padding: 5% 5%;
 }
 #title {
   font-size: 1.2rem;
   letter-spacing: 0.25rem;
-  padding-bottom: 3%;
+  padding-bottom: 2%;
 }
 #links {
   display: flex;
-  padding-bottom: 5%;
   svg {
     margin-right: 10px;
   }

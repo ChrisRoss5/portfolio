@@ -1,0 +1,39 @@
+{
+  "name": "Kristijan Rosandić",
+  "version": "2002.5.8",
+  "description": "Student",
+  "homepage": "Algebra University College",
+  "keywords": [
+    "Problem solving",
+    "Algorithms",
+    "UI/UX",
+    "Visual Design"
+  ],
+  "engines": {
+    "html": "5",
+    "css": "3",
+    "typescript": "*",
+    "javascript": ">=ES6",
+    "c++": ">=11",
+    "python": "3.x",
+    "java": "~11"
+  },
+  "dependencies": {
+    "vue": "3.x",
+    "webpack": "latest",
+    "sass": "latest",
+    "express": "latest"
+  },
+  "devDependencies": {
+    "os": "win10|win11",
+    "editor": "vs|vsc|pycharm",
+    "browser": "chrome",
+    "internet": "200mbps",
+    "drink": "chocolate-milk",
+    "music": "kyle-landry",
+    "game": "smite"
+  },
+  "workspaces": [
+    "Google Cloud Platform"
+  ]
+}
