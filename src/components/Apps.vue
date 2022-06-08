@@ -119,7 +119,7 @@ export default defineComponent({
       return require(`@/assets/apps/${name.replace("/", "")}.webp`);
     },
     getBrowserAppInfo(app: App) {
-      if (!app.links.chrome) return;
+      if (!app.links.chrome || !0) return; // todo
       fetch(/* "https://cors-anywhere.herokuapp.com/" + */ app.links.chrome)
         .then((response) => response.text())
         .then((html) => {
@@ -152,6 +152,7 @@ export default defineComponent({
   background: $dark3;
 }
 #navbar {
+  background: $dark3;
   display: flex;
   border-bottom: 10px solid $dark2;
   a {
@@ -165,6 +166,7 @@ export default defineComponent({
   color: white;
 }
 table {
+  table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
   border-style: none hidden;
@@ -190,11 +192,13 @@ tbody td {
   border-bottom: 1px solid rgba($white, 0.25);
 }
 td {
+  &:first-of-type {
+    width: 30%;
+  }
   a:not(:last-of-type),
   img:not(:last-of-type) {
     margin-right: 10px;
   }
-
   .icon {
     width: 24px;
     height: 24px;

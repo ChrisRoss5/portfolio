@@ -172,14 +172,14 @@ export const apps: Apps = {
       name: "Network Planner",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://network-planner.com" },
-      tech: ["JavaScript", "Vue", "SCSS"],
+      tech: ["JavaScript", "Vue", "SCSS", "Firebase"],
     },
     {
       img: "Network Planner",
       name: "Network Planner App",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://app.network-planner.com" },
-      tech: ["JavaScript", "Vue", "SCSS"],
+      tech: ["JavaScript", "Vue", "SCSS", "Firebase"],
     },
     {
       img: "My Developer Portfolio",
@@ -192,5 +192,24 @@ export const apps: Apps = {
       tech: ["TypeScript", "Vue", "SCSS"],
     },
   ],
-  desktop: [],
+  desktop: [
+    {
+      img: "Evaluator",
+      name: "Infokup Evaluator",
+      created: new Date("Feb 21, 2019"),
+      links: {
+        download: "/apps/Evaluator.exe",
+      },
+      tech: ["Python"],
+    },
+    {
+      img: "Patterns",
+      name: "Patterns",
+      created: new Date("Jan 29, 2019"),
+      links: {
+        download: "/apps/Patterns.exe",
+      },
+      tech: ["Python"],
+    },
+  ],
 };
