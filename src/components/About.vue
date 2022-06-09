@@ -1,8 +1,10 @@
 <template>
   <div id="about">
     <div v-for="(line, i) in lines" :key="i">
-      <div class="number">{{ i + 1 }}</div>
-      <div class="line">
+      <div class="number" :style="{ animationDelay: i * this.pause + 'ms' }">
+        {{ i + 1 }}
+      </div>
+      <div class="line" :style="{ animationDelay: i * this.pause + 'ms' }">
         <div class="dot" v-for="i in line.indents * 2" :key="i">•</div>
         <div>
           <span v-if="line.indents == 0" class="yellow">{{ line.value }}</span>
@@ -52,29 +54,30 @@ for (let i = 0; i < keys.length; i++) {
     for (let j = 0; j < keys2.length; j++) {
       const key2 = keys2[j];
       const value2 = value[key2 as keyof typeof value];
-      const noComma = j == keys2.length - 1;
-      lines.push({ key: key2, value: value2, indents: 2, noComma });
+      const noComma2 = j == keys2.length - 1;
+      lines.push({ key: key2, value: value2, indents: 2, noComma: noComma2 });
     }
     lines.push({ indents, value: "}", bracket: true, noComma });
   }
 }
 lines.push({ value: "}", bracket: true, indents: 0 });
-console.log(lines);
 
 export default defineComponent({
   name: "AboutVue",
   data() {
-    return { lines };
+    return { lines, pause: 100 };
   },
+  mounted() {
+    setTimeout(() => this.$emit("completed"), lines.length * this.pause);
+  }
 });
 </script>
 
 <style lang="scss">
 #about {
   grid-area: b;
-  width: 400px;
+  padding-right: 5vw;
   background: $dark1;
-  white-space: pre;
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
@@ -87,18 +90,21 @@ export default defineComponent({
 .line {
   display: flex;
   align-items: center;
+  opacity: 0;
 }
 .number {
   user-select: none;
   justify-content: right;
   padding-right: 10px;
   width: 2rem;
-  background: #2a2139;
+  background: $dark4;
   color: #8a8592;
+  animation: 300ms number-enter forwards;
 }
 .line {
   position: relative;
   gap: 6px;
+  animation: 300ms line-enter forwards;
 }
 .dot {
   user-select: none;
@@ -114,7 +120,6 @@ export default defineComponent({
     background: #444250;
   }
 }
-
 .key {
   color: #72efb6;
 }
@@ -129,5 +134,21 @@ export default defineComponent({
 }
 .yellow {
   color: #ffd700;
+}
+@keyframes line-enter {
+  from {
+    filter: brightness(5);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes number-enter {
+  from {
+    color: #fff;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>

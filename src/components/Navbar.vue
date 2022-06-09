@@ -38,6 +38,7 @@ export default defineComponent({
     padding: 20px 10px;
     &.router-link-active {
       color: white;
+      /* background: $dark4; */
     }
     div {
       position: absolute;

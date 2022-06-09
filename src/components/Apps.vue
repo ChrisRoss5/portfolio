@@ -116,10 +116,11 @@ export default defineComponent({
       return require(`@/assets/apps/${name.replace("/", "")}.webp`);
     },
     getBrowserAppInfo(app: App) {
-      if (!app.links.chrome || !0) return; // todo
-      fetch(/* "https://cors-anywhere.herokuapp.com/" + */ app.links.chrome)
+      if (!app.links.chrome/*  || !0 */) return; // todo
+      fetch("https://cors-anywhere.herokuapp.com/" + app.links.chrome)
         .then((response) => response.text())
         .then((html) => {
+          console.log(html);
           const doc = parser.parseFromString(html, "text/html");
           const weeklyUsers = doc.querySelector(".e-f-ih")!
             .textContent as string;
@@ -150,6 +151,9 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  & > div {
+    padding: 0 5vw;
+  }
 }
 #columns,
 #table > div {
@@ -159,30 +163,33 @@ export default defineComponent({
     &:first-of-type {
       flex: 1 0 20%;
     }
-    &.sortable {
-      cursor: pointer;
-    }
   }
 }
 #columns {
-  text-align: center;
+  background: $dark4;
   user-select: none;
   border-top: 10px solid $dark2;
   border-bottom: 10px solid $dark2;
   & > div {
-    padding: 10px 20px;
+    height: calc(1rem + 40px);
+    @extend .flex-center;
+    padding: 0 20px;
+    &.sortable {
+      cursor: pointer;
+    }
   }
   svg {
     width: 18px;
     height: 18px;
-    transition: transform 150ms, opacity 150ms, width 150ms;
+    margin-left: 10px;
+    transition: transform 150ms, opacity 150ms, width 150ms, margin 150ms;
   }
 }
 #table {
   overflow: auto;
   & > div {
     background: $dark3;
-    border-bottom: 5px solid $dark2;
+    border-bottom: 5px solid $dark4;
     & > div {
       transition: none !important;
       @extend .flex-center;
@@ -215,6 +222,7 @@ export default defineComponent({
 .sort-icon-leave-to {
   width: 0 !important;
   opacity: 0 !important;
+  margin: 0 !important;
 }
 
 .table-move {

@@ -1,8 +1,8 @@
 <template>
   <div id="intro">
     <div id="title">
-      <span style="font-size: 4rem">Hi</span>, I'm Kristijan Rosandić,
-      <strong>Software Engineer</strong>.
+      <span style="font-size: 4rem">Hi</span>, I'm Kristijan Rosandić, Software
+      Engineer.
     </div>
     <div id="links">
       <div>
@@ -89,12 +89,13 @@
         </a>
       </div>
     </div>
-    <div id="logo">
-      <img src="@/assets/my-logo/logo-text.svg">
-    </div>
+    <img id="logo" src="@/assets/my-logo/logo-text.svg" ref="logo" />
   </div>
   <AppsVue></AppsVue>
-  <AboutVue></AboutVue>
+  <AboutVue
+    @completed="(this.$refs.logo as HTMLElement).style.filter
+    = 'drop-shadow(-4px -4px 6px #fc28a8) drop-shadow(4px 4px 6px #03edf9)'"
+  ></AboutVue>
 </template>
 
 <script lang="ts">
@@ -122,15 +123,17 @@ export default defineComponent({
 }
 #intro {
   position: relative;
-  padding: 5% 5%;
+  padding: 8vh 5vw 0;
+  overflow: hidden;
+  z-index: 0;
 }
 #title {
   font-size: 1.2rem;
   letter-spacing: 0.25rem;
-  padding-bottom: 2%;
 }
 #links {
   display: flex;
+  padding: 2% 0;
   svg {
     margin-right: 10px;
   }
@@ -153,9 +156,9 @@ export default defineComponent({
   top: 0;
   right: 0;
   bottom: 0;
-  img {
-    height: 100%;
-        transform: scale(1.35) translate(-8%, -3%);
-  }
+  height: 100%;
+  transform: scale(1.36) translate(-10%, -3%);
+  transition: filter 300ms;
+  z-index: -1;
 }
 </style>
