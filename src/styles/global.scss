@@ -6,10 +6,88 @@ $dark3: #333333; */
 $dark1: #262335;
 $dark2: #241b2f;
 $dark3: #171520;
-$dark4: #2a2139;
+$dark4: #362b48; // 2a2139
 
 html {
   font-size: 20px;
+}
+@media screen and (max-width: 1920px) {
+  html {
+    font-size: 18px;
+  }
+  #table > div > div {
+    padding: 10px;
+  }
+}
+@media screen and (max-width: 1680px) {
+  html {
+    font-size: 16px;
+  }
+  #table > div > div {
+    padding: 5px;
+  }
+}
+@media screen and (max-width: 1536px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  #apps > div {
+    padding: 0;
+  }
+  #about {
+    padding-right: 20px;
+  }
+  #table > div > div:first-of-type {
+    padding-left: 20px;
+  }
+}
+@media screen and (max-width: 1366px) and (min-width: 1281px) {
+  #intro {
+    padding-right: 30vw !important;
+  }
+}
+@media screen and (max-width: 1280px) {
+  #app {
+    display: flex !important;
+    flex-direction: column;
+  }
+  #about {
+    display: none;
+    position: absolute;
+    right: 0;
+    transform: translateX(100%);
+  }
+  #links {
+    gap: 20px;
+    flex-direction: column;
+    & > div:nth-child(2) {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+    }
+  }
+  #columns {
+    white-space: normal;
+    & > div:first-child {
+      display: none;
+    }
+  }
+  #table {
+    flex: 1;
+    & > div {
+      flex-wrap: wrap;
+      & > div:first-of-type {
+        flex: 1 1 100%;
+      }
+    }
+  }
+  svg,
+  .icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
 }
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;

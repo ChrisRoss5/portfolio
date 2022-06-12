@@ -189,7 +189,7 @@ export const apps: Apps = {
         home: "https://kristijanros.dev", // todo
         github: "https://github.com/ChrisRoss5/portfolio",
       },
-      tech: ["TypeScript", "Vue", "SCSS"],
+      tech: ["TypeScript", "Vue", "SCSS", "Cloudflare"],
     },
   ],
   desktop: [

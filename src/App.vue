@@ -6,23 +6,25 @@
     </div>
     <div id="links">
       <div>
-        <svg viewBox="0 0 24 24" style="margin-right: 0">
-          <path
-            d="M19 9c0-3.866-3.134-7-7-7S5 5.134 5 9c0 1.387.41 2.677 1.105 3.765h-.008C8.457 16.46 12 22 12 22l5.903-9.235h-.007C18.59 11.677 19 10.387 19 9zm-7 3c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"
-          />
-        </svg>
-        Croatia, Zagreb
-      </div>
-      <div>
-        <svg viewBox="0 0 400 400" style="margin-left: 30px">
-          <polygon points="0,127.5 0,274.219 104.8,206.1" />
-          <polygon points="400,274.219 400,127.5 295.2,206.1" />
-          <polygon
-            points="200,277.5 130.357,225.268 0,310 0,340 400,340 400,310 269.643,225.268"
-          />
-          <polygon points="0,90 200,240 400,90 400,60 0,60" />
-        </svg>
-        <a href="mailto:kristijan.ros@gmail.com">kristijan.ros@gmail.com</a>
+        <div>
+          <svg viewBox="0 0 24 24" style="margin-right: 0">
+            <path
+              d="M19 9c0-3.866-3.134-7-7-7S5 5.134 5 9c0 1.387.41 2.677 1.105 3.765h-.008C8.457 16.46 12 22 12 22l5.903-9.235h-.007C18.59 11.677 19 10.387 19 9zm-7 3c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"
+            />
+          </svg>
+          Croatia, Zagreb
+        </div>
+        <div>
+          <svg viewBox="0 0 400 400">
+            <polygon points="0,127.5 0,274.219 104.8,206.1" />
+            <polygon points="400,274.219 400,127.5 295.2,206.1" />
+            <polygon
+              points="200,277.5 130.357,225.268 0,310 0,340 400,340 400,310 269.643,225.268"
+            />
+            <polygon points="0,90 200,240 400,90 400,60 0,60" />
+          </svg>
+          <a href="mailto:kristijan.ros@gmail.com">&nbsp; kristijan.ros@gmail.com</a>
+        </div>
       </div>
       <div>
         <a href="https://github.com/ChrisRoss5" target="_blank">
@@ -63,7 +65,7 @@
           href="https://www.youtube.com/channel/UCiYn99aPlfjXYmulJaWju_A"
           target="_blank"
         >
-          <svg viewBox="0 0 310 310" style="margin-right: 0">
+          <svg viewBox="0 0 310 310">
             <path
               d="M297.917,64.645c-11.19-13.302-31.85-18.728-71.306-18.728H83.386c-40.359,0-61.369,5.776-72.517,19.938 C0,79.663,0,100.008,0,128.166v53.669c0,54.551,12.896,82.248,83.386,82.248h143.226c34.216,0,53.176-4.788,65.442-16.527 C304.633,235.518,310,215.863,310,181.835v-53.669C310,98.471,309.159,78.006,297.917,64.645z M199.021,162.41l-65.038,33.991 c-1.454,0.76-3.044,1.137-4.632,1.137c-1.798,0-3.592-0.484-5.181-1.446c-2.992-1.813-4.819-5.056-4.819-8.554v-67.764 c0-3.492,1.822-6.732,4.808-8.546c2.987-1.814,6.702-1.938,9.801-0.328l65.038,33.772c3.309,1.718,5.387,5.134,5.392,8.861 C204.394,157.263,202.325,160.684,199.021,162.41z"
             />
@@ -77,10 +79,7 @@
           :href="'CV-' + i + '.pdf'"
           target="_blank"
         >
-          <svg
-            viewBox="0 0 43.916 43.916"
-            :style="{ marginLeft: i == 'hr' ? '30px' : '0' }"
-          >
+          <svg viewBox="0 0 43.916 43.916">
             <path
               d="M34.395,0H9.522c-2.762,0-5,2.239-5,5v33.916c0,2.761,2.238,5,5,5h24.871c2.762,0,5-2.239,5-5V5 C39.395,2.239,37.154,0,34.395,0z M9.208,16.855c0-1.172,0.951-2.121,2.121-2.121h0.742c-0.791-0.874-1.277-2.03-1.277-3.304 c0-2.723,2.209-4.931,4.932-4.931c2.725,0,4.932,2.207,4.932,4.932c0,1.272-0.486,2.429-1.279,3.303h0.709 c1.172,0,2.121,0.949,2.121,2.121v3.578c0,1.122-0.875,2.03-1.975,2.106h-9.051c-1.1-0.076-1.975-0.984-1.975-2.106V16.855 L9.208,16.855z M32.708,37.416h-21.5c-1.104,0-2-0.896-2-2s0.896-2,2-2h21.5c1.104,0,2,0.896,2,2S33.812,37.416,32.708,37.416z  M32.708,29.916h-21.5c-1.104,0-2-0.896-2-2s0.896-2,2-2h21.5c1.104,0,2,0.896,2,2S33.812,29.916,32.708,29.916z M32.708,22.416 h-6.5c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2h6.5c1.104,0,2,0.896,2,2C34.708,21.52,33.812,22.416,32.708,22.416z"
             />
@@ -94,7 +93,7 @@
   <AppsVue></AppsVue>
   <AboutVue
     @completed="(this.$refs.logo as HTMLElement).style.filter
-    = 'drop-shadow(-4px -4px 6px #fc28a8) drop-shadow(4px 4px 6px #03edf9)'"
+    = 'drop-shadow(-3px -3px 6px #fc28a8) drop-shadow(3px 3px 6px #03edf9)'"
   ></AboutVue>
 </template>
 
@@ -134,14 +133,19 @@ export default defineComponent({
 #links {
   display: flex;
   padding: 2% 0;
-  svg {
+  /* svg {
     margin-right: 10px;
-  }
-  div:nth-child(3) {
-    margin: 0 30px;
-    padding: 0 30px;
-    border-right: 1px solid $white-border;
-    border-left: 1px solid $white-border;
+  } */
+  & > div {
+    display: flex;
+    gap: 30px;
+    &:nth-child(2) {
+      gap: 10px;
+      margin: 0 30px;
+      padding: 0 30px;
+      border-right: 1px solid $white-border;
+      border-left: 1px solid $white-border;
+    }
   }
   a:hover {
     color: white;
@@ -157,8 +161,9 @@ export default defineComponent({
   right: 0;
   bottom: 0;
   height: 100%;
-  transform: scale(1.36) translate(-10%, -3%);
-  transition: filter 300ms;
+  transform: scale(1.01);
+  transition: filter 1s;
+  will-change: filter;
   z-index: -1;
 }
 </style>

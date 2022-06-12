@@ -38,7 +38,7 @@ export default defineComponent({
     padding: 20px 10px;
     &.router-link-active {
       color: white;
-      /* background: $dark4; */
+      background: linear-gradient(to top, $dark4, $dark2);
     }
     div {
       position: absolute;

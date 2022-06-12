@@ -15,7 +15,7 @@
             v-if="sortedColumn.name == column.name"
             viewBox="0 0 451.847 451.847"
             :style="{
-              transform: `scale(${sortedColumn.descending ? 1 : -1})`,
+              transform: `scale(${sortedColumn.descending ? -1 : 1})`,
             }"
             preserveAspectRatio="none"
           >
@@ -77,7 +77,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { App, apps, columns } from "../scripts/apps";
+import { Apps, App, apps, columns } from "../scripts/apps";
 import NavbarVue from "./Navbar.vue";
 import LoadingSVGVue from "./LoadingSVG.vue";
 const parser = new DOMParser();
@@ -102,9 +102,10 @@ export default defineComponent({
       const result = text.replace(/([A-Z])/g, " $1");
       return result.charAt(0).toUpperCase() + result.slice(1);
     },
-    sort(columnName: keyof App) {
+    sort(columnName: keyof App, descending?: boolean) {
       const isSameColumn = columnName == this.sortedColumn.name;
-      const descending = isSameColumn ? !this.sortedColumn.descending : true;
+      if (descending == undefined)
+        descending = isSameColumn ? !this.sortedColumn.descending : true;
       this.sortedColumn = { name: columnName, descending };
       this.currentApps.sort((a, b) => {
         if (a[columnName]! < b[columnName]!) return descending ? -1 : 1;
@@ -116,17 +117,13 @@ export default defineComponent({
       return require(`@/assets/apps/${name.replace("/", "")}.webp`);
     },
     getBrowserAppInfo(app: App) {
-      if (!app.links.chrome/*  || !0 */) return; // todo
-      fetch("https://cors-anywhere.herokuapp.com/" + app.links.chrome)
-        .then((response) => response.text())
-        .then((html) => {
-          console.log(html);
-          const doc = parser.parseFromString(html, "text/html");
-          const weeklyUsers = doc.querySelector(".e-f-ih")!
-            .textContent as string;
-          const updated = doc.querySelector(".h-C-b-p-D-xh-hh")!.textContent;
-          app.weeklyUsers = parseInt(weeklyUsers.replace(/\D/g, ""));
-          app.lastUpdated = new Date(updated as string);
+      if (!app.links.chrome  || !0) return; // todo
+      const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
+      fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
+        .then((response) => response.json())
+        .then((result) => {
+          app.weeklyUsers = result.weeklyUsers;
+          app.lastUpdated = new Date(result.lastUpdated);
         });
     },
   },
@@ -138,7 +135,13 @@ export default defineComponent({
       return this.path == "extensions" || this.path == "themes";
     },
     currentApps(): App[] {
-      return (this.apps as any)[this.path] || this.apps.extensions;
+      return this.apps[this.path as keyof Apps] || this.apps.extensions;
+    },
+  },
+  watch: {
+    path() {
+      if (this.isBrowserApp) this.sort("weeklyUsers", false);
+      else this.sort("created", false);
     },
   },
 });
@@ -166,14 +169,13 @@ export default defineComponent({
   }
 }
 #columns {
+  text-align: center;
   background: $dark4;
   user-select: none;
-  border-top: 10px solid $dark2;
-  border-bottom: 10px solid $dark2;
-  & > div {
+  white-space: nowrap;
     height: calc(1rem + 40px);
+  & > div {
     @extend .flex-center;
-    padding: 0 20px;
     &.sortable {
       cursor: pointer;
     }

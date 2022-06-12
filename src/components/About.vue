@@ -65,7 +65,7 @@ lines.push({ value: "}", bracket: true, indents: 0 });
 export default defineComponent({
   name: "AboutVue",
   data() {
-    return { lines, pause: 100 };
+    return { lines, pause: 75 };
   },
   mounted() {
     setTimeout(() => this.$emit("completed"), lines.length * this.pause);
@@ -81,6 +81,7 @@ export default defineComponent({
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
+  overflow: auto;
   & > div {
     flex: 1;
     display: flex;
@@ -104,6 +105,7 @@ export default defineComponent({
 .line {
   position: relative;
   gap: 6px;
+  margin-left: 3px;
   animation: 300ms line-enter forwards;
 }
 .dot {
