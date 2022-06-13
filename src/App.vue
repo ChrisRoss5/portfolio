@@ -6,15 +6,18 @@
     </div>
     <div id="links">
       <div>
-        <div>
+        <a
+          href="https://www.google.com/search?q=Croatia, Zagreb"
+          target="_blank"
+        >
           <svg viewBox="0 0 24 24" style="margin-right: 0">
             <path
               d="M19 9c0-3.866-3.134-7-7-7S5 5.134 5 9c0 1.387.41 2.677 1.105 3.765h-.008C8.457 16.46 12 22 12 22l5.903-9.235h-.007C18.59 11.677 19 10.387 19 9zm-7 3c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"
             />
           </svg>
           Croatia, Zagreb
-        </div>
-        <div>
+        </a>
+        <a href="mailto:kristijan.ros@gmail.com">
           <svg viewBox="0 0 400 400">
             <polygon points="0,127.5 0,274.219 104.8,206.1" />
             <polygon points="400,274.219 400,127.5 295.2,206.1" />
@@ -23,8 +26,8 @@
             />
             <polygon points="0,90 200,240 400,90 400,60 0,60" />
           </svg>
-          <a href="mailto:kristijan.ros@gmail.com">&nbsp; kristijan.ros@gmail.com</a>
-        </div>
+          &nbsp; kristijan.ros@gmail.com
+        </a>
       </div>
       <div>
         <a href="https://github.com/ChrisRoss5" target="_blank">
@@ -72,7 +75,7 @@
           </svg>
         </a>
       </div>
-      <div>
+      <div v-if="!$isMobile">
         <a
           v-for="i in ['en', 'hr']"
           :key="i"
@@ -91,10 +94,7 @@
     <img id="logo" src="@/assets/my-logo/logo-text.svg" ref="logo" />
   </div>
   <AppsVue></AppsVue>
-  <AboutVue
-    @completed="(this.$refs.logo as HTMLElement).style.filter
-    = 'drop-shadow(-3px -3px 6px #fc28a8) drop-shadow(3px 3px 6px #03edf9)'"
-  ></AboutVue>
+  <AboutVue @completed="this.$refs.logo.className = 'completed'"></AboutVue>
 </template>
 
 <script lang="ts">
@@ -133,9 +133,6 @@ export default defineComponent({
 #links {
   display: flex;
   padding: 2% 0;
-  /* svg {
-    margin-right: 10px;
-  } */
   & > div {
     display: flex;
     gap: 30px;
@@ -165,5 +162,8 @@ export default defineComponent({
   transition: filter 1s;
   will-change: filter;
   z-index: -1;
+  .completed {
+    filter: drop-shadow(-3px -3px 6px #fc28a8) drop-shadow(3px 3px 6px #03edf9);
+  }
 }
 </style>

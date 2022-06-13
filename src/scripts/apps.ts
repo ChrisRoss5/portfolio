@@ -156,7 +156,7 @@ export const apps: Apps = {
         github:
           "https://github.com/ChrisRoss5/e-Dnevnik-Plus/tree/master/ednevnik.plus",
       },
-      tech: ["TypeScript", "Vue", "SCSS", "Google Analytics"],
+      tech: ["TypeScript", "Vue", "SCSS", "Google Analytics", "Paypal"],
     },
     {
       img: "e-Dnevnik Plus",
@@ -172,7 +172,7 @@ export const apps: Apps = {
       name: "Network Planner",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://network-planner.com" },
-      tech: ["JavaScript", "Vue", "SCSS", "Firebase"],
+      tech: ["JavaScript", "Vue", "SCSS", "Firebase", "Paypal"],
     },
     {
       img: "Network Planner",

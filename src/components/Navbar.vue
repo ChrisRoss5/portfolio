@@ -1,7 +1,12 @@
 <template>
   <div id="navbar">
     <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
-      {{ value }}
+      <template v-if="$isMobile">
+        {{ value.split(" ")[0] }}
+        <br />
+        {{ value.split(" ")[1] }}
+      </template>
+      <template v-else>{{ value }}</template>
       <Transition name="line">
         <div v-show="path == key"></div>
       </Transition>

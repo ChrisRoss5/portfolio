@@ -33,6 +33,7 @@
             v-for="column in columns"
             :key="column.name"
             v-show="!column.browserAppSpecific || isBrowserApp"
+            :class="{icons: ['links', 'tech'].includes(column.name)}"
           >
             <template v-if="column.name == 'name'">
               <img :src="getAppImg(app.img)" />
@@ -58,12 +59,12 @@
             <template
               v-else-if="column.name == 'weeklyUsers' && app[column.name]"
             >
-              {{ app[column.name] + (app[column.name]! % 100 == 0 ? "+" : "") }}
+              {{ formatCount(app[column.name]) }}
             </template>
             <template v-else-if="app[column.name]">
               {{
                 ["created", "lastUpdated"].includes(column.name)
-                  ? (app[column.name] as Date).toLocaleDateString('en-CA')
+                  ? app[column.name].toLocaleDateString("en-CA")
                   : app[column.name]
               }}
             </template>
@@ -102,6 +103,9 @@ export default defineComponent({
       const result = text.replace(/([A-Z])/g, " $1");
       return result.charAt(0).toUpperCase() + result.slice(1);
     },
+    formatCount(n: number) {
+      return n.toLocaleString() + (n % 1000 == 0 ? "+" : "");
+    },
     sort(columnName: keyof App, descending?: boolean) {
       const isSameColumn = columnName == this.sortedColumn.name;
       if (descending == undefined)
@@ -117,7 +121,7 @@ export default defineComponent({
       return require(`@/assets/apps/${name.replace("/", "")}.webp`);
     },
     getBrowserAppInfo(app: App) {
-      if (!app.links.chrome  || !0) return; // todo
+      if (!app.links.chrome || !0) return; // todo
       const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
       fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
@@ -173,7 +177,7 @@ export default defineComponent({
   background: $dark4;
   user-select: none;
   white-space: nowrap;
-    height: calc(1rem + 40px);
+  height: calc(1rem + 40px);
   & > div {
     @extend .flex-center;
     &.sortable {
@@ -226,7 +230,6 @@ export default defineComponent({
   opacity: 0 !important;
   margin: 0 !important;
 }
-
 .table-move {
   transition: transform 150ms;
 }
