@@ -18,7 +18,6 @@ export default defineComponent({
 
 <style lang="scss">
 #menu-icon {
-  display: none;
   position: absolute;
   top: 5vw;
   right: 5vw;

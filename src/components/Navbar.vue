@@ -2,7 +2,7 @@
   <div id="navbar">
     <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
       {{ value.split(" ")[0] }}
-      <br class="navbar-split" />
+      <br v-if="$mediaWidth.isBelow768px" />
       {{ value.split(" ")[1] }}
       <Transition name="line">
         <div v-show="path == key"></div>
@@ -52,9 +52,6 @@ export default defineComponent({
       transition: height 150ms, opacity 150ms;
     }
   }
-}
-.navbar-split {
-  display: none;
 }
 
 /* transitions */

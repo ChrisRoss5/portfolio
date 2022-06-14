@@ -91,10 +91,10 @@ export default defineComponent({ name: "LinksVue", components: { CVsVue } });
   }
 }
 #socials {
-  gap: 10px;
+  gap: 10px !important;
   margin: 0 30px;
   padding: 0 30px;
-  border-right: 1px solid $white-border;
-  border-left: 1px solid $white-border;
+  border-right: 1px solid rgba($white, 0.5);
+  border-left: 1px solid rgba($white, 0.5);
 }
 </style>

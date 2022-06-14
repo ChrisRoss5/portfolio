@@ -36,7 +36,6 @@
   #menu-icon {
     left: 50%;
     top: 20px;
-    display: block !important;
   }
   #intro {
     padding: 5vw 45vw 2vw 5vw !important;
@@ -50,6 +49,7 @@
     }
   }
   #socials {
+    gap: 30px !important;
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
@@ -64,19 +64,18 @@
     position: absolute;
     right: 0;
     top: 0;
-    left: 60%;
     bottom: 0;
     background: rgba($dark1, 0.25);
     backdrop-filter: blur(5px);
     transition: background 0.5s, backdrop-filter 0.5s, opacity 0.5s;
-    .cvs {
-      display: flex;
-    }
   }
 }
 @media screen and (max-width: 768px) {
   :root {
     --cell-padding: 10px 5px;
+  }
+  #apps {
+    flex: initial;
   }
   #menu-icon {
     left: initial;
@@ -97,9 +96,6 @@
   #logo.completed {
     filter: none !important;
   }
-  .navbar-split {
-    display: block !important;
-  }
   #columns > div {
     flex: auto;
     &:first-child,
@@ -117,6 +113,19 @@
     }
     .icons {
       flex: 1 1 100%;
+      &::before {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.25;
+      }
+      &.links:before {
+        content: "Links:";
+      }
+      &.tech::before {
+        content: "Tech:";
+      }
     }
   }
   #about {

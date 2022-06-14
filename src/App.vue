@@ -1,5 +1,7 @@
 <template>
+  <ThemesVue v-if="!$mediaWidth.isBelow768px"></ThemesVue>
   <MenuIcon
+    v-if="$mediaWidth.isBelow1366px"
     :class="{ open: mobileMenuOpen }"
     @open="mobileMenuOpen = !mobileMenuOpen"
   ></MenuIcon>
@@ -18,23 +20,30 @@
   <AppsVue></AppsVue>
   <Transition name="mobile-about">
     <AboutVue
-      v-show="mobileMenuOpen || !$isBelow1366px"
+      v-show="mobileMenuOpen || !$mediaWidth.isBelow1366px"
       @completed="animationCompleted = true"
     ></AboutVue>
   </Transition>
+  <div id="themes-note" v-if="$mediaWidth.isBelow768px">
+    Swipe left/right to change themes!
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import ThemesVue from "./components/Themes.vue";
+import MenuIcon from "./components/MenuIcon.vue";
 import LinksVue from "./components/Links.vue";
 import AppsVue from "./components/Apps.vue";
 import AboutVue from "./components/About.vue";
-import MenuIcon from "./components/MenuIcon.vue";
 
 export default defineComponent({
-  components: { LinksVue, AboutVue, AppsVue, MenuIcon },
+  components: { ThemesVue, MenuIcon, LinksVue, AppsVue, AboutVue },
   data() {
-    return { mobileMenuOpen: false, animationCompleted: false };
+    return {
+      mobileMenuOpen: false,
+      animationCompleted: false,
+    };
   },
   watch: {
     mobileMenuOpen(newVal) {
@@ -78,6 +87,11 @@ export default defineComponent({
   &.completed {
     filter: drop-shadow(-3px -3px 6px #fc28a8) drop-shadow(3px 3px 6px #03edf9);
   }
+}
+#themes-note {
+  text-align: center;
+  color: rgba($white, 0.5);
+  padding: 1rem;
 }
 
 /* transitions */

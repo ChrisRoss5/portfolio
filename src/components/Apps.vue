@@ -21,7 +21,7 @@
           <div v-else-if="isBrowserApp"><LoadingSVGVue></LoadingSVGVue></div>
           <div v-if="app.weeklyUsers">{{ formatCount(app.weeklyUsers) }}</div>
           <div v-else-if="isBrowserApp"><LoadingSVGVue></LoadingSVGVue></div>
-          <div class="icons">
+          <div class="icons links">
             <a
               v-for="(value, key) in app.links"
               :key="key"
@@ -31,7 +31,7 @@
               <img :src="require(`@/assets/icons/${key}.svg`)" />
             </a>
           </div>
-          <div class="icons">
+          <div class="icons tech">
             <img
               v-for="tech in app.tech"
               :key="tech"
@@ -149,6 +149,7 @@ export default defineComponent({
     }
   }
   .icons {
+    position: relative;
     gap: 10px;
     img {
       width: 24px;

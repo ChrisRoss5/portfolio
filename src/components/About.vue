@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <CVsVue ref="cvs"></CVsVue>
+    <CVsVue v-if="$mediaWidth.isBelow768px"></CVsVue>
   </div>
 </template>
 
@@ -72,8 +72,8 @@ export default defineComponent({
     return { lines, pause: 75 };
   },
   mounted() {
-    if (this.$isBelow1366px) this.$emit("completed");
-    else setTimeout(() => this.$emit("completed"), lines.length * this.pause);
+    if (!this.$mediaWidth.isBelow1366px)
+      setTimeout(() => this.$emit("completed"), lines.length * this.pause);
   },
 });
 </script>
@@ -92,7 +92,6 @@ export default defineComponent({
     display: flex;
   }
   .cvs {
-    display: none;
     position: absolute;
     bottom: 20px;
     right: 20px;
