@@ -1,74 +1,43 @@
 <template>
   <div id="apps">
     <NavbarVue :path="path"></NavbarVue>
-    <div id="columns">
-      <div
-        v-for="column in columns"
-        :key="column.name"
-        v-show="!column.browserAppSpecific || isBrowserApp"
-        :class="{ sortable: !column.unsortable }"
-        @click="!column.unsortable && sort(column.name)"
-      >
-        {{ formatTitle(column.name) }}
-        <Transition name="sort-icon">
-          <svg
-            v-if="sortedColumn.name == column.name"
-            viewBox="0 0 451.847 451.847"
-            :style="{
-              transform: `scale(${sortedColumn.descending ? -1 : 1})`,
-            }"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751 c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0 c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
-            />
-          </svg>
-        </Transition>
-      </div>
-    </div>
+    <ColumnsVue
+      :columns="columns"
+      :sortedColumn="sortedColumn"
+      :isBrowserApp="isBrowserApp"
+      @sort="sort($event)"
+    ></ColumnsVue>
     <div id="table">
       <TransitionGroup name="table" :key="path">
         <div v-for="app in currentApps" :key="app.name">
-          <div
-            v-for="column in columns"
-            :key="column.name"
-            v-show="!column.browserAppSpecific || isBrowserApp"
-            :class="{icons: ['links', 'tech'].includes(column.name)}"
-          >
-            <template v-if="column.name == 'name'">
-              <img :src="getAppImg(app.img)" />
-              {{ app[column.name] }}
-            </template>
+          <div>
+            <img :src="require(`@/assets/apps/${app.img}.webp`)" />
+            {{ app.name }}
+          </div>
+          <div>{{ app.created.toLocaleDateString("en-CA") }}</div>
+          <div v-if="app.lastUpdated">
+            {{ app.lastUpdated.toLocaleDateString("en-CA") }}
+          </div>
+          <div v-else-if="isBrowserApp"><LoadingSVGVue></LoadingSVGVue></div>
+          <div v-if="app.weeklyUsers">{{ formatCount(app.weeklyUsers) }}</div>
+          <div v-else-if="isBrowserApp"><LoadingSVGVue></LoadingSVGVue></div>
+          <div class="icons">
             <a
-              v-else-if="column.name == 'links'"
-              v-for="(value, key) in app[column.name]"
+              v-for="(value, key) in app.links"
               :key="key"
               :href="value"
               target="_blank"
             >
-              <img :src="require(`@/assets/icons/${key}.svg`)" class="icon" />
+              <img :src="require(`@/assets/icons/${key}.svg`)" />
             </a>
+          </div>
+          <div class="icons">
             <img
-              v-else-if="column.name == 'tech'"
-              v-for="tech in app[column.name]"
+              v-for="tech in app.tech"
               :key="tech"
-              class="icon"
               :src="require(`@/assets/icons/tech/${tech}.svg`)"
               :title="tech"
             />
-            <template
-              v-else-if="column.name == 'weeklyUsers' && app[column.name]"
-            >
-              {{ formatCount(app[column.name]) }}
-            </template>
-            <template v-else-if="app[column.name]">
-              {{
-                ["created", "lastUpdated"].includes(column.name)
-                  ? app[column.name].toLocaleDateString("en-CA")
-                  : app[column.name]
-              }}
-            </template>
-            <LoadingSVGVue v-else></LoadingSVGVue>
           </div>
         </div>
       </TransitionGroup>
@@ -80,18 +49,18 @@
 import { defineComponent } from "vue";
 import { Apps, App, apps, columns } from "../scripts/apps";
 import NavbarVue from "./Navbar.vue";
+import ColumnsVue from "./Columns.vue";
 import LoadingSVGVue from "./LoadingSVG.vue";
-const parser = new DOMParser();
+
+const sortedColumn = { name: "weeklyUsers", descending: false };
+
+export type SortedColumn = typeof sortedColumn;
 
 export default defineComponent({
   name: "AppsVue",
-  components: { NavbarVue, LoadingSVGVue },
+  components: { NavbarVue, ColumnsVue, LoadingSVGVue },
   data() {
-    return {
-      columns,
-      apps,
-      sortedColumn: { name: "weeklyUsers", descending: true },
-    };
+    return { columns, apps, sortedColumn };
   },
   mounted() {
     for (const key in this.apps)
@@ -99,26 +68,19 @@ export default defineComponent({
         for (const app of this.apps[key]) this.getBrowserAppInfo(app);
   },
   methods: {
-    formatTitle(text: string) {
-      const result = text.replace(/([A-Z])/g, " $1");
-      return result.charAt(0).toUpperCase() + result.slice(1);
-    },
     formatCount(n: number) {
       return n.toLocaleString() + (n % 1000 == 0 ? "+" : "");
     },
     sort(columnName: keyof App, descending?: boolean) {
       const isSameColumn = columnName == this.sortedColumn.name;
       if (descending == undefined)
-        descending = isSameColumn ? !this.sortedColumn.descending : true;
+        descending = isSameColumn ? !this.sortedColumn.descending : false;
       this.sortedColumn = { name: columnName, descending };
       this.currentApps.sort((a, b) => {
         if (a[columnName]! < b[columnName]!) return descending ? -1 : 1;
         if (a[columnName]! > b[columnName]!) return descending ? 1 : -1;
         return 0;
       });
-    },
-    getAppImg(name: string) {
-      return require(`@/assets/apps/${name.replace("/", "")}.webp`);
     },
     getBrowserAppInfo(app: App) {
       if (!app.links.chrome || !0) return; // todo
@@ -172,48 +134,27 @@ export default defineComponent({
     }
   }
 }
-#columns {
-  text-align: center;
-  background: $dark4;
-  user-select: none;
-  white-space: nowrap;
-  height: calc(1rem + 40px);
-  & > div {
-    @extend .flex-center;
-    &.sortable {
-      cursor: pointer;
-    }
-  }
-  svg {
-    width: 18px;
-    height: 18px;
-    margin-left: 10px;
-    transition: transform 150ms, opacity 150ms, width 150ms, margin 150ms;
-  }
-}
 #table {
   overflow: auto;
   & > div {
     background: $dark3;
     border-bottom: 5px solid $dark4;
     & > div {
-      transition: none !important;
       @extend .flex-center;
-      padding: 20px;
+      padding: var(--cell-padding);
       &:first-of-type {
         gap: 20px;
         justify-content: left;
       }
-      a:not(:last-of-type),
-      img:not(:last-of-type) {
-        margin-right: 10px;
-      }
     }
   }
-  .icon {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
+  .icons {
+    gap: 10px;
+    img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
   }
 }
 #app-icon {
@@ -224,12 +165,6 @@ export default defineComponent({
 
 /* transitions */
 
-.sort-icon-enter-from,
-.sort-icon-leave-to {
-  width: 0 !important;
-  opacity: 0 !important;
-  margin: 0 !important;
-}
 .table-move {
   transition: transform 150ms;
 }

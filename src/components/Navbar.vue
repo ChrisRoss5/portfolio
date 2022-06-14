@@ -1,12 +1,9 @@
 <template>
   <div id="navbar">
     <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
-      <template v-if="$isMobile">
-        {{ value.split(" ")[0] }}
-        <br />
-        {{ value.split(" ")[1] }}
-      </template>
-      <template v-else>{{ value }}</template>
+      {{ value.split(" ")[0] }}
+      <br class="navbar-split" />
+      {{ value.split(" ")[1] }}
       <Transition name="line">
         <div v-show="path == key"></div>
       </Transition>
@@ -55,6 +52,9 @@ export default defineComponent({
       transition: height 150ms, opacity 150ms;
     }
   }
+}
+.navbar-split {
+  display: none;
 }
 
 /* transitions */

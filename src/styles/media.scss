@@ -1,0 +1,135 @@
+@media screen and (max-width: 1920px) {
+  :root {
+    --font-size: 18px;
+    --cell-padding: 20px 10px;
+  }
+}
+@media screen and (max-width: 1680px) {
+  :root {
+    --font-size: 16px;
+    --cell-padding: 20px 5px;
+  }
+}
+@media screen and (max-width: 1536px) {
+  :root {
+    --font-size: 14px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  #apps > div {
+    padding: 0;
+  }
+  #about {
+    padding-right: 20px;
+  }
+  #table > div > div:first-of-type {
+    padding-left: 20px;
+  }
+}
+@media screen and (max-width: 1366px) {
+  #app {
+    display: flex !important;
+    flex-direction: column;
+    min-height: 100vh;
+    height: auto !important;
+  }
+  #menu-icon {
+    left: 50%;
+    top: 20px;
+    display: block !important;
+  }
+  #intro {
+    padding: 5vw 45vw 2vw 5vw !important;
+  }
+  #links {
+    padding-top: 5% !important;
+    gap: 20px;
+    flex-direction: column;
+    & > div {
+      white-space: nowrap;
+    }
+  }
+  #socials {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  #columns {
+    white-space: normal;
+    & > div {
+      padding: 10px;
+    }
+  }
+  #about {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 60%;
+    bottom: 0;
+    background: rgba($dark1, 0.25);
+    backdrop-filter: blur(5px);
+    transition: background 0.5s, backdrop-filter 0.5s, opacity 0.5s;
+    .cvs {
+      display: flex;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --cell-padding: 10px 5px;
+  }
+  #menu-icon {
+    left: initial;
+  }
+  #intro {
+    padding: 5vw 5vw 2vw !important;
+  }
+  #links > div {
+    text-align: center;
+    gap: 0 !important;
+    & > * {
+      flex: auto;
+    }
+    &.cvs {
+      display: none;
+    }
+  }
+  #logo.completed {
+    filter: none !important;
+  }
+  .navbar-split {
+    display: block !important;
+  }
+  #columns > div {
+    flex: auto;
+    &:first-child,
+    &:not(.sortable) {
+      display: none;
+    }
+  }
+  #table {
+    flex: 1;
+    & > div {
+      flex-wrap: wrap;
+      & > div:first-child {
+        flex: 1 1 100%;
+      }
+    }
+    .icons {
+      flex: 1 1 100%;
+    }
+  }
+  #about {
+    left: 0;
+  }
+}
+@media screen and (max-width: 372px) {
+  :root {
+    --font-size: 12px;
+  }
+}
+@media screen and (max-width: 320px) {
+  :root {
+    --font-size: 10px;
+  }
+}

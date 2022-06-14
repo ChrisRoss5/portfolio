@@ -7,14 +7,16 @@ module.exports = {
     loaderOptions: {
       sass: {
         additionalData: `
+          @import "@/styles/_variables.scss";
           @import "@/styles/global.scss";
+          @import "@/styles/media.scss";
         `,
       },
     },
   },
   chainWebpack: (config) =>
     config.plugin("html").tap((args) => {
-      args[0].title = "Kristijan Rosandić";
+      args[0].title = "KristijanRoss";
       return args;
     }),
 };

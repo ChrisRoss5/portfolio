@@ -29,11 +29,12 @@
     "editor": "vs|vsc|pycharm",
     "browser": "chrome",
     "internet": "200mbps",
-    "drink": "chocolate-milk",
     "music": "kyle-landry",
     "game": "smite"
   },
   "workspaces": [
-    "Google Cloud Platform"
+    "Google Cloud Platform",
+    "GitHub/GitLab",
+    "Cloudflare"
   ]
 }

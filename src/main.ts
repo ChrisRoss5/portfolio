@@ -4,16 +4,16 @@ import router from "./router";
 
 const app = createApp(App);
 
-app.config.globalProperties.$isMobile =
-  window.matchMedia("(max-width: 1280px)").matches;
+app.config.globalProperties.$isBelow1366px = window.matchMedia(
+  "(max-width: 1366px)"
+).matches;
 
 app.use(router).mount("#app");
 
-
-declare module '@vue/runtime-core' {
+declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
-    $isMobile: boolean;
+    $isBelow1366px: boolean;
   }
 }
 
-export {}
+export {};

@@ -1,7 +1,7 @@
 export interface App {
   img: string;
   name: string;
-  created: Date | null;
+  created: Date;
   lastUpdated?: Date | null;
   weeklyUsers?: number;
   links: {
@@ -32,16 +32,6 @@ export const columns: Column[] = [
   { name: "links", unsortable: true },
   { name: "tech", unsortable: true },
 ];
-
-export const appTemplate: App = {
-  img: "",
-  name: "",
-  created: null,
-  lastUpdated: null,
-  weeklyUsers: 0,
-  links: { chrome: "", firefox: "", download: "" },
-  tech: [],
-};
 
 export const apps: Apps = {
   extensions: [

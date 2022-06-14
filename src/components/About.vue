@@ -18,12 +18,14 @@
         </div>
       </div>
     </div>
+    <CVsVue ref="cvs"></CVsVue>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import about from "../scripts/about.json";
+import CVsVue from "./CVs.vue";
 
 interface Line {
   indents: number;
@@ -64,12 +66,15 @@ lines.push({ value: "}", bracket: true, indents: 0 });
 
 export default defineComponent({
   name: "AboutVue",
+  components: { CVsVue },
+  emits: ["completed"],
   data() {
     return { lines, pause: 75 };
   },
   mounted() {
-    setTimeout(() => this.$emit("completed"), lines.length * this.pause);
-  }
+    if (this.$isBelow1366px) this.$emit("completed");
+    else setTimeout(() => this.$emit("completed"), lines.length * this.pause);
+  },
 });
 </script>
 
@@ -85,6 +90,15 @@ export default defineComponent({
   & > div {
     flex: 1;
     display: flex;
+  }
+  .cvs {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    gap: 20px;
+    opacity: 0;
+    animation: reveal 0.5s 0.5s forwards;
   }
 }
 .number,
