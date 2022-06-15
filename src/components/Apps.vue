@@ -26,6 +26,7 @@
               v-for="(value, key) in app.links"
               :key="key"
               :href="value"
+              :class="{ invert: /(github|home|download)/.test(key) }"
               target="_blank"
             >
               <img :src="require(`@/assets/icons/${key}.svg`)" />
@@ -116,7 +117,7 @@ export default defineComponent({
 <style lang="scss">
 #apps {
   flex: 1;
-  background: $dark3;
+  background: var(--d);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -137,8 +138,8 @@ export default defineComponent({
 #table {
   overflow: auto;
   & > div {
-    background: $dark3;
-    border-bottom: 5px solid $dark4;
+    background: var(--d);
+    border-bottom: 5px solid var(--e);
     & > div {
       @extend .flex-center;
       padding: var(--cell-padding);

@@ -83,10 +83,10 @@ export default defineComponent({ name: "LinksVue", components: { CVsVue } });
     gap: 30px;
   }
   a:hover {
-    color: white;
+    color: var(--f);
     svg,
     svg path {
-      fill: white;
+      fill: var(--f);
     }
   }
 }
@@ -94,7 +94,7 @@ export default defineComponent({ name: "LinksVue", components: { CVsVue } });
   gap: 10px !important;
   margin: 0 30px;
   padding: 0 30px;
-  border-right: 1px solid rgba($white, 0.5);
-  border-left: 1px solid rgba($white, 0.5);
+  border-right: 1px solid var(--a-05);
+  border-left: 1px solid var(--a-05);
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <ThemesVue v-if="!$mediaWidth.isBelow768px"></ThemesVue>
+  <ThemesVue></ThemesVue>
   <MenuIcon
     v-if="$mediaWidth.isBelow1366px"
     :class="{ open: mobileMenuOpen }"
@@ -62,7 +62,7 @@ export default defineComponent({
   grid-template:
     "a b"
     "c b" 1fr / 1fr;
-  background: $dark2;
+  background: var(--c);
 }
 #intro {
   position: relative;
@@ -90,7 +90,7 @@ export default defineComponent({
 }
 #themes-note {
   text-align: center;
-  color: rgba($white, 0.5);
+  color: var(--a-05);
   padding: 1rem;
 }
 

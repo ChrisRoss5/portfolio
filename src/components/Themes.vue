@@ -1,5 +1,5 @@
 <template>
-  <div id="themes">
+  <div v-if="!$mediaWidth.isBelow768px" id="themes">
     <div
       v-for="theme in themes"
       :key="theme"
@@ -25,22 +25,26 @@ export default defineComponent({
     this.currentTheme = ((localStorage.getItem("theme") as unknown) ||
       (this.$prefersDarkTheme ? "Dark" : "Light")) as Theme;
     this.changeTheme(this.currentTheme);
-
-    let touchstartX = 0;
+  },
+  mounted() {
+    let x0: number, y0: number;
     document.addEventListener("touchstart", (e) => {
-      touchstartX = e.changedTouches[0].screenX;
+      x0 = e.changedTouches[0].screenX;
+      y0 = e.changedTouches[0].screenY;
     });
     document.addEventListener("touchend", (e) => {
-      const touchendX = e.changedTouches[0].screenX;
-      if (Math.abs(touchendX - touchstartX) > 60)
-        this.swipeTheme(touchendX > touchstartX);
+      const x1 = e.changedTouches[0].screenX;
+      const y1 = e.changedTouches[0].screenY;
+      const deg = (Math.atan2(y1 - y0, x1 - x0) * 180) / Math.PI;
+      const isHoriz = (-45 < deg && deg < 45) || -135 > deg || deg > 135;
+      if (isHoriz && Math.abs(x1 - x0) > 40) this.swipeTheme(x1 > x0);
     });
   },
   methods: {
     changeTheme(theme: Theme) {
       this.currentTheme = theme;
       document.body.className = theme.toLowerCase();
-      localStorage.setItem('theme', theme);
+      localStorage.setItem("theme", theme);
     },
     swipeTheme(right: boolean) {
       const idx = this.themes.indexOf(this.currentTheme);
@@ -69,7 +73,7 @@ export default defineComponent({
     cursor: pointer;
     transition: text-shadow 150ms;
     &.active {
-      text-shadow: 0 0 5px $white;
+      text-shadow: 0 0 5px var(--a);
     }
   }
 }

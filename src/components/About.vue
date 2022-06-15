@@ -82,7 +82,7 @@ export default defineComponent({
 #about {
   grid-area: b;
   padding-right: 5vw;
-  background: $dark1;
+  background: var(--b);
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
@@ -111,7 +111,7 @@ export default defineComponent({
   justify-content: right;
   padding-right: 10px;
   width: 2rem;
-  background: $dark4;
+  background: var(--e);
   color: #8a8592;
   animation: 300ms number-enter forwards;
 }

@@ -37,7 +37,7 @@ export default defineComponent({
     position: absolute;
     height: 0.15rem;
     width: 100%;
-    background: $white;
+    background: var(--a);
     border-radius: 1rem;
     opacity: 1;
     left: 0;

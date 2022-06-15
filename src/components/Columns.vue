@@ -57,7 +57,7 @@ export default defineComponent({
 <style lang="scss">
 #columns {
   text-align: center;
-  background: $dark4;
+  background: var(--e);
   user-select: none;
   white-space: nowrap;
   height: calc(1rem + 40px);
