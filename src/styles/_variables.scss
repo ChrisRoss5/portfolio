@@ -10,9 +10,15 @@
   --d: #171520;
   --e: #362b48;
   --f: #fff;
+  --logo-completed: drop-shadow(-3px -3px 6px #fc28a8)
+    drop-shadow(3px 3px 6px #03edf9);
+   --key: #72efb6;
+   --value: #ff8b39;
+   --bracket: #da70d6;
+   --root-bracket: #ffd700;
 }
 body.dark {
-  --a: #d8d4cf;
+  --a: rgb(216, 212, 207);
   --a-05: rgb(216, 212, 207, 0.5);
   --b: #262335;
   --b-025: rgb(38, 35, 53, 0.25);
@@ -27,21 +33,26 @@ body.light {
   --b: rgb(240, 240, 240);
   --b-025: rgb(240, 240, 240, 0.25);
   --c: #fff;
-  --d: #E9E9E9;
-  --e: #F6F8FA;
+  --d: #e9e9e9;
+  --e: #f6f8fa;
   --f: #000;
-  .invert,
-  #logo {
-    filter: invert(1) grayscale(1) !important;
+  .invert {
+    filter: invert(1) !important;
   }
 }
 body.monokai {
-  --a: #d8d4cf;
+  --a: rgb(216, 212, 207);
   --a-05: rgb(216, 212, 207, 0.5);
-  --b: #262335;
-  --b-025: rgb(38, 35, 53, 0.25);
-  --c: #241b2f;
-  --d: #171520;
-  --e: #362b48;
+  --b: rgb(30, 30, 30);
+  --b-025: rgb(30, 30, 30, 0.25);
+  --c: rgb(39, 39, 39);
+  --d: rgb(53, 53, 53);
+  --e: rgb(80, 80, 80);
   --f: #fff;
+  #logo {
+  }
+}
+
+todo {
+  color: #353535;
 }

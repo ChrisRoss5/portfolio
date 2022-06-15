@@ -11,11 +11,7 @@
       Engineer.
     </div>
     <LinksVue></LinksVue>
-    <img
-      id="logo"
-      :class="{ completed: animationCompleted }"
-      src="@/assets/my-logo/logo-text.svg"
-    />
+    <LogoSVG :class="{ completed: animationCompleted }"></LogoSVG>
   </div>
   <AppsVue></AppsVue>
   <Transition name="mobile-about">
@@ -36,9 +32,17 @@ import MenuIcon from "./components/MenuIcon.vue";
 import LinksVue from "./components/Links.vue";
 import AppsVue from "./components/Apps.vue";
 import AboutVue from "./components/About.vue";
+import LogoSVG from "./components/LogoSVG.vue";
 
 export default defineComponent({
-  components: { ThemesVue, MenuIcon, LinksVue, AppsVue, AboutVue },
+  components: {
+    ThemesVue,
+    MenuIcon,
+    LinksVue,
+    AppsVue,
+    AboutVue,
+    LogoSVG,
+  },
   data() {
     return {
       mobileMenuOpen: false,
@@ -73,20 +77,6 @@ export default defineComponent({
 #title {
   font-size: 1.2rem;
   letter-spacing: 0.25rem;
-}
-#logo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  transform: scale(1.01);
-  transition: filter 1s;
-  will-change: filter;
-  z-index: -1;
-  &.completed {
-    filter: drop-shadow(-3px -3px 6px #fc28a8) drop-shadow(3px 3px 6px #03edf9);
-  }
 }
 #themes-note {
   text-align: center;

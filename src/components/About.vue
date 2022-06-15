@@ -7,7 +7,9 @@
       <div class="line" :style="{ animationDelay: i * this.pause + 'ms' }">
         <div class="dot" v-for="i in line.indents * 2" :key="i">•</div>
         <div>
-          <span v-if="line.indents == 0" class="yellow">{{ line.value }}</span>
+          <span v-if="line.indents == 0" class="root-bracket">
+            {{ line.value }}
+          </span>
           <template v-else>
             <span v-if="line.key" class="key">"{{ line.key }}"</span>
             <span v-if="line.key">: </span>
@@ -136,19 +138,16 @@ export default defineComponent({
   }
 }
 .key {
-  color: #72efb6;
+  color: var(--key);
 }
 .value {
-  color: #ff8b39;
+  color: var(--value);
 }
 .bracket {
-  color: #da70d6;
+  color: var(--bracket);
 }
-.red {
-  color: #f97e72;
-}
-.yellow {
-  color: #ffd700;
+.root-bracket {
+  color: var(--root-bracket);
 }
 @keyframes line-enter {
   from {
