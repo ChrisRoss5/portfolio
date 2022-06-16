@@ -48,7 +48,11 @@ export default defineComponent({
       right: 0;
       bottom: 0;
       height: 5px;
-      background: linear-gradient(to right, #fc28a8, #03edf9) !important;
+      background: linear-gradient(
+        to right,
+        var(--special-a),
+        var(--special-b)
+      ) !important;
       transition: height 150ms, opacity 150ms;
     }
   }

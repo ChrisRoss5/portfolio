@@ -6,13 +6,10 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3d3651;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #4b4364;
+  background: var(--dot);
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #353048;
+  background: var(--number);
 }
 html {
   font-size: var(--font-size);
@@ -21,6 +18,7 @@ html {
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
+  background: var(--c);
   color: var(--a);
 }
 a {

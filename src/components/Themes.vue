@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-const themes = ["Dark", "Light", "Monokai", "Synthwave"] as const;
+const themes = ["Light", "Dark", "Monokai", "Synthwave"] as const;
 type Theme = typeof themes[number];
 
 export default defineComponent({

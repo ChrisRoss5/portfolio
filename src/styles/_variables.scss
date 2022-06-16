@@ -1,4 +1,4 @@
-// "Dark", "Light", "Monokai", "Synthwave"
+// "Light", "Dark", "Monokai", "Synthwave"
 :root {
   --font-size: 20px;
   --cell-padding: 20px;
@@ -10,47 +10,65 @@
   --d: #171520;
   --e: #362b48;
   --f: #fff;
-  --logo-completed: drop-shadow(-3px -3px 6px #fc28a8)
-    drop-shadow(3px 3px 6px #03edf9);
-   --key: #72efb6;
-   --value: #ff8b39;
-   --bracket: #da70d6;
-   --root-bracket: #ffd700;
-}
-body.dark {
-  --a: rgb(216, 212, 207);
-  --a-05: rgb(216, 212, 207, 0.5);
-  --b: #262335;
-  --b-025: rgb(38, 35, 53, 0.25);
-  --c: #241b2f;
-  --d: #171520;
-  --e: #362b48;
-  --f: #fff;
+  --key: #72efb6;
+  --value: #ff8b39;
+  --bracket: #da70d6;
+  --root-bracket: #ffd700;
+  --number: #8a8592;
+  --dot: #444250;
+  --special-a: #fc28a8;
+  --special-b: #03edf9;
 }
 body.light {
-  --a: rgb(46, 45, 43);
-  --a-05: rgb(46, 45, 43, 0.5);
-  --b: rgb(240, 240, 240);
-  --b-025: rgb(240, 240, 240, 0.25);
-  --c: #fff;
-  --d: #e9e9e9;
-  --e: #f6f8fa;
+  --a: rgb(36, 41, 47);
+  --a-05: rgb(36, 41, 47, 0.5);
+  --b: rgb(255, 255, 255);
+  --b-025: rgb(255, 255, 255, 0.25);
+  --c: #eff0f1;
+  --d: #f6f8fa;
+  --e: #e8ebef;
   --f: #000;
+  --key: #0550ae;
+  --value: #0a3069;
+  --bracket: #319331;
+  --root-bracket: #0431fa;
+  --number: #57606a;
+  --dot: #d8dee4;
+  --special-a: var(--key);
+  --special-b: var(--value);
   .invert {
     filter: invert(1) !important;
   }
 }
+body.dark {
+  --a: rgb(173, 186, 199);
+  --a-05: rgb(173, 186, 199, 0.5);
+  --b: rgb(34, 39, 46);
+  --b-025: rgb(34, 39, 46, 0.25);
+  --c: #1c2128;
+  --d: #181b20;
+  --e: #292e36;
+  --key: #6cb6ff;
+  --value: #96d0ff;
+  --number: #768390;
+  --dot: #373e47;
+  --special-a: #4a7fd0;
+  --special-b: var(--value);
+}
 body.monokai {
-  --a: rgb(216, 212, 207);
-  --a-05: rgb(216, 212, 207, 0.5);
+  --a: rgb(204, 204, 204);
+  --a-05: rgb(204, 204, 204, 0.5);
   --b: rgb(30, 30, 30);
   --b-025: rgb(30, 30, 30, 0.25);
-  --c: rgb(39, 39, 39);
-  --d: rgb(53, 53, 53);
-  --e: rgb(80, 80, 80);
-  --f: #fff;
-  #logo {
-  }
+  --c: #272727;
+  --d: #191919;
+  --e: #303030;
+  --key: #c7444a;
+  --value: #9aa83a;
+  --number: #858585;
+  --dot: #505037;
+  --special-a: var(--key);
+  --special-b: var(--value);
 }
 
 todo {

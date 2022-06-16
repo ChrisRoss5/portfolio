@@ -114,7 +114,7 @@ export default defineComponent({
   padding-right: 10px;
   width: 2rem;
   background: var(--e);
-  color: #8a8592;
+  color: var(--number);
   animation: 300ms number-enter forwards;
 }
 .line {
@@ -125,7 +125,7 @@ export default defineComponent({
 }
 .dot {
   user-select: none;
-  color: #444250;
+  color: var(--dot);
   &:nth-child(1)::before,
   &:nth-child(3)::before {
     content: "";
@@ -134,7 +134,7 @@ export default defineComponent({
     bottom: 0;
     width: 1px;
     transform: translateX(-3px);
-    background: #444250;
+    background: var(--dot);
   }
 }
 .key {

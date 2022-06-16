@@ -30,7 +30,8 @@
   will-change: filter;
   z-index: -1;
   &.completed {
-    filter: var(--logo-completed);
+    filter: drop-shadow(-3px -3px 6px var(--special-a))
+      drop-shadow(3px 3px 6px var(--special-b));
   }
   path {
     fill: var(--d);
