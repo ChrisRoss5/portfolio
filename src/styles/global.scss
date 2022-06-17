@@ -24,9 +24,12 @@ a {
   text-decoration: none;
   color: var(--a);
 }
-svg {
+svg,
+img {
   width: 1.2rem;
   height: 1.2rem;
+}
+svg {
   vertical-align: text-bottom;
   &,
   path {

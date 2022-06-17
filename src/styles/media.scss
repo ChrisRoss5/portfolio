@@ -22,14 +22,10 @@
   #about {
     padding-right: 20px;
   }
-  #table > div > div:first-of-type {
-    padding-left: 20px;
-  }
 }
 @media screen and (max-width: 1366px) {
   #app {
-    display: flex !important;
-    flex-direction: column;
+    display: block !important;
     min-height: 100vh;
     height: auto !important;
   }
@@ -76,19 +72,15 @@
   }
   #themes {
     position: fixed !important;
-    left: 50% !important;
+    left: calc(50% - 10vw) !important;
     width: 20vw;
     text-align: center;
-    transform: translateX(-50%);
     background: var(--c);
     border-radius: 0 0 8px 8px;
     opacity: 0;
   }
   #menu-icon {
     left: initial;
-  }
-  #apps {
-    flex: initial;
   }
   #intro {
     padding: 5vw 5vw 2vw !important;
@@ -114,14 +106,15 @@
     }
   }
   #table {
-    flex: 1;
+    overflow: hidden !important;
     & > div {
       flex-wrap: wrap;
-      & > div:first-child {
-        flex: 1 1 100%;
-      }
+    }
+    .app-name {
+      flex: 1 1 100% !important;
     }
     .icons {
+      position: relative;
       flex: 1 1 100%;
       &::before {
         position: absolute;

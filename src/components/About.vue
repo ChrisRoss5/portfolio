@@ -153,7 +153,7 @@ export default defineComponent({
   from {
     filter: brightness(5);
   }
-  to {
+  50%, 100% {
     opacity: 1;
   }
 }
@@ -161,7 +161,7 @@ export default defineComponent({
   from {
     color: #fff;
   }
-  to {
+  50%, 100% {
     opacity: 1;
   }
 }
