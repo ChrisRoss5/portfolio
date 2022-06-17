@@ -11,7 +11,11 @@
       <TransitionGroup name="table" :key="path">
         <div v-for="app in currentApps" :key="app.name">
           <div>
-            <img :src="require(`@/assets/apps/${app.img}.webp`)" />
+            <img
+              :src="require(`@/assets/apps/${app.img}.webp`)"
+              :class="{ invert: app.img == 'My Developer Portfolio' }"
+              alt="logo"
+            />
             {{ app.name }}
           </div>
           <div>{{ app.created.toLocaleDateString("en-CA") }}</div>
@@ -29,7 +33,7 @@
               :class="{ invert: /(github|home|download)/.test(key) }"
               target="_blank"
             >
-              <img :src="require(`@/assets/icons/${key}.svg`)" />
+              <img :src="require(`@/assets/icons/${key}.svg`)" alt="icon" />
             </a>
           </div>
           <div class="icons tech">
@@ -38,6 +42,7 @@
               :key="tech"
               :src="require(`@/assets/icons/tech/${tech}.svg`)"
               :title="tech"
+              alt="icon"
             />
           </div>
         </div>
@@ -63,7 +68,7 @@ export default defineComponent({
   data() {
     return { columns, apps, sortedColumn };
   },
-  mounted() {
+  created() {
     for (const key in this.apps)
       if (key == "extensions" || key == "themes")
         for (const app of this.apps[key]) this.getBrowserAppInfo(app);
@@ -84,7 +89,7 @@ export default defineComponent({
       });
     },
     getBrowserAppInfo(app: App) {
-      if (!app.links.chrome || !0) return; // todo
+      if (!app.links.chrome) return; // todo
       const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
       fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
@@ -146,6 +151,10 @@ export default defineComponent({
       &:first-of-type {
         gap: 20px;
         justify-content: left;
+        img {
+          width: 40px;
+          height: 40px;
+        }
       }
     }
   }

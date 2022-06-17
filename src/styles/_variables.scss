@@ -19,6 +19,10 @@
   --special-a: #fc28a8;
   --special-b: #03edf9;
 }
+body:not(.synthwave) {
+  --special-a: var(--key);
+  --special-b: var(--value);
+}
 body.light {
   --a: rgb(36, 41, 47);
   --a-05: rgb(36, 41, 47, 0.5);
@@ -34,8 +38,6 @@ body.light {
   --root-bracket: #0431fa;
   --number: #57606a;
   --dot: #d8dee4;
-  --special-a: var(--key);
-  --special-b: var(--value);
   .invert {
     filter: invert(1) !important;
   }
@@ -52,8 +54,6 @@ body.dark {
   --value: #96d0ff;
   --number: #768390;
   --dot: #373e47;
-  --special-a: #4a7fd0;
-  --special-b: var(--value);
 }
 body.monokai {
   --a: rgb(204, 204, 204);
@@ -67,10 +67,4 @@ body.monokai {
   --value: #9aa83a;
   --number: #858585;
   --dot: #505037;
-  --special-a: var(--key);
-  --special-b: var(--value);
-}
-
-todo {
-  color: #353535;
 }

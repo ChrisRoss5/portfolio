@@ -61,7 +61,7 @@
     }
   }
   #about {
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 0;
     bottom: 0;
@@ -74,11 +74,21 @@
   :root {
     --cell-padding: 10px 5px;
   }
-  #apps {
-    flex: initial;
+  #themes {
+    position: fixed !important;
+    left: 50% !important;
+    width: 20vw;
+    text-align: center;
+    transform: translateX(-50%);
+    background: var(--c);
+    border-radius: 0 0 8px 8px;
+    opacity: 0;
   }
   #menu-icon {
     left: initial;
+  }
+  #apps {
+    flex: initial;
   }
   #intro {
     padding: 5vw 5vw 2vw !important;
@@ -118,7 +128,7 @@
         left: 20px;
         top: 50%;
         transform: translateY(-50%);
-        opacity: 0.25;
+        color: var(--a-05);
       }
       &.links:before {
         content: "Links:";

@@ -1,6 +1,10 @@
 <template>
-  <div v-if="!$mediaWidth.isBelow768px" id="themes">
+  <div id="themes">
+    <div v-if="$mediaWidth.isBelow768px" class="active">
+      {{ currentTheme }}
+    </div>
     <div
+      v-else
       v-for="theme in themes"
       :key="theme"
       @click="changeTheme(theme)"
@@ -28,11 +32,15 @@ export default defineComponent({
   },
   mounted() {
     let x0: number, y0: number;
+    let isMultitouch = false;
     document.addEventListener("touchstart", (e) => {
+      isMultitouch = e.touches.length > 1;
       x0 = e.changedTouches[0].screenX;
       y0 = e.changedTouches[0].screenY;
     });
     document.addEventListener("touchend", (e) => {
+      if (e.touches.length || window.visualViewport.scale != 1) return;
+      if (isMultitouch) return (isMultitouch = false);
       const x1 = e.changedTouches[0].screenX;
       const y1 = e.changedTouches[0].screenY;
       const deg = (Math.atan2(y1 - y0, x1 - x0) * 180) / Math.PI;
@@ -45,14 +53,20 @@ export default defineComponent({
       this.currentTheme = theme;
       document.body.className = theme.toLowerCase();
       localStorage.setItem("theme", theme);
+      if (this.$mediaWidth.isBelow768px && this.$el) {
+        this.$el.style.opacity = "1";
+        this.$el.style.animation = "none";
+        this.$el.offsetWidth;
+        this.$el.style.animation = "reveal 150ms 1s reverse forwards";
+      }
     },
     swipeTheme(right: boolean) {
       const idx = this.themes.indexOf(this.currentTheme);
-      if (idx == this.themes.length - 1 && right)
+      if (idx == this.themes.length - 1 && !right)
         this.changeTheme(this.themes[0]);
-      else if (idx == 0 && !right)
+      else if (idx == 0 && right)
         this.changeTheme(this.themes[this.themes.length - 1]);
-      else this.changeTheme(this.themes[idx + (right ? 1 : -1)]);
+      else this.changeTheme(this.themes[idx + (right ? -1 : 1)]);
     },
   },
 });

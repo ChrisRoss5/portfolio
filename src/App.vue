@@ -81,7 +81,7 @@ export default defineComponent({
 #themes-note {
   text-align: center;
   color: var(--a-05);
-  padding: 1rem;
+  padding: 2rem;
 }
 
 /* transitions */

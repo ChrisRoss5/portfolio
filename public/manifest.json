@@ -1,0 +1,13 @@
+{
+  "name": "KristijanRoss",
+  "short_name": "KRoss",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "121x107"
+    }
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "display": "fullscreen"
+}

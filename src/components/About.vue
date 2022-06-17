@@ -71,7 +71,7 @@ export default defineComponent({
   components: { CVsVue },
   emits: ["completed"],
   data() {
-    return { lines, pause: 75 };
+    return { lines, pause: 50 };
   },
   mounted() {
     if (!this.$mediaWidth.isBelow1366px)
@@ -115,13 +115,13 @@ export default defineComponent({
   width: 2rem;
   background: var(--e);
   color: var(--number);
-  animation: 300ms number-enter forwards;
+  animation: 0.5s number-enter forwards;
 }
 .line {
   position: relative;
   gap: 6px;
   margin-left: 3px;
-  animation: 300ms line-enter forwards;
+  animation: 0.5s line-enter forwards;
 }
 .dot {
   user-select: none;

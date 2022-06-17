@@ -176,7 +176,7 @@ export const apps: Apps = {
       name: "My Developer Portfolio",
       created: new Date("May 1, 2022"),
       links: {
-        home: "https://kristijanros.dev", // todo
+        home: "https://kristijan.pages.dev", // todo
         github: "https://github.com/ChrisRoss5/portfolio",
       },
       tech: ["TypeScript", "Vue", "SCSS", "Cloudflare"],
@@ -190,7 +190,7 @@ export const apps: Apps = {
       links: {
         download: "/apps/Evaluator.exe",
       },
-      tech: ["Python"],
+      tech: ["Python", "Windows"],
     },
     {
       img: "Patterns",
@@ -199,7 +199,7 @@ export const apps: Apps = {
       links: {
         download: "/apps/Patterns.exe",
       },
-      tech: ["Python"],
+      tech: ["Python", "Windows"],
     },
   ],
 };
