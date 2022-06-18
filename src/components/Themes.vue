@@ -33,20 +33,28 @@ export default defineComponent({
   mounted() {
     let x0: number, y0: number;
     let isMultitouch = false;
-    document.addEventListener("touchstart", (e) => {
-      isMultitouch = e.touches.length > 1;
-      x0 = e.changedTouches[0].screenX;
-      y0 = e.changedTouches[0].screenY;
-    });
-    document.addEventListener("touchend", (e) => {
-      if (e.touches.length || window.visualViewport.scale != 1) return;
-      if (isMultitouch) return (isMultitouch = false);
-      const x1 = e.changedTouches[0].screenX;
-      const y1 = e.changedTouches[0].screenY;
-      const deg = (Math.atan2(y1 - y0, x1 - x0) * 180) / Math.PI;
-      const isHoriz = (-45 < deg && deg < 45) || -135 > deg || deg > 135;
-      if (isHoriz && Math.abs(x1 - x0) > 40) this.swipeTheme(x1 > x0);
-    });
+    document.addEventListener(
+      "touchstart",
+      (e) => {
+        isMultitouch = e.touches.length > 1;
+        x0 = e.changedTouches[0].screenX;
+        y0 = e.changedTouches[0].screenY;
+      },
+      { passive: true }
+    );
+    document.addEventListener(
+      "touchend",
+      (e) => {
+        if (e.touches.length || window.visualViewport.scale != 1) return;
+        if (isMultitouch) return (isMultitouch = false);
+        const x1 = e.changedTouches[0].screenX;
+        const y1 = e.changedTouches[0].screenY;
+        const deg = (Math.atan2(y1 - y0, x1 - x0) * 180) / Math.PI;
+        const isHoriz = (-45 < deg && deg < 45) || -135 > deg || deg > 135;
+        if (isHoriz && Math.abs(x1 - x0) > 40) this.swipeTheme(x1 > x0);
+      },
+      { passive: true }
+    );
   },
   methods: {
     changeTheme(theme: Theme) {
