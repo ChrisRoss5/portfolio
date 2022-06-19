@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Column } from "../scripts/apps";
+import { Column } from "@/scripts/apps";
 import { SortedColumn } from "./Apps.vue";
 
 export default defineComponent({

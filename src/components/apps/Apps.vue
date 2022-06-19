@@ -58,10 +58,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Apps, App, apps, columns } from "../scripts/apps";
+import { Apps, App, apps, columns } from "../../scripts/apps"; // '@/' not working
 import NavbarVue from "./Navbar.vue";
 import ColumnsVue from "./Columns.vue";
-import LoadingSVGVue from "./SVG/LoadingSVG.vue";
+import LoadingSVGVue from "../SVG/LoadingSVG.vue";
 
 const sortedColumn = { name: "weeklyUsers", descending: false };
 
@@ -94,7 +94,7 @@ export default defineComponent({
       });
     },
     getBrowserAppInfo(app: App) {
-      if (!app.links.chrome || !0) return; // todo
+      if (!app.links.chrome /*  || !0 */) return; // todo
       const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
       fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
@@ -168,6 +168,11 @@ export default defineComponent({
       flex-shrink: 0;
     }
     &:hover {
+      cursor: pointer;
+      &,
+      & ~ div {
+        background: var(--c);
+      }
     }
   }
   .icons {

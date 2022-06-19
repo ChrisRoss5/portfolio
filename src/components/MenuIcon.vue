@@ -9,11 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-
-export default defineComponent({
-  name: "MenuIcon",
-  emits: ["open"],
-});
+export default defineComponent({ name: "MenuIcon", emits: ["open"] });
 </script>
 
 <style lang="scss">
