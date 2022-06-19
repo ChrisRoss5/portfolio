@@ -32,7 +32,7 @@ import MenuIcon from "./components/MenuIcon.vue";
 import LinksVue from "./components/Links.vue";
 import AppsVue from "./components/Apps.vue";
 import AboutVue from "./components/About.vue";
-import LogoSVG from "./components/LogoSVG.vue";
+import LogoSVG from "./components/SVG/LogoSVG.vue";
 
 export default defineComponent({
   components: {
