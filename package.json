@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "optimize-svg": "svgo -f src/assets/icons -r --multipass --pretty"
+    "optimize-svg": "svgo -f src/assets -r --multipass --pretty"
   },
   "dependencies": {
     "vue": "^3.2.13",
