@@ -1,9 +1,5 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    aria-label="TypeScript"
-    viewBox="0 0 512 512"
-  >
+  <svg viewBox="0 0 512 512">
     <rect width="512" height="512" rx="15%" fill="#3178c6" />
     <path
       fill="#fff"

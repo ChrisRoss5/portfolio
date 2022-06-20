@@ -29,7 +29,7 @@ img {
   width: 1.2rem;
   height: 1.2rem;
 }
-svg {
+svg:not([unmodified]) {
   vertical-align: text-bottom;
   &,
   path {
@@ -48,4 +48,12 @@ svg {
   to {
     opacity: 1;
   }
+}
+.reveal-enter-active,
+.reveal-leave-active {
+  transition: opacity 150ms;
+}
+.reveal-enter-from,
+.reveal-leave-to {
+  opacity: 0;
 }

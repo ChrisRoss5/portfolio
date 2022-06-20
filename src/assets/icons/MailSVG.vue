@@ -1,10 +1,5 @@
 <template>
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 400 400"
-    style="enable-background: new 0 0 400 400"
-    xml:space="preserve"
-  >
+  <svg viewBox="0 0 400 400">
     <path
       d="M0 127.5v146.719L104.8 206.1zm400 146.719V127.5l-104.8 78.6zM200 277.5l-69.643-52.232L0 310v30h400v-30l-130.357-84.732z"
     />

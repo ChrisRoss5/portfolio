@@ -1,11 +1,5 @@
 <template>
-  <svg
-    width="256"
-    height="256"
-    viewBox="0 -17.5 256 256"
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="xMidYMid"
-  >
+  <svg viewBox="0 -17.5 256 256">
     <path
       d="M204.8 0H256L128 220.8 0 0h97.92L128 51.2 157.44 0h47.36Z"
       fill="#41B883"

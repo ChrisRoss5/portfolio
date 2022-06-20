@@ -17,19 +17,19 @@
               alt="logo"
             />
             {{ app.name }}
-            <svg viewBox="0 0 460 460">
-              <path
-                d="M230 0C102.975 0 0 102.975 0 230s102.975 230 230 230 230-102.974 230-230S357.025 0 230 0zm38.333 377.36c0 8.676-7.034 15.71-15.71 15.71h-43.101c-8.676 0-15.71-7.034-15.71-15.71V202.477c0-8.676 7.033-15.71 15.71-15.71h43.101c8.676 0 15.71 7.033 15.71 15.71V377.36zM230 157c-21.539 0-39-17.461-39-39s17.461-39 39-39 39 17.461 39 39-17.461 39-39 39z"
-              />
-            </svg>
+            <component :is="'InfoSVG'" />
           </div>
           <div>{{ app.created.toLocaleDateString("en-CA") }}</div>
-          <div v-if="app.lastUpdated">
-            {{ app.lastUpdated.toLocaleDateString("en-CA") }}
-          </div>
-          <div v-else-if="isBrowserApp"><LoadingSVGVue /></div>
-          <div v-if="app.weeklyUsers">{{ formatCount(app.weeklyUsers) }}</div>
-          <div v-else-if="isBrowserApp"><LoadingSVGVue /></div>
+          <Transition name="reveal" mode="out-in">
+            <div v-if="app.lastUpdated">
+              {{ app.lastUpdated.toLocaleDateString("en-CA") }}
+            </div>
+            <div v-else-if="isBrowserApp"><component :is="'LoadingSVG'" /></div>
+          </Transition>
+          <Transition name="reveal" mode="out-in">
+            <div v-if="app.weeklyUsers">{{ formatCount(app.weeklyUsers) }}</div>
+            <div v-else-if="isBrowserApp"><component :is="'LoadingSVG'" /></div>
+          </Transition>
           <div class="icons links">
             <a
               v-for="(value, key) in app.links"
@@ -38,17 +38,17 @@
               :class="{ invert: /(github|home|download)/.test(key) }"
               target="_blank"
             >
-              <!-- <img :src="require(`@/assets/icons/${key}.svg`)" alt="icon" /> -->
+              <component :is="key + 'SVG'" unmodified />
             </a>
           </div>
           <div class="icons tech">
-<!--             <img
+            <component
               v-for="tech in app.tech"
+              :is="tech + 'SVG'"
               :key="tech"
-              :src="require(`@/assets/icons/tech/${tech}.svg`)"
               :title="tech"
-              alt="icon"
-            /> -->
+              unmodified
+            />
           </div>
         </div>
       </TransitionGroup>
@@ -61,7 +61,6 @@ import { defineComponent } from "vue";
 import { Apps, App, apps, columns } from "../../scripts/apps"; // '@/' not working
 import NavbarVue from "./Navbar.vue";
 import ColumnsVue from "./Columns.vue";
-import LoadingSVGVue from "../reusable/icons/LoadingSVG.vue";
 
 const sortedColumn = { name: "weeklyUsers", descending: false };
 
@@ -69,7 +68,7 @@ export type SortedColumn = typeof sortedColumn;
 
 export default defineComponent({
   name: "AppsVue",
-  components: { NavbarVue, ColumnsVue, LoadingSVGVue },
+  components: { NavbarVue, ColumnsVue },
   data() {
     return { columns, apps, sortedColumn };
   },
@@ -178,7 +177,7 @@ export default defineComponent({
   .icons {
     flex-wrap: wrap;
     gap: 10px;
-    img {
+    svg {
       vertical-align: middle;
       width: 1.5rem;
       height: 1.5rem;
@@ -190,9 +189,6 @@ export default defineComponent({
   align-items: center;
   text-align: left;
 }
-
-/* transitions */
-
 .table-move {
   transition: transform 150ms;
 }

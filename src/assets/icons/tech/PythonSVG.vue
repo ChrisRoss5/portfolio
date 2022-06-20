@@ -1,11 +1,5 @@
 <template>
-  <svg
-    width="256"
-    height="256"
-    viewBox="0 -0.5 256 256"
-    xmlns="http://www.w3.org/2000/svg"
-    preserveAspectRatio="xMidYMid"
-  >
+  <svg viewBox="0 -0.5 256 256">
     <defs>
       <linearGradient
         x1="12.959%"
