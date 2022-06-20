@@ -1,12 +1,12 @@
 <template>
   <div id="apps">
-    <NavbarVue :path="path"></NavbarVue>
+    <NavbarVue :path="path" />
     <ColumnsVue
       :columns="columns"
       :sortedColumn="sortedColumn"
       :isBrowserApp="isBrowserApp"
       @sort="sort($event)"
-    ></ColumnsVue>
+    />
     <div id="table">
       <TransitionGroup name="table" :key="path">
         <div v-for="app in currentApps" :key="app.name">
@@ -27,9 +27,9 @@
           <div v-if="app.lastUpdated">
             {{ app.lastUpdated.toLocaleDateString("en-CA") }}
           </div>
-          <div v-else-if="isBrowserApp"><LoadingSVGVue></LoadingSVGVue></div>
+          <div v-else-if="isBrowserApp"><LoadingSVGVue /></div>
           <div v-if="app.weeklyUsers">{{ formatCount(app.weeklyUsers) }}</div>
-          <div v-else-if="isBrowserApp"><LoadingSVGVue></LoadingSVGVue></div>
+          <div v-else-if="isBrowserApp"><LoadingSVGVue /></div>
           <div class="icons links">
             <a
               v-for="(value, key) in app.links"
@@ -61,7 +61,7 @@ import { defineComponent } from "vue";
 import { Apps, App, apps, columns } from "../../scripts/apps"; // '@/' not working
 import NavbarVue from "./Navbar.vue";
 import ColumnsVue from "./Columns.vue";
-import LoadingSVGVue from "../SVG/LoadingSVG.vue";
+import LoadingSVGVue from "../reusable/icons/LoadingSVG.vue";
 
 const sortedColumn = { name: "weeklyUsers", descending: false };
 

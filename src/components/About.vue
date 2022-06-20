@@ -27,7 +27,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import about from "../scripts/about.json";
-import CVsVue from "./CVs.vue";
+import CVsVue from "./reusable/CVs.vue";
 
 interface Line {
   indents: number;

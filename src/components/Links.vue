@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import CVsVue from "./CVs.vue";
+import CVsVue from "./reusable/CVs.vue";
 export default defineComponent({ name: "LinksVue", components: { CVsVue } });
 </script>
 

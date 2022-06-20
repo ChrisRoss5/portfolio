@@ -1,24 +1,24 @@
 <template>
-  <ThemesVue></ThemesVue>
+  <ThemesVue />
   <MenuIcon
     v-if="$mediaWidth.isBelow1366px"
     :class="{ open: mobileMenuOpen }"
     @open="mobileMenuOpen = !mobileMenuOpen"
-  ></MenuIcon>
+  />
   <div id="intro">
     <div id="title">
       <span style="font-size: 4rem">Hi</span>, I'm Kristijan Rosandić, Software
       Engineer.
     </div>
-    <LinksVue></LinksVue>
-    <LogoSVG :class="{ completed: animationCompleted }"></LogoSVG>
+    <LinksVue />
+    <LogoSVG :class="{ completed: animationCompleted }" />
   </div>
-  <AppsVue></AppsVue>
+  <AppsVue />
   <Transition name="mobile-about">
     <AboutVue
       v-show="mobileMenuOpen || !$mediaWidth.isBelow1366px"
       @completed="animationCompleted = true"
-    ></AboutVue>
+    />
   </Transition>
   <div id="themes-note" v-if="$mediaWidth.isBelow768px">
     Swipe left/right to change themes!
@@ -32,7 +32,7 @@ import MenuIcon from "./components/MenuIcon.vue";
 import LinksVue from "./components/Links.vue";
 import AppsVue from "./components/apps/Apps.vue";
 import AboutVue from "./components/About.vue";
-import LogoSVG from "./components/SVG/LogoSVG.vue";
+import LogoSVG from "./components/reusable/icons/LogoSVG.vue";
 
 export default defineComponent({
   components: {
@@ -51,8 +51,10 @@ export default defineComponent({
   },
   watch: {
     mobileMenuOpen(newVal) {
-      window.scrollTo(0, 0);
-      document.body.style.overflow = newVal ? "hidden" : "auto";
+      if (this.$mediaWidth.isBelow768px) {
+        window.scrollTo(0, 0);
+        document.body.style.overflow = newVal ? "hidden" : "auto";
+      }
     },
   },
 });
