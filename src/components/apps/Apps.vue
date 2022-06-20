@@ -12,7 +12,7 @@
         <div v-for="app in currentApps" :key="app.name">
           <div class="app-name">
             <img
-              :src="require(`@/assets/apps/${app.img}.webp`)"
+              :src="require(`@/assets/webp-app-logos/${app.img}.webp`)"
               :class="{ invert: app.img == 'My Developer Portfolio' }"
               alt="logo"
             />

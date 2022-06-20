@@ -17,7 +17,7 @@ isBelow768px.addEventListener("change", (e) => {
   app.config.globalProperties.$mediaWidth.isBelow768px = e.matches;
 });
 
-const ComponentContext = require.context('./assets/icons', true, /\.vue$/i);
+const ComponentContext = require.context('./assets/svg-vue', true, /\.vue$/i);
 ComponentContext.keys().forEach((componentFilePath) => {
   const componentName = componentFilePath.split('/').pop()!.split('.')[0];
   app.component(componentName, ComponentContext(componentFilePath).default);
