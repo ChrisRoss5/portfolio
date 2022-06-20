@@ -38,17 +38,17 @@
               :class="{ invert: /(github|home|download)/.test(key) }"
               target="_blank"
             >
-              <img :src="require(`@/assets/icons/${key}.svg`)" alt="icon" />
+              <!-- <img :src="require(`@/assets/icons/${key}.svg`)" alt="icon" /> -->
             </a>
           </div>
           <div class="icons tech">
-            <img
+<!--             <img
               v-for="tech in app.tech"
               :key="tech"
               :src="require(`@/assets/icons/tech/${tech}.svg`)"
               :title="tech"
               alt="icon"
-            />
+            /> -->
           </div>
         </div>
       </TransitionGroup>
