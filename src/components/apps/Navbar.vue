@@ -5,7 +5,6 @@
       <br v-if="$mediaWidth.isBelow768px" />
       {{ value.split(" ")[1] }}
       <div
-        v-show="path == key"
         :style="{ transform: `translateX(${transformX * 100}%)` }"
         ref="line"
       ></div>
@@ -94,19 +93,19 @@ export default defineComponent({
     &.router-link-active {
       color: var(--f);
       background: linear-gradient(to top, var(--e), var(--c));
-    }
-    div {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 5px;
-      background: linear-gradient(
-        to right,
-        var(--special-a),
-        var(--special-b)
-      ) !important;
-      transition: transform 100ms;
+      div {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: linear-gradient(
+          to right,
+          var(--special-a),
+          var(--special-b)
+        ) !important;
+        transition: transform 100ms;
+      }
     }
   }
 }

@@ -105,7 +105,7 @@ export default defineComponent({
   },
   computed: {
     path(): string {
-      return this.$route.path.replaceAll("/", "");
+      return this.$route.path.split("/").pop()!;
     },
     isBrowserApp(): boolean {
       return this.path == "extensions" || this.path == "themes";

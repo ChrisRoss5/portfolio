@@ -5,25 +5,14 @@
     :class="{ open: mobileMenuOpen }"
     @open="mobileMenuOpen = !mobileMenuOpen"
   />
-  <div id="intro">
-    <div id="title">
-      <span style="font-size: 4rem">Hi</span>, I'm Kristijan Rosandić, Software
-      Engineer.
-    </div>
-    <LinksVue />
-    <component
-      :is="'LogoSVG'"
-      id="logo"
-      :class="{ completed: animationCompleted }"
-    />
-  </div>
-  <AppsVue />
-  <Transition name="mobile-about">
-    <AboutVue
+  <IntroVue :completed="animationCompleted" />
+  <Transition name="mobile-sidebar">
+    <SidebarVue
       v-show="mobileMenuOpen || !$mediaWidth.isBelow1366px"
       @completed="animationCompleted = true"
     />
   </Transition>
+  <AppsVue />
   <div id="themes-note" v-if="$mediaWidth.isBelow768px">
     Swipe left/right to change themes!
   </div>
@@ -33,12 +22,12 @@
 import { defineComponent } from "vue";
 import ThemesVue from "./components/Themes.vue";
 import MenuIcon from "./components/MenuIcon.vue";
-import LinksVue from "./components/Links.vue";
+import IntroVue from "./components/Intro.vue";
+import SidebarVue from "./components/Sidebar.vue";
 import AppsVue from "./components/apps/Apps.vue";
-import AboutVue from "./components/About.vue";
 
 export default defineComponent({
-  components: { ThemesVue, MenuIcon, LinksVue, AppsVue, AboutVue },
+  components: { ThemesVue, MenuIcon, IntroVue, SidebarVue, AppsVue },
   data() {
     return {
       mobileMenuOpen: false,
@@ -66,50 +55,17 @@ export default defineComponent({
     "c b" 1fr / 1fr;
   background: var(--c);
 }
-#intro {
-  position: relative;
-  padding: 8vh 5vw 0;
-  overflow: hidden;
-  z-index: 0;
-}
-#title {
-  font-size: 1.2rem;
-  letter-spacing: 0.25rem;
-}
-#logo {
-  display: inline;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  width: auto;
-  transform: scale(1.01);
-  transition: filter 1s;
-  will-change: filter;
-  z-index: -1;
-  &.completed {
-    filter: drop-shadow(-3px -3px 6px var(--special-a))
-      drop-shadow(3px 3px 6px var(--special-b));
-  }
-  path {
-    fill: var(--d);
-  }
-}
 #themes-note {
   text-align: center;
   color: var(--a-05);
   padding: 2rem;
 }
-
-/* transitions */
-
-.mobile-about-leave-to,
-.mobile-about-enter-from {
+.mobile-sidebar-leave-to,
+.mobile-sidebar-enter-from {
   background: none !important;
   backdrop-filter: none !important;
 }
-.mobile-about-leave-to {
+.mobile-sidebar-leave-to {
   opacity: 0;
 }
 </style>

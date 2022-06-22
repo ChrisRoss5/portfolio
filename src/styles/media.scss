@@ -19,7 +19,7 @@
   #apps > div {
     padding: 0;
   }
-  #about {
+  #sidebar {
     padding-right: 20px;
   }
 }
@@ -37,6 +37,7 @@
     padding: 5vw 45vw 2vw 5vw !important;
   }
   #links {
+    align-items: initial;
     padding-top: 5% !important;
     gap: 20px;
     flex-direction: column;
@@ -56,7 +57,7 @@
       padding: 10px;
     }
   }
-  #about {
+  #sidebar {
     position: fixed;
     right: 0;
     top: 0;
@@ -90,9 +91,6 @@
     gap: 0 !important;
     & > * {
       flex: auto;
-    }
-    &.cvs {
-      display: none;
     }
   }
   #logo.completed {
@@ -131,7 +129,7 @@
       }
     }
   }
-  #about {
+  #sidebar {
     left: 0;
   }
 }

@@ -20,7 +20,7 @@ export default defineComponent({ name: "MenuIcon", emits: ["open"] });
   height: 1.3rem;
   width: 1.3rem;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
   &::after {
     content: "";
     position: absolute;

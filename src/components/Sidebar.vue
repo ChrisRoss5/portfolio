@@ -1,5 +1,5 @@
 <template>
-  <div id="about">
+  <div id="sidebar">
     <div v-for="(line, i) in lines" :key="i">
       <div class="number" :style="{ animationDelay: i * this.pause + 'ms' }">
         {{ i + 1 }}
@@ -20,14 +20,12 @@
         </div>
       </div>
     </div>
-    <CVsVue v-if="$mediaWidth.isBelow768px"></CVsVue>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import about from "../scripts/about.json";
-import CVsVue from "./reusable/CVs.vue";
+import sidebar from "../scripts/sidebar.json";
 
 interface Line {
   indents: number;
@@ -38,10 +36,10 @@ interface Line {
 }
 
 const lines: Line[] = [{ value: "{", bracket: true, indents: 0 }];
-const keys = Object.keys(about);
+const keys = Object.keys(sidebar);
 for (let i = 0; i < keys.length; i++) {
   const key = keys[i];
-  const value = about[key as keyof typeof about];
+  const value = sidebar[key as keyof typeof sidebar];
   const noComma = i == keys.length - 1;
   let indents = 1;
   if (typeof value == "string") lines.push({ key, value, indents });
@@ -67,8 +65,7 @@ for (let i = 0; i < keys.length; i++) {
 lines.push({ value: "}", bracket: true, indents: 0 });
 
 export default defineComponent({
-  name: "AboutVue",
-  components: { CVsVue },
+  name: "SidebarVue",
   emits: ["completed"],
   data() {
     return { lines, pause: 50 };
@@ -81,7 +78,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#about {
+#sidebar {
   grid-area: b;
   padding-right: 5vw;
   background: var(--b);
@@ -89,17 +86,10 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   overflow: auto;
+  z-index: 1;
   & > div {
     flex: 1;
     display: flex;
-  }
-  .cvs {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    gap: 20px;
-    opacity: 0;
-    animation: reveal 0.5s 0.5s forwards;
   }
 }
 .number,
@@ -153,7 +143,8 @@ export default defineComponent({
   from {
     filter: brightness(5);
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 1;
   }
 }
@@ -161,7 +152,8 @@ export default defineComponent({
   from {
     color: #fff;
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 1;
   }
 }
