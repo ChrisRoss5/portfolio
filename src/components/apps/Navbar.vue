@@ -6,7 +6,7 @@
       {{ value.split(" ")[1] }}
       <div
         :style="{ transform: `translateX(${transformX * 100}%)` }"
-        ref="line"
+        :class="{ 'transform-transition': transformTransition }"
       ></div>
     </router-link>
   </div>
@@ -27,6 +27,7 @@ export default defineComponent({
         desktop: "Desktop Apps",
       },
       transformX: 0,
+      transformTransition: false,
     };
   },
   mounted() {
@@ -73,8 +74,12 @@ export default defineComponent({
         if (Math.abs(this.transformX) < 0.5) return (this.transformX = 0);
         const isRight = this.transformX > 0;
         this.$router.push(keys[keys.indexOf(this.path) + (isRight ? 1 : -1)]);
+        this.transformTransition = true;
         this.transformX += isRight ? -1 : 1;
-        setTimeout(() => (this.transformX = 0), 0);
+        setTimeout(() => {
+          this.transformX = 0;
+          this.transformTransition = false;
+        }, 0);
       },
       { passive: true }
     );
@@ -90,21 +95,26 @@ export default defineComponent({
     flex: 1;
     text-align: center;
     padding: 20px 10px;
+    div {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 0;
+      background: linear-gradient(to right, var(--special-a), var(--special-b));
+      &:not(.transform-transition) {
+        transition: height 150ms;
+      }
+    }
     &.router-link-active {
       color: var(--f);
       background: linear-gradient(to top, var(--e), var(--c));
       div {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
         height: 5px;
-        background: linear-gradient(
-          to right,
-          var(--special-a),
-          var(--special-b)
-        ) !important;
-        transition: transform 100ms;
+        transition: transform 100ms, height 150ms;
+        &.transform-transition {
+          transition: transform 100ms;
+        }
       }
     }
   }

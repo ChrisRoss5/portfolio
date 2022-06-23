@@ -9,7 +9,14 @@
     />
     <div id="table">
       <TransitionGroup name="table" :key="path">
-        <div v-for="app in currentApps" :key="app.name">
+        <div
+          v-for="(app, i) in currentApps"
+          :key="app.name"
+          :style="{
+            opacity: isTableEntering ? 0 : 1,
+            animation: isTableEntering ? `table-row 600ms ${i * 50}ms forwards` : `none`,
+          }"
+        >
           <div class="app-name">
             <img
               :src="require(`@/assets/webp-app-logos/${app.img}.webp`)"
@@ -70,7 +77,7 @@ export default defineComponent({
   name: "AppsVue",
   components: { NavbarVue, ColumnsVue },
   data() {
-    return { columns, apps, sortedColumn };
+    return { columns, apps, sortedColumn, isTableEntering: true };
   },
   created() {
     for (const key in this.apps)
@@ -83,8 +90,10 @@ export default defineComponent({
     },
     sort(columnName: keyof App, descending?: boolean) {
       const isSameColumn = columnName == this.sortedColumn.name;
-      if (descending == undefined)
+      if (descending == undefined) {
         descending = isSameColumn ? !this.sortedColumn.descending : false;
+        this.isTableEntering = false;
+      }
       this.sortedColumn = { name: columnName, descending };
       this.currentApps.sort((a, b) => {
         if (a[columnName]! < b[columnName]!) return descending ? -1 : 1;
@@ -116,6 +125,7 @@ export default defineComponent({
   },
   watch: {
     path() {
+      this.isTableEntering = true;
       if (this.isBrowserApp) this.sort("weeklyUsers", false);
       else this.sort("created", false);
     },
@@ -149,7 +159,7 @@ export default defineComponent({
   overflow: auto;
   & > div {
     background: var(--d);
-    border-bottom: 5px solid var(--e);
+    border-bottom: 5px solid transparent;
     & > div {
       @extend .flex-center;
       padding: var(--cell-padding);
@@ -191,5 +201,22 @@ export default defineComponent({
 }
 .table-move {
   transition: transform 150ms;
+  &,
+  * {
+    animation: none !important;
+  }
+}
+@keyframes table-row {
+  from {
+    transform: translateY(-50%);
+  }
+  50% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 1;
+    border-bottom-color: var(--e);
+  }
 }
 </style>
