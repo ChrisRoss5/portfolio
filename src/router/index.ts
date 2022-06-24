@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import Projects from "@/components/apps/Apps.vue";
 const component = {};
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/projects",
-    component,
+    component: Projects,
     children: [
       { path: "extensions", component },
       { path: "themes", component },

@@ -14,7 +14,9 @@
           :key="app.name"
           :style="{
             opacity: isTableEntering ? 0 : 1,
-            animation: isTableEntering ? `table-row 600ms ${i * 50}ms forwards` : `none`,
+            animation: isTableEntering
+              ? `table-row 600ms ${i * 50}ms forwards`
+              : `none`,
           }"
         >
           <div class="app-name">
@@ -49,13 +51,9 @@
             </a>
           </div>
           <div class="icons tech">
-            <component
-              v-for="tech in app.tech"
-              :is="tech + 'SVG'"
-              :key="tech"
-              :title="tech"
-              unmodified
-            />
+            <div v-for="tech in app.tech" :key="tech" :title="tech">
+              <component :is="tech + 'SVG'" unmodified />
+            </div>
           </div>
         </div>
       </TransitionGroup>

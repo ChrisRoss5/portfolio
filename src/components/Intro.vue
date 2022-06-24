@@ -2,9 +2,8 @@
   <div id="intro">
     <component :is="'LogoSVG'" id="logo" :class="{ completed }" />
     <div id="title">
-      <span style="font-size: 4rem">Hi</span>, I'm
-      <span>Kristijan Rosandić, </span>
-      <span>Software Engineer.</span>
+      <span id="hi" style="font-size: 4rem">Hi</span>{{ sentence }}
+      <span id="caret"></span>
     </div>
     <LinksVue />
   </div>
@@ -18,17 +17,24 @@ export default defineComponent({
   name: "IntroVue",
   components: { LinksVue },
   props: { completed: Boolean },
-    data() {
-    return {};
+  data() {
+    return {
+      sentence: "",
+    };
   },
   mounted() {
-    console.log(this.$route);
+    let i = 0;
+    const sentence = ", I'm Kristijan Rosandić, Software Engineer.";
+    const interval = setInterval(() => {
+      if (sentence[i]) this.sentence += sentence[i++];
+      else clearInterval(interval);
+    }, 25);
   },
   watch: {
     $route() {
       console.log(this.$route);
-    }
-  }
+    },
+  },
 });
 </script>
 
@@ -64,6 +70,15 @@ export default defineComponent({
 }
 #title {
   font-size: 1.2rem;
-  letter-spacing: 0.25rem;
+  letter-spacing: 0.2rem;
+}
+#caret {
+  width: 0.3rem;
+  height: 1rem;
+  display: inline-block;
+  transform: scaleY(2) translateX(-0.5rem);
+  background: var(--a);
+  box-shadow: 0 0 8px 0 var(--a);
+  animation: reveal 150ms 1100ms 8 alternate forwards;
 }
 </style>

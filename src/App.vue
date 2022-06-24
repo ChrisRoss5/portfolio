@@ -12,6 +12,9 @@
       @completed="animationCompleted = true"
     />
   </Transition>
+  <div id="content">
+    <router-view />
+  </div>
   <AppsVue />
   <div id="themes-note" v-if="$mediaWidth.isBelow768px">
     Swipe left/right to change themes!

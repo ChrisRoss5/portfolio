@@ -83,33 +83,35 @@ export default defineComponent({
 }
 #section-choice a {
   position: relative;
-  background: inherit;
-  cursor: pointer;
   padding: 5px 10px;
-  transition: background 150ms 150ms;
-  &::before {
+  &::before,
+  &::after {
     content: "";
     position: absolute;
+    transform: scaleX(0);
+    transition: transform 150ms;
+    z-index: -1;
+  }
+  &:before {
     top: -3px;
     bottom: -3px;
     left: -3px;
     right: -3px;
     border-radius: 6px;
-    z-index: -1;
-    background: linear-gradient(
-      to right,
-      var(--special-a),
-      var(--special-b)
-    ) !important;
-    transform: scaleX(0);
-    transition: transform 150ms;
+    background: linear-gradient(to right, var(--special-a), var(--special-b));
+  }
+  &::after {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 4px;
+    background: var(--d);
   }
   &.router-link-active {
     color: var(--f);
-    background: var(--d);
-    border-radius: 4px;
-    transition: none;
-    &::before {
+    &::before,
+    &::after {
       transform: scale(1);
     }
   }
