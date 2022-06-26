@@ -1,4 +1,4 @@
-export interface App {
+export interface Project {
   img: string;
   name: string;
   created: Date;
@@ -14,26 +14,26 @@ export interface App {
   tech: string[];
 }
 
-export type Apps = {
-  [key in "extensions" | "themes" | "web" | "desktop"]: App[];
+export type Projects = {
+  [key in "extensions" | "themes" | "web" | "desktop"]: Project[];
 };
 
 export interface Column {
-  name: keyof App;
+  name: keyof Project;
   unsortable?: boolean;
-  browserAppSpecific?: boolean;
+  isBrowserApp?: boolean;
 }
 
 export const columns: Column[] = [
   { name: "name" },
   { name: "created" },
-  { name: "lastUpdated", browserAppSpecific: true },
-  { name: "weeklyUsers", browserAppSpecific: true },
+  { name: "lastUpdated", isBrowserApp: true },
+  { name: "weeklyUsers", isBrowserApp: true },
   { name: "links", unsortable: true },
   { name: "tech", unsortable: true },
 ];
 
-export const apps: Apps = {
+export const projects: Projects = {
   extensions: [
     {
       img: "e-Dnevnik Plus",
@@ -176,7 +176,7 @@ export const apps: Apps = {
       name: "My Developer Portfolio",
       created: new Date("May 1, 2022"),
       links: {
-        home: "https://kristijan.pages.dev", // todo
+        home: "https://kristijan.pages.dev",
         github: "https://github.com/ChrisRoss5/portfolio",
       },
       tech: ["TypeScript", "Vue", "SCSS", "Cloudflare"],
@@ -188,7 +188,7 @@ export const apps: Apps = {
       name: "Infokup Evaluator",
       created: new Date("Feb 21, 2019"),
       links: {
-        download: "/apps/Evaluator.exe",
+        download: "/projects/Evaluator.exe",
       },
       tech: ["Python", "Windows"],
     },
@@ -197,7 +197,7 @@ export const apps: Apps = {
       name: "Patterns",
       created: new Date("Jan 29, 2019"),
       links: {
-        download: "/apps/Patterns.exe",
+        download: "/projects/Patterns.exe",
       },
       tech: ["Python", "Windows"],
     },

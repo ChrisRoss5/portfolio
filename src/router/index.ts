@@ -1,7 +1,8 @@
+import Projects from "@/views/Projects.vue";
+import About from "@/views/About.vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Projects from "@/components/apps/Apps.vue";
-const component = {};
 
+const component = {};
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/projects",
@@ -16,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/about",
-    component,
+    component: About,
     children: [
       { path: "experience", component },
       { path: "accomplishments", component },

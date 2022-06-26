@@ -1,4 +1,4 @@
-import { createApp, reactive, watch } from "vue";
+import { createApp, reactive } from "vue";
 import App from "./App.vue";
 import router from "./router";
 
@@ -17,12 +17,9 @@ isBelow768px.addEventListener("change", (e) => {
   app.config.globalProperties.$mediaWidth.isBelow768px = e.matches;
 });
 
-console.log(router.currentRoute);
-
-
-const ComponentContext = require.context('./assets/svg-vue', true, /\.vue$/i);
+const ComponentContext = require.context("./assets/svg-vue", true, /\.vue$/i);
 ComponentContext.keys().forEach((componentFilePath) => {
-  const componentName = componentFilePath.split('/').pop()!.split('.')[0];
+  const componentName = componentFilePath.split("/").pop()!.split(".")[0];
   app.component(componentName, ComponentContext(componentFilePath).default);
 });
 

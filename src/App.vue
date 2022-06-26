@@ -13,9 +13,10 @@
     />
   </Transition>
   <div id="content">
-    <router-view />
+    <NavbarVue />
+    <ColumnsVue v-model:sortedColumn="sortedColumn" />
+    <router-view :sortedColumn="sortedColumn" />
   </div>
-  <AppsVue />
   <div id="themes-note" v-if="$mediaWidth.isBelow768px">
     Swipe left/right to change themes!
   </div>
@@ -27,14 +28,30 @@ import ThemesVue from "./components/Themes.vue";
 import MenuIcon from "./components/MenuIcon.vue";
 import IntroVue from "./components/Intro.vue";
 import SidebarVue from "./components/Sidebar.vue";
-import AppsVue from "./components/apps/Apps.vue";
+import NavbarVue from "./components/Navbar.vue";
+import ColumnsVue from "./components/Columns.vue";
+
+const sortedColumn = {
+  name: "weeklyUsers",
+  descending: false,
+  isInitial: false,
+};
+export type SortedColumn = typeof sortedColumn;
 
 export default defineComponent({
-  components: { ThemesVue, MenuIcon, IntroVue, SidebarVue, AppsVue },
+  components: {
+    ThemesVue,
+    MenuIcon,
+    IntroVue,
+    SidebarVue,
+    NavbarVue,
+    ColumnsVue,
+  },
   data() {
     return {
       mobileMenuOpen: false,
       animationCompleted: false,
+      sortedColumn,
     };
   },
   watch: {
@@ -57,6 +74,15 @@ export default defineComponent({
     "a b"
     "c b" 1fr / 1fr;
   background: var(--c);
+}
+#content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--d);
+  & > div {
+    padding: 0 5vw;
+  }
 }
 #themes-note {
   text-align: center;

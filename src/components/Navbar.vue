@@ -17,36 +17,27 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "NavbarVue",
-  props: { path: { type: String, required: true } },
   data() {
     return {
-      routerLinks: {
-        extensions: "Browser Extensions",
-        themes: "Browser Themes",
-        web: "Web Apps",
-        desktop: "Desktop Apps",
-      },
       transformX: 0,
       transformTransition: false,
     };
   },
   mounted() {
-    const keys = Object.keys(this.routerLinks);
-    const appsEl = this.$parent!.$el as HTMLElement;
-    let x0: number, y0: number, cancelled: boolean;
-    let isMultitouch = false;
-    appsEl.addEventListener(
+    const contentEl = this.$el.parentElement as HTMLElement;
+    let x0: number, y0: number, cancelled: boolean, isMultitouch: boolean;
+    contentEl.addEventListener(
       "touchstart",
       (e) => {
         e.stopPropagation();
-        isMultitouch = e.touches.length > 1;
         x0 = e.changedTouches[0].screenX;
         y0 = e.changedTouches[0].screenY;
+        isMultitouch = e.touches.length > 1;
         cancelled = false;
       },
       { passive: true }
     );
-    appsEl.addEventListener(
+    contentEl.addEventListener(
       "touchmove",
       (e) => {
         if (cancelled || isMultitouch || window.visualViewport.scale != 1)
@@ -57,14 +48,14 @@ export default defineComponent({
         const isHoriz = (-30 < deg && deg < 30) || -150 > deg || deg > 150;
         if (!isHoriz) return (cancelled = !(this.transformX = 0));
         const { width } = window.visualViewport;
-        const perc = ((x0 - x1) / width) * keys.length;
-        const left = this.path == keys[0] ? 0 : -1;
-        const right = this.path == keys[keys.length - 1] ? 0 : 1;
+        const perc = ((x0 - x1) / width) * this.paths.length;
+        const left = this.path == this.paths[0] ? 0 : -1;
+        const right = this.path == this.paths[this.paths.length - 1] ? 0 : 1;
         this.transformX = Math.max(left, Math.min(right, perc));
       },
       { passive: true }
     );
-    appsEl.addEventListener(
+    contentEl.addEventListener(
       "touchend",
       (e) => {
         e.stopPropagation();
@@ -73,7 +64,9 @@ export default defineComponent({
         if (!this.transformX) return;
         if (Math.abs(this.transformX) < 0.5) return (this.transformX = 0);
         const isRight = this.transformX > 0;
-        this.$router.push(keys[keys.indexOf(this.path) + (isRight ? 1 : -1)]);
+        this.$router.push(
+          this.paths[this.paths.indexOf(this.path) + (isRight ? 1 : -1)]
+        );
         this.transformTransition = true;
         this.transformX += isRight ? -1 : 1;
         setTimeout(() => {
@@ -83,6 +76,28 @@ export default defineComponent({
       },
       { passive: true }
     );
+  },
+  computed: {
+    path(): string {
+      return this.$route.path.split("/").pop()!;
+    },
+    paths(): string[] {
+      return Object.keys(this.routerLinks);
+    },
+    routerLinks(): Record<string, string> {
+      return this.$route.path.includes("/projects")
+        ? {
+            extensions: "Browser Extensions",
+            themes: "Browser Themes",
+            web: "Web Apps",
+            desktop: "Desktop Apps",
+          }
+        : {
+            experience: "Experience",
+            accomplishments: "Accomplishments",
+            documents: "Documents",
+          };
+    },
   },
 });
 </script>
