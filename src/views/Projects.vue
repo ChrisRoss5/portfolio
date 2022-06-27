@@ -5,6 +5,7 @@
         v-for="(app, i) in currentProjects"
         :key="app.name"
         :style="{
+          borderBottomColor: isTableEntering ? 'transparent' : 'var(--e)',
           opacity: isTableEntering ? 0 : 1,
           animation: isTableEntering
             ? `table-row 600ms ${i * 50}ms forwards`
@@ -133,7 +134,7 @@ export default defineComponent({
   overflow: auto;
   & > div {
     background: var(--d);
-    border-bottom: 5px solid transparent;
+    border-bottom: 5px solid;
     & > div {
       @extend .flex-center;
       padding: var(--cell-padding);
@@ -181,7 +182,7 @@ export default defineComponent({
   }
 }
 @keyframes table-row {
-  from {
+  0% {
     transform: translateY(-50%);
   }
   50% {

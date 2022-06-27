@@ -1,17 +1,19 @@
 <template>
-  <div id="about">WIP</div>
+  <div id="project-details">
+
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "AboutVue",
-/*   data() {
+  name: "ProjectDetails",
+  data() {
     return {};
   },
   mounted() {},
-  methods: {}, */
+  methods: {},
 });
 </script>
 

@@ -140,7 +140,7 @@ export default defineComponent({
   color: var(--root-bracket);
 }
 @keyframes line-enter {
-  from {
+  0% {
     filter: brightness(5);
   }
   50%,
@@ -149,7 +149,7 @@ export default defineComponent({
   }
 }
 @keyframes number-enter {
-  from {
+  0% {
     color: #fff;
   }
   50%,

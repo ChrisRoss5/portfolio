@@ -20,7 +20,7 @@
     </template>
     <template v-else>
       <div v-for="columnName in aboutMeColumns" :key="columnName">
-        {{ formatTitle(columnName) }}
+        {{ columnName }}
       </div>
     </template>
   </div>
