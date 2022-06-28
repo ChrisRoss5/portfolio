@@ -2,8 +2,15 @@
   <div id="intro">
     <component :is="'LogoSVG'" id="logo" :class="{ completed }" />
     <div id="title">
-      <span id="hi" style="font-size: 4rem">Hi</span>{{ sentence }}
-      <span id="caret"></span>
+      <span id="hi" style="font-size: 4rem">Hi</span>
+      <span id="typewriter" ref="typewriter">
+        <div v-for="(word, i) in sentence.split(' ')" :key="i">
+          <span v-for="(letter, j) in Array.from(word)" :key="j">
+            {{ letter }}
+          </span>
+          <span>&nbsp;</span>
+        </div>
+      </span>
     </div>
     <LinksVue />
   </div>
@@ -19,15 +26,22 @@ export default defineComponent({
   props: { completed: Boolean },
   data() {
     return {
-      sentence: "",
+      sentence: ", I'm Kristijan Rosandić, Software Engineer. WIP.",
     };
   },
   mounted() {
     let i = 0;
-    const sentence = ", I'm Kristijan Rosandić, Software Engineer.";
+    const typewriterEl = this.$refs.typewriter as HTMLElement;
+    const letterEls = typewriterEl.querySelectorAll("span");
     const interval = setInterval(() => {
-      if (sentence[i]) this.sentence += sentence[i++];
-      else clearInterval(interval);
+      if (letterEls[i]) {
+        letterEls[i].className = "visible";
+        letterEls[i].setAttribute("caret", "");
+        if (i++) letterEls[i - 2].removeAttribute("caret");
+      } else {
+        letterEls[i - 1].setAttribute("last", "");
+        clearInterval(interval);
+      }
     }, 25);
   },
   watch: {
@@ -72,13 +86,26 @@ export default defineComponent({
   font-size: 1.2rem;
   letter-spacing: 0.2rem;
 }
-#caret {
-  width: 0.3rem;
-  height: 1rem;
+#typewriter > div {
   display: inline-block;
-  transform: scaleY(2) translateX(-0.5rem);
-  background: var(--a);
-  box-shadow: 0 0 8px 0 var(--a);
-  animation: reveal 150ms 1100ms 8 alternate forwards;
+  & > span {
+    position: relative;
+    opacity: 0;
+    &.visible {
+      opacity: 1;
+    }
+    &[caret]::after {
+      content: "";
+      position: absolute;
+      width: 0.3rem;
+      height: 1rem;
+      transform: scaleY(2) translateX(-0.5rem);
+      background: var(--a);
+      box-shadow: 0 0 8px 0 var(--a);
+    }
+    &[last]::after {
+      animation: reveal 150ms 8 alternate forwards;
+    }
+  }
 }
 </style>
