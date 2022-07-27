@@ -57,3 +57,19 @@ svg:not([unmodified]) {
 .reveal-leave-to {
   opacity: 0;
 }
+.columns-enter-active {
+  transition: opacity 350ms, transform 350ms;
+  &.columns-move {
+    transition: opacity 350ms 350ms, transform 350ms !important;
+  }
+}
+.columns-leave-active {
+  display: none !important;
+}
+.columns-enter-from {
+  opacity: 0;
+  transform: translateX(10%);
+}
+.columns-enter-from-left .columns-enter-from {
+  transform: translateX(-10%);
+}

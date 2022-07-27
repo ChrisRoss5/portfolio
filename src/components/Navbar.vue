@@ -1,14 +1,16 @@
 <template>
-  <div id="navbar">
-    <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
-      {{ value.split(" ")[0] }}
-      <br v-if="$mediaWidth.isBelow768px" />
-      {{ value.split(" ")[1] }}
-      <div
-        :style="{ transform: `translateX(${transformX * 100}%)` }"
-        :class="{ 'transform-transition': transformTransition }"
-      ></div>
-    </router-link>
+  <div id="navbar" :class="{ 'columns-enter-from-left': areProjects }">
+    <TransitionGroup name="columns" appear>
+      <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
+        {{ value.split(" ")[0] }}
+        <br v-if="$mediaWidth.isBelow768px" />
+        {{ value.split(" ")[1] }}
+        <div
+          :style="{ transform: `translateX(${transformX * 100}%)` }"
+          :class="{ 'transform-transition': transformTransition }"
+        ></div>
+      </router-link>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -49,8 +51,9 @@ export default defineComponent({
         if (!isHoriz) return (cancelled = !(this.transformX = 0));
         const { width } = window.visualViewport;
         const perc = ((x0 - x1) / width) * this.paths.length;
-        const left = this.path == this.paths[0] ? 0 : -1;
-        const right = this.path == this.paths[this.paths.length - 1] ? 0 : 1;
+        const left = this.pathEnding == this.paths[0] ? 0 : -1;
+        const right =
+          this.pathEnding == this.paths[this.paths.length - 1] ? 0 : 1;
         this.transformX = Math.max(left, Math.min(right, perc));
       },
       { passive: true }
@@ -64,9 +67,8 @@ export default defineComponent({
         if (!this.transformX) return;
         if (Math.abs(this.transformX) < 0.5) return (this.transformX = 0);
         const isRight = this.transformX > 0;
-        this.$router.push(
-          this.paths[this.paths.indexOf(this.path) + (isRight ? 1 : -1)]
-        );
+        const idx = this.paths.indexOf(this.pathEnding) + (isRight ? 1 : -1);
+        this.$router.push(this.paths[idx]);
         this.transformTransition = true;
         this.transformX += isRight ? -1 : 1;
         setTimeout(() => {
@@ -78,14 +80,11 @@ export default defineComponent({
     );
   },
   computed: {
-    path(): string {
-      return this.$route.path.split("/").pop()!;
-    },
     paths(): string[] {
       return Object.keys(this.routerLinks);
     },
     routerLinks(): Record<string, string> {
-      return this.$route.path.includes("/projects")
+      return this.areProjects
         ? {
             extensions: "Browser Extensions",
             themes: "Browser Themes",
@@ -110,6 +109,7 @@ export default defineComponent({
     flex: 1;
     text-align: center;
     padding: 20px 10px;
+    transition: opacity 250ms, transform 250ms;
     div {
       position: absolute;
       left: 0;

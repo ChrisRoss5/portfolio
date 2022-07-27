@@ -1,28 +1,32 @@
 <template>
-  <div id="columns">
-    <template v-if="isProjects">
-      <div
-        v-for="column in projectsColumns"
-        :key="column.name"
-        v-show="!column.isBrowserApp || isBrowserApp"
-        :class="{ sortable: !column.unsortable }"
-        @click="!column.unsortable && sort(column.name)"
-      >
-        {{ formatTitle(column.name) }}
-        <Transition name="sort-icon">
-          <component
-            :is="'ArrowDownSVG'"
-            v-if="sortedColumn.name == column.name"
-            :style="{ transform: `scale(${sortedColumn.descending ? -1 : 1})` }"
-          />
-        </Transition>
-      </div>
-    </template>
-    <template v-else>
-      <div v-for="columnName in aboutMeColumns" :key="columnName">
-        {{ columnName }}
-      </div>
-    </template>
+  <div id="columns" :class="{ 'columns-enter-from-left': enterFromLeft }">
+    <TransitionGroup name="columns" appear>
+      <template v-if="areProjects">
+        <div
+          v-for="(column, i) in projectsColumns"
+          :key="i"
+          v-show="!column.isBrowserApp || isBrowserApp"
+          :class="{ sortable: !column.unsortable, first: i == 0 }"
+          @click="!column.unsortable && sort(column.name)"
+        >
+          {{ formatTitle(column.name) }}
+          <Transition name="sort-icon">
+            <component
+              :is="'ArrowDownSVG'"
+              v-if="sortedColumn.name == column.name"
+              :style="{
+                transform: `scale(${sortedColumn.descending ? -1 : 1})`,
+              }"
+            />
+          </Transition>
+        </div>
+      </template>
+      <template v-else>
+        <div v-for="columnName in aboutMeColumns" :key="columnName">
+          {{ columnName }}
+        </div>
+      </template>
+    </TransitionGroup>
   </div>
 </template>
 
@@ -47,7 +51,7 @@ export default defineComponent({
   },
   emits: ["update:sortedColumn"],
   data() {
-    return { projectsColumns };
+    return { projectsColumns, enterFromLeft: false };
   },
   methods: {
     formatTitle(text: string) {
@@ -63,24 +67,22 @@ export default defineComponent({
     },
   },
   computed: {
-    path(): string {
-      return this.$route.path.split("/").pop()!;
-    },
-    isProjects(): boolean {
-      return this.$route.path.includes("/projects");
-    },
-    isBrowserApp(): boolean {
-      return /extensions|themes/.test(this.$route.path);
-    },
     aboutMeColumns(): any[] {
-      if (this.isProjects) return [];
-      return aboutMeColumns[this.path as keyof typeof aboutMeColumns];
+      if (this.areProjects) return [];
+      return aboutMeColumns[this.pathEnding as keyof typeof aboutMeColumns];
     },
   },
   watch: {
     $route() {
-      if (this.isProjects)
+      if (this.areProjects)
         this.sort(this.isBrowserApp ? "weeklyUsers" : "created", false);
+    },
+    pathEnding(newVal, prevVal) {
+      if (this.areProjects) this.enterFromLeft = true;
+      else {
+        const keys = Object.keys(aboutMeColumns);
+        this.enterFromLeft = keys.indexOf(newVal) < keys.indexOf(prevVal);
+      }
     },
   },
 });
@@ -100,6 +102,7 @@ export default defineComponent({
     &.sortable {
       cursor: pointer;
     }
+    transition: opacity 350ms, transform 350ms;
   }
   svg {
     width: 18px;

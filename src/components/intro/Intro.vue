@@ -44,11 +44,6 @@ export default defineComponent({
       }
     }, 25);
   },
-  watch: {
-    $route() {
-      console.log(this.$route);
-    },
-  },
 });
 </script>
 

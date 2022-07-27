@@ -1,6 +1,7 @@
 import { createApp, reactive } from "vue";
 import App from "./App.vue";
 import router from "./router";
+import globalMixin from "./scripts/global-mixin";
 
 const app = createApp(App);
 const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -22,8 +23,7 @@ ComponentContext.keys().forEach((componentFilePath) => {
   const componentName = componentFilePath.split("/").pop()!.split(".")[0];
   app.component(componentName, ComponentContext(componentFilePath).default);
 });
-
-app.use(router).mount("#app");
+app.use(router).mixin(globalMixin).mount("#app");
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
@@ -32,6 +32,10 @@ declare module "@vue/runtime-core" {
       isBelow1366px: boolean;
       isBelow768px: boolean;
     };
+    /* mixins */
+    pathEnding: string;
+    areProjects: boolean;
+    isBrowserApp: boolean;
   }
 }
 

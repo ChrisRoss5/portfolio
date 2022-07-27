@@ -12,7 +12,7 @@
       @completed="animationCompleted = true"
     />
   </Transition>
-  <div id="content">
+  <div id="dynamic-content">
     <NavbarVue />
     <ColumnsVue v-model:sortedColumn="sortedColumn" />
     <router-view :sortedColumn="sortedColumn" />
@@ -75,7 +75,7 @@ export default defineComponent({
     "c b" 1fr / 1fr;
   background: var(--c);
 }
-#content {
+#dynamic-content {
   display: flex;
   flex-direction: column;
   overflow: hidden;

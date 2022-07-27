@@ -83,17 +83,12 @@ export default defineComponent({
       modalProject: {} as Project,
     };
   },
-  created() {
-    for (const key in this.projects)
-      if (key == "extensions" || key == "themes")
-        for (const app of this.projects[key]) this.getBrowserAppInfo(app);
-  },
   methods: {
     formatCount(n: number) {
       return n.toLocaleString() + (n % 1000 == 0 ? "+" : "");
     },
     getBrowserAppInfo(app: Project) {
-      if (!app.links.chrome) return;
+      if (!app.links.chrome || app.lastUpdated) return;
       const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
       fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
@@ -104,17 +99,18 @@ export default defineComponent({
     },
   },
   computed: {
-    isBrowserApp(): boolean {
-      return /extensions|themes/.test(this.$route.path);
-    },
     currentProjects(): Project[] {
-      const location = this.$route.path.split("/").pop()! as keyof Projects;
-      return this.projects[location] || this.projects.extensions;
+      return this.projects[this.pathEnding as keyof Projects];
     },
   },
   watch: {
-    $route() {
-      this.isTableEntering = true;
+    $route: {
+      handler() {
+        this.isTableEntering = true;
+        if (this.isBrowserApp)
+          for (const app of this.currentProjects) this.getBrowserAppInfo(app);
+      },
+      immediate: true,
     },
     sortedColumn(newVal: SortedColumn) {
       if (newVal.isInitial) this.isTableEntering = false;
@@ -130,7 +126,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#columns > div:first-of-type {
+#columns > div.first {
   min-width: 30%;
   padding: 0 20px;
 }
