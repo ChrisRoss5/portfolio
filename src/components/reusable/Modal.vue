@@ -38,7 +38,7 @@ export default defineComponent({
   },
   watch: {
     modalVisible(newVal) {
-      if (this.$mediaWidth.isBelow768px)
+      if (this.$mediaWidth.isBelow1366px)
         document.body.style.overflow = newVal ? "hidden" : "auto";
     },
   },
@@ -63,12 +63,11 @@ export default defineComponent({
   background-color: #fff;
   border-radius: 6px;
   background: var(--d);
-  overflow: hidden;
   box-shadow: 0 0 8px var(--special-a), 0 0 8px var(--special-b);
 }
 .modal-header {
   position: relative;
-  padding: 20px 60px 20px 40px;
+  padding: 20px 80px 20px 40px;
   font-size: 1.2rem;
   background: var(--e);
 }
@@ -78,7 +77,7 @@ export default defineComponent({
 }
 .modal-close {
   position: absolute;
-  padding: 0 30px;
+  padding: 0 40px;
   top: 0;
   right: 0;
   bottom: 0;

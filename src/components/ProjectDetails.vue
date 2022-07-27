@@ -4,6 +4,10 @@
     :height="'80vh'"
     :modalVisible="modalOpen"
     @close="$emit('close')"
+    @touchstart.passive="touchStart"
+    @touchmove.passive="touchMove"
+    @touchend.passive="touchEnd"
+
   >
     <template #header>
       <div id="modal-project-header" class="app-name">
@@ -34,14 +38,14 @@
         <div id="modal-nav">
           <div
             :class="{ disabled: projectIdx == 0 }"
-            @click="$emit('next', projectIdx - 1)"
+            @click="swipeProject(false)"
           >
             <component :is="'ArrowDownSVG'" style="transform: rotate(90deg)" />
             Previous
           </div>
           <div
             :class="{ disabled: projectIdx == currentProjects.length - 1 }"
-            @click="$emit('next', projectIdx + 1)"
+            @click="swipeProject(true)"
           >
             Next
             <component :is="'ArrowDownSVG'" style="transform: rotate(-90deg)" />
@@ -51,19 +55,19 @@
           id="modal-project-description"
           v-html="modalProject.description"
         ></div>
-        <div id="modal-screenshot-container">
+        <div id="modal-screenshot">
           <component
             v-if="modalProject.name == 'My Developer Portfolio'"
             :is="'LogoSVG'"
           />
-          <Transition v-else name="reveal">
-            <img
-              v-show="screenshotLoaded"
-              id="modal-screenshot"
-              :src="screenshot"
-              alt="screenshot"
-              @load="screenshotLoaded = true"
-          /></Transition>
+          <img
+            v-else
+            v-show="screenshot.loaded"
+            :src="require('@/assets/png-app-screenshots/' + img)"
+            alt="screenshot"
+            v-loadedifcomplete="screenshot"
+            @load="screenshot.loaded = true"
+          />
         </div>
       </div>
     </template>
@@ -90,25 +94,53 @@ export default defineComponent({
     },
   },
   data() {
-    return { screenshot: "", screenshotLoaded: false };
+    return {
+      x0: 0,
+      y0: 0,
+      isMultitouch: false,
+      screenshot: {
+        loaded: false,
+      },
+    };
   },
   methods: {
-    loaded() {
-      setTimeout(() => {
-        this.screenshotLoaded = true;
-      }, 100);
+    touchStart(e: TouchEvent) {
+      e.stopPropagation();
+      this.isMultitouch = e.touches.length > 1;
+      this.x0 = e.changedTouches[0].screenX;
+      this.y0 = e.changedTouches[0].screenY;
+    },
+    touchMove(e: TouchEvent) {
+      e.stopPropagation();
+    },
+    touchEnd(e: TouchEvent) {
+      e.stopPropagation();
+      if (e.touches.length || window.visualViewport.scale != 1) return;
+      if (this.isMultitouch) return (this.isMultitouch = false);
+      const x1 = e.changedTouches[0].screenX;
+      const y1 = e.changedTouches[0].screenY;
+      const deg = (Math.atan2(y1 - this.y0, x1 - this.x0) * 180) / Math.PI;
+      const isHoriz = (-45 < deg && deg < 45) || -135 > deg || deg > 135;
+      if (isHoriz && Math.abs(x1 - this.x0) > 40)
+        this.swipeProject(x1 < this.x0);
+    },
+    swipeProject(right: boolean) {
+      const newIdx = this.projectIdx + (right ? 1 : -1);
+      const lastIdx = this.currentProjects.length - 1;
+      this.$emit("next", Math.max(0, Math.min(newIdx, lastIdx)));
     },
   },
   computed: {
     projectIdx(): number {
       return this.currentProjects.indexOf(this.modalProject);
     },
+    img(): string {
+      return `${this.modalProject.screenshot}.png`;
+    },
   },
-  watch: {
-    projectIdx() {
-      this.screenshotLoaded = false;
-      const img = `${this.modalProject.screenshot}.png`;
-      this.screenshot = require("@/assets/png-app-screenshots/" + img);
+  directives: {
+    loadedifcomplete(el, binding) {
+      binding.value.loaded = el.complete;
     },
   },
 });
@@ -180,7 +212,7 @@ export default defineComponent({
 #modal-project-description {
   padding: 40px;
 }
-#modal-screenshot-container {
+#modal-screenshot {
   flex: 1 1 0;
   min-height: 0;
   background: var(--b);
@@ -189,9 +221,7 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     object-fit: contain;
+    animation: reveal 250ms;
   }
-}
-#modal-screenshot.reveal-leave-active {
-  transition: none;
 }
 </style>

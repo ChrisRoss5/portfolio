@@ -71,8 +71,8 @@ export default defineComponent({
     return { lines, pause: 50 };
   },
   mounted() {
-    if (!this.$mediaWidth.isBelow1366px)
-      setTimeout(() => this.$emit("completed"), lines.length * this.pause);
+    if (this.$mediaWidth.isBelow1366px) this.$emit("completed");
+    else setTimeout(() => this.$emit("completed"), lines.length * this.pause);
   },
 });
 </script>

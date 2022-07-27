@@ -93,9 +93,6 @@
       flex: auto;
     }
   }
-  #logo.completed {
-    filter: none !important;
-  }
   #columns > div {
     flex: auto;
     &:first-child,
@@ -136,14 +133,42 @@
     width: 100% !important;
     height: 100% !important;
   }
-  #modal-links-container {
-    flex: 1 1 100%;
+  .modal-close {
+    align-items: normal;
+    padding: 30px !important;
+  }
+  #modal-project-header {
+    flex-direction: column;
+    align-items: normal;
   }
   #modal-nav {
     right: 40px;
     div {
       flex: 1;
       text-align: center;
+    }
+  }
+}
+@media (orientation: portrait) and (max-width: 1366px) {
+  #logo.completed {
+    filter: none;
+  }
+}
+@media (orientation: landscape) and (max-width: 1366px) {
+  .modal-container {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto;
+  }
+  #themes {
+    z-index: 98; // below modal popup
+  }
+  #modal-screenshot {
+    margin: 0 40px;
+    img,
+    svg {
+      width: 100%;
+      height: auto;
     }
   }
 }

@@ -26,7 +26,7 @@
 import { defineComponent } from "vue";
 import ThemesVue from "./components/Themes.vue";
 import MenuIcon from "./components/MenuIcon.vue";
-import IntroVue from "./components/Intro.vue";
+import IntroVue from "./components/intro/Intro.vue";
 import SidebarVue from "./components/Sidebar.vue";
 import NavbarVue from "./components/Navbar.vue";
 import ColumnsVue from "./components/Columns.vue";
