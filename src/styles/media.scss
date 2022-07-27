@@ -132,6 +132,20 @@
   #sidebar {
     left: 0;
   }
+  .modal-container {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  #modal-links-container {
+    flex: 1 1 100%;
+  }
+  #modal-nav {
+    right: 40px;
+    div {
+      flex: 1;
+      text-align: center;
+    }
+  }
 }
 @media screen and (max-width: 372px) {
   :root {

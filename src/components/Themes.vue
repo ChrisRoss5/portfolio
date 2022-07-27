@@ -27,7 +27,7 @@ export default defineComponent({
   },
   created() {
     this.currentTheme = ((localStorage.getItem("theme") as unknown) ||
-      (this.$prefersDarkTheme ? "Dark" : "Light")) as Theme;
+      (this.$prefersDarkTheme ? "Synthwave" : "Light")) as Theme;
     this.changeTheme(this.currentTheme);
   },
   mounted() {
@@ -89,7 +89,7 @@ export default defineComponent({
   font-size: 0.75rem;
   gap: 1rem;
   padding: 1rem 0;
-  z-index: 1;
+  z-index: 999;
   & > div {
     flex: 1;
     cursor: pointer;

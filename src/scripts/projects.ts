@@ -12,6 +12,8 @@ export interface Project {
     home?: string;
   };
   tech: string[];
+  description: string;
+  screenshot: string;
 }
 
 export type Projects = {
@@ -47,6 +49,16 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/e-Dnevnik-Plus/tree/master/dist",
       },
       tech: ["TypeScript"],
+      description: /* html */ `
+      A browser extension containing two separate apps:
+      <b>e-Dnevnik Plus Classic</b> and <b>e-Dnevnik Plus App.</b><br><br>
+      <b>e-Dnevnik Plus Classic</b> injects additional features
+      into the Croatian e-Class register “e-Dnevnik” to help
+      students throughout primary and secondary school.
+      <b>e-Dnevnik Plus App</b> is my own version of e-Dnevnik that runs as a local page.
+      It has many more features, however, the user interface is completely different
+      and modernized compared to the Classic version.`,
+      screenshot: "e-Dnevnik Plus popup",
     },
     {
       img: "e-Dnevnik Plus",
@@ -62,6 +74,10 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/e-Dnevnik-Plus-za-nastavnike",
       },
       tech: ["JavaScript"],
+      description: /* html */ `
+      A browser extension created for teachers who use their version of e-Dnevnik.
+      It injects additional features to help teachers grade their students.`,
+      screenshot: "e-Dnevnik Plus za nastavnike",
     },
     {
       img: "Gifs autoplay for Google™",
@@ -75,6 +91,9 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/Google-gifs-autoplay",
       },
       tech: ["JSON"],
+      description: /* html */ `
+      A browser extension that autoplays gifs on Google™ Search Images.`,
+      screenshot: "Gifs autoplay for Google™",
     },
     {
       img: "SmoothZoom – Quick Page Zoom",
@@ -89,6 +108,15 @@ export const projects: Projects = {
           "https://addons.mozilla.org/en-US/firefox/addon/smoothzoom-quick-page-zoom/",
       },
       tech: ["TypeScript", "SCSS"],
+      description: /* html */ `
+      A browser extension that enables you to zoom anywhere, on any page,
+      without changing the page layout! Simply position the cursor and use the mouse wheel
+      to zoom in/out at the desired location. You can compare this extension to
+      pinch-to-zoom functionality on touch screens, or the Windows Magnifier.
+      It is the most advanced of all my apps
+      and is reaching browsers' limits in several ways. I talk through them in detail on the
+      extension's test page, and you don't want to miss out if you love web tech!`,
+      screenshot: "SmoothZoom – Quick Page Zoom",
     },
     {
       img: "Search by SubtitlesCC for Youtube™",
@@ -102,6 +130,12 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/Youtube-Search-by-Subtitles",
       },
       tech: ["TypeScript", "SCSS"],
+      description: /* html */ `
+      A browser extension that enables you to search for videos on Youtube™
+      by Subtitles/CC in a specified language. Once you select the language,
+      the extension remembers it and highlights all video thumbnails that
+      have CC in that language, anywhere on youtube.`,
+      screenshot: "Search by SubtitlesCC for Youtube™",
     },
   ],
   themes: [
@@ -119,6 +153,12 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/SpaceX-Animated-New-Tab",
       },
       tech: ["TypeScript"],
+      description: /* html */ `
+      This is an extension but I labeled it as a theme because its main purpose is decorative.
+      It replaces every New Tab with my SpaceX page, on top of which are
+      recently closed tabs and useful chrome shortcuts.
+      You can control the video speed with mouse wheel.`,
+      screenshot: "SpaceX Animated New Tab",
     },
     {
       img: "SpaceX",
@@ -134,12 +174,15 @@ export const projects: Projects = {
           "https://github.com/ChrisRoss5/SpaceX-Animated-New-Tab/tree/master/theme",
       },
       tech: ["JSON"],
+      description: /* html */ `
+      A theme encompassing everything into a beautiful SpaceX atmosphere.`,
+      screenshot: "SpaceX Theme",
     },
   ],
   web: [
     {
       img: "e-Dnevnik Plus",
-      name: "e-Dnevnik Plus",
+      name: "e-Dnevnik Plus Home",
       created: new Date("March 18, 2019"),
       links: {
         home: "https://ednevnik.plus",
@@ -147,6 +190,9 @@ export const projects: Projects = {
           "https://github.com/ChrisRoss5/e-Dnevnik-Plus/tree/master/ednevnik.plus",
       },
       tech: ["TypeScript", "Vue", "SCSS", "Google Analytics", "Paypal"],
+      description: /* html */ `
+      The homepage of e-Dnevnik Plus, where you can find all information about it and its versions.`,
+      screenshot: "e-Dnevnik Plus Home",
     },
     {
       img: "e-Dnevnik Plus",
@@ -156,13 +202,23 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/e-Dnevnik-Plus",
       },
       tech: ["TypeScript", "Vue", "SCSS", "Google Analytics"],
+      description: /* html */ `
+      <b>e-Dnevnik Plus App</b> is my own version of e-Dnevnik that runs as a local page.
+      It is my largest project so far.
+      You can find the video tour on the homepage - it is the coolest.`,
+      screenshot: "e-Dnevnik Plus App",
     },
     {
       img: "Network Planner",
-      name: "Network Planner",
+      name: "Network Planner Home",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://network-planner.com" },
       tech: ["JavaScript", "Vue", "SCSS", "Firebase", "Paypal"],
+      description: /* html */ `
+      The homepage of Network Planner, where you can find all information about it,
+      purchase plans, and manage your user account.
+      `,
+      screenshot: "Network Planner Home",
     },
     {
       img: "Network Planner",
@@ -170,6 +226,12 @@ export const projects: Projects = {
       created: new Date("Jan 17, 2021"),
       links: { home: "https://app.network-planner.com" },
       tech: ["JavaScript", "Vue", "SCSS", "Firebase"],
+      description: /* html */ `
+      A web-mapping software for organizing locations into groups.
+      By analyzing groups' statistics (computed properties of locations),
+      the app assists in collecting and presenting data into meaningful
+      actionable insights for businesses.`,
+      screenshot: "Network Planner App",
     },
     {
       img: "My Developer Portfolio",
@@ -180,6 +242,10 @@ export const projects: Projects = {
         github: "https://github.com/ChrisRoss5/portfolio",
       },
       tech: ["TypeScript", "Vue", "SCSS", "Cloudflare"],
+      description: /* html */ `
+      This is where you're at! I googled "kr logo", downloaded a .png, converted it to .svg,
+      and modified the svg.`,
+      screenshot: "My Developer Portfolio",
     },
   ],
   desktop: [
@@ -191,6 +257,12 @@ export const projects: Projects = {
         download: "/projects/Evaluator.exe",
       },
       tech: ["Python", "Windows"],
+      description: /* html */ `
+      A desktop application for evaluating competitive programming solutions written
+      in C, C++, and Python. Used for the national Infokup coding competition in the
+      Algorithms category. The executable has to be in the same directory with solutions
+      and the test folder. Created in Python with Tkinter GUI module.`,
+      screenshot: "Evaluator",
     },
     {
       img: "Patterns",
@@ -200,6 +272,9 @@ export const projects: Projects = {
         download: "/projects/Patterns.exe",
       },
       tech: ["Python", "Windows"],
+      description: /* html */ `
+      My first GUI App! Fun with patterns! Created in Python with Tkinter GUI module.`,
+      screenshot: "Patterns",
     },
   ],
 };

@@ -12,7 +12,7 @@
             : `none`,
         }"
       >
-        <div class="app-name">
+        <div class="app-name" @click="modalOpen = !!(modalProject = app)">
           <img
             :src="require(`@/assets/webp-app-logos/${app.img}.webp`)"
             :class="{ invert: app.img == 'My Developer Portfolio' }"
@@ -51,15 +51,24 @@
       </div>
     </TransitionGroup>
   </div>
+  <ProjectDetails
+    :modalOpen="modalOpen"
+    :modalProject="modalProject"
+    :currentProjects="currentProjects"
+    @close="modalOpen = false"
+    @next="modalProject = currentProjects[$event]"
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { Projects, Project, projects } from "@/scripts/projects";
 import { SortedColumn } from "@/App.vue";
+import ProjectDetails from "@/components/ProjectDetails.vue";
 
 export default defineComponent({
   name: "ProjectsVue",
+  components: { ProjectDetails },
   props: {
     sortedColumn: {
       type: Object as PropType<SortedColumn>,
@@ -67,7 +76,12 @@ export default defineComponent({
     },
   },
   data() {
-    return { projects, isTableEntering: true };
+    return {
+      projects,
+      isTableEntering: true,
+      modalOpen: false,
+      modalProject: {} as Project,
+    };
   },
   created() {
     for (const key in this.projects)
@@ -140,32 +154,32 @@ export default defineComponent({
       padding: var(--cell-padding);
     }
   }
-  .app-name {
-    gap: 20px;
-    justify-content: left;
-    img {
-      width: 40px;
-      height: 40px;
-    }
-    svg {
-      margin-left: auto;
-      flex-shrink: 0;
-    }
-    &:hover {
-      cursor: pointer;
-      &,
-      & ~ div {
-        background: var(--c);
-      }
-    }
+}
+.icons {
+  flex-wrap: wrap;
+  gap: 10px;
+  svg {
+    vertical-align: middle;
+    width: 1.5rem;
+    height: 1.5rem;
   }
-  .icons {
-    flex-wrap: wrap;
-    gap: 10px;
-    svg {
-      vertical-align: middle;
-      width: 1.5rem;
-      height: 1.5rem;
+}
+.app-name {
+  gap: 20px;
+  justify-content: left;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+  svg {
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  &:not(#modal-project-header):hover {
+    cursor: pointer;
+    &,
+    & ~ div {
+      background: var(--c);
     }
   }
 }

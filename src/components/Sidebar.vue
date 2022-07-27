@@ -157,4 +157,13 @@ export default defineComponent({
     opacity: 1;
   }
 }
+.collapsed {
+  // todo
+  max-width: 302px;
+  transition: 1s;
+  max-width: 0;
+  padding: 0;
+  white-space: pre;
+  overflow: hidden;
+}
 </style>
