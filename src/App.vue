@@ -15,7 +15,15 @@
   <div id="dynamic-content">
     <NavbarVue />
     <ColumnsVue v-model:sortedColumn="sortedColumn" />
-    <router-view :sortedColumn="sortedColumn" />
+    <router-view v-slot="{ Component }">
+      <Transition name="slide">
+        <component
+          :is="Component"
+          :sortedColumn="areProjects ? sortedColumn : null"
+          :class="{ 'slide-enter-from-left': areProjects }"
+        />
+      </Transition>
+    </router-view>
   </div>
   <div id="themes-note" v-if="$mediaWidth.isBelow768px">
     Swipe left/right to change themes!
@@ -80,7 +88,7 @@ export default defineComponent({
   flex-direction: column;
   overflow: hidden;
   background: var(--d);
-  & > div {
+  & > div:not(#about) {
     padding: 0 5vw;
   }
 }

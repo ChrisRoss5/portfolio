@@ -1,6 +1,6 @@
 <template>
-  <div id="navbar" :class="{ 'columns-enter-from-left': areProjects }">
-    <TransitionGroup name="columns" appear>
+  <div id="navbar" :class="{ 'slide-enter-from-left': areProjects }">
+    <TransitionGroup name="slide" appear>
       <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
         {{ value.split(" ")[0] }}
         <br v-if="$mediaWidth.isBelow768px" />

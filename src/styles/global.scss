@@ -41,6 +41,9 @@ svg:not([unmodified]) {
   align-items: center;
   justify-content: center;
 }
+
+/* animations */
+
 @keyframes reveal {
   from {
     opacity: 0;
@@ -49,6 +52,9 @@ svg:not([unmodified]) {
     opacity: 1;
   }
 }
+
+/* transitions */
+
 .reveal-enter-active,
 .reveal-leave-active {
   transition: opacity 150ms;
@@ -57,19 +63,22 @@ svg:not([unmodified]) {
 .reveal-leave-to {
   opacity: 0;
 }
-.columns-enter-active {
+.slide-enter-active {
   transition: opacity 350ms, transform 350ms;
-  &.columns-move {
+  &.slide-move {
     transition: opacity 350ms 350ms, transform 350ms !important;
   }
 }
-.columns-leave-active {
+.slide-leave-active {
   display: none !important;
 }
-.columns-enter-from {
+.slide-enter-from {
   opacity: 0;
   transform: translateX(10%);
 }
-.columns-enter-from-left .columns-enter-from {
-  transform: translateX(-10%);
+.slide-enter-from-left {
+  &.slide-enter-from,
+  .slide-enter-from {
+    transform: translateX(-10%) !important;
+  }
 }

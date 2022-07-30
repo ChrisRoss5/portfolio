@@ -254,7 +254,7 @@ export const projects: Projects = {
       name: "Infokup Evaluator",
       created: new Date("Feb 21, 2019"),
       links: {
-        download: "/projects/Evaluator.exe",
+        download: "/apps/Evaluator.exe",
       },
       tech: ["Python", "Windows"],
       description: /* html */ `
@@ -269,7 +269,7 @@ export const projects: Projects = {
       name: "Patterns",
       created: new Date("Jan 29, 2019"),
       links: {
-        download: "/projects/Patterns.exe",
+        download: "/apps/Patterns.exe",
       },
       tech: ["Python", "Windows"],
       description: /* html */ `

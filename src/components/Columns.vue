@@ -1,6 +1,6 @@
 <template>
-  <div id="columns" :class="{ 'columns-enter-from-left': enterFromLeft }">
-    <TransitionGroup name="columns" appear>
+  <div id="columns" :class="{ 'slide-enter-from-left': enterFromLeft }">
+    <TransitionGroup name="slide" appear>
       <template v-if="areProjects">
         <div
           v-for="(column, i) in projectsColumns"
@@ -36,7 +36,7 @@ import { Project, columns as projectsColumns } from "@/scripts/projects";
 import { SortedColumn } from "@/App.vue";
 
 const aboutMeColumns = {
-  experience: ["Skills & Relevant Experience", "Work Experience"],
+  experience: ["General Experience", "Work Experience"],
   accomplishments: ["Awards", "Certificates", "Articles"],
   documents: ["CVs"],
 };
@@ -75,9 +75,9 @@ export default defineComponent({
   watch: {
     $route() {
       if (this.areProjects)
-        this.sort(this.isBrowserApp ? "weeklyUsers" : "created", false);
+        this.sort(this.isBrowserApp ? "weeklyUsers" : "name", false);
     },
-    pathEnding(newVal, prevVal) {
+    pathEnding(newVal: string, prevVal: string) {
       if (this.areProjects) this.enterFromLeft = true;
       else {
         const keys = Object.keys(aboutMeColumns);
@@ -90,6 +90,7 @@ export default defineComponent({
 
 <style lang="scss">
 #columns {
+  flex-shrink: 0;
   display: flex;
   text-align: center;
   background: var(--e);

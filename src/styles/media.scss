@@ -17,7 +17,7 @@
 }
 @media screen and (max-width: 1440px) {
   #dynamic-content > div {
-    padding: 0;
+    padding: 0 !important;
   }
   #sidebar {
     padding-right: 20px;
@@ -107,6 +107,7 @@
     }
     .app-name {
       flex: 1 1 100% !important;
+      padding: 10px 20px !important;
     }
     .icons {
       position: relative;
