@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="about-title flex-center">Awards</div>
+    <div class="about-title">Awards</div>
     <div>
       Infokup competitions (High School):
       <ul>
@@ -19,7 +19,7 @@
         <li>🥈 2nd place 2021</li>
       </ul>
     </div>
-    <div class="about-title flex-center">Certificates</div>
+    <div class="about-title">Certificates</div>
     <div>
       Oracle Academy Courses:
       <ul>
@@ -36,7 +36,7 @@
         <li>English B1+ Certificate</li>
       </ul>
     </div>
-    <div class="about-title flex-center">Articles</div>
+    <div class="about-title">Articles</div>
     <div>
       Srednja.hr:
       <ul>
@@ -88,9 +88,5 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
-export default defineComponent({
-  name: "AccomplishmentsVue",
-});
+export default defineComponent({ name: "AccomplishmentsVue" });
 </script>
-
-<style lang="scss"></style>

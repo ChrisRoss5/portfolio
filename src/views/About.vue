@@ -1,5 +1,5 @@
 <template>
-  <div id="about" :class="{ 'slide-enter-from-left': enterFromLeft }">
+  <div id="about">
     <router-view v-slot="{ Component }">
       <Transition name="slide">
         <component :is="Component" />
@@ -10,21 +10,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { aboutMeColumns } from "@/components/Columns.vue";
 
-export default defineComponent({
-  name: "AboutVue",
-  data() {
-    return { enterFromLeft: false };
-  },
-  pathEnding(newVal: string, prevVal: string) {
-    if (this.areProjects) this.enterFromLeft = true;
-    else {
-      const keys = Object.keys(aboutMeColumns);
-      this.enterFromLeft = keys.indexOf(newVal) < keys.indexOf(prevVal);
-    }
-  },
-});
+export default defineComponent({ name: "AboutVue" });
 </script>
 
 <style lang="scss">
@@ -48,10 +35,31 @@ export default defineComponent({
   }
 }
 .about-title {
-  display: none !important;
+  display: none;
+  align-items: center;
+  justify-content: center;
   flex-basis: calc(1rem + 40px);
   background: var(--e);
   width: 200%;
   transform: translateX(-25%);
+}
+.box {
+  border-radius: 6px;
+  background: var(--b);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.box-title {
+  font-weight: bold;
+}
+.box-position {
+  font-style: italic;
+  &::before {
+    content: " — ";
+  }
+}
+.box-duration {
+  color: var(--a-05);
+  padding: 1rem 0;
 }
 </style>

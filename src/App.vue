@@ -12,7 +12,13 @@
       @completed="animationCompleted = true"
     />
   </Transition>
-  <div id="dynamic-content" :class="{ 'are-projects': areProjects }">
+  <div
+    id="dynamic-content"
+    :class="{
+      'are-projects': areProjects,
+      'slide-enter-from-left': slideFromLeft,
+    }"
+  >
     <NavbarVue />
     <ColumnsVue
       v-show="!$mediaWidth.isBelow768px || areProjects"
@@ -23,13 +29,12 @@
         <component
           :is="Component"
           :sortedColumn="areProjects ? sortedColumn : null"
-          :class="{ 'slide-enter-from-left': areProjects }"
         />
       </Transition>
     </router-view>
   </div>
   <div id="themes-note" v-if="$mediaWidth.isBelow768px">
-    Swipe left/right to change themes!
+    Swipe to change themes, sections, or projects!
   </div>
 </template>
 
@@ -41,7 +46,9 @@ import IntroVue from "./components/intro/Intro.vue";
 import SidebarVue from "./components/Sidebar.vue";
 import NavbarVue from "./components/Navbar.vue";
 import ColumnsVue from "./components/Columns.vue";
+import { sitemap } from "@/scripts/router";
 
+const aboutMeKeys = Object.keys(sitemap.about);
 const sortedColumn = {
   name: "weeklyUsers",
   descending: false,
@@ -62,6 +69,7 @@ export default defineComponent({
     return {
       mobileMenuOpen: false,
       animationCompleted: false,
+      slideFromLeft: false,
       sortedColumn,
     };
   },
@@ -71,6 +79,11 @@ export default defineComponent({
         window.scrollTo(0, 0);
         document.body.style.overflow = newVal ? "hidden" : "auto";
       }
+    },
+    pathEnding(newVal: string, prevVal: string) {
+      this.slideFromLeft =
+        this.areProjects ||
+        aboutMeKeys.indexOf(newVal) < aboutMeKeys.indexOf(prevVal);
     },
   },
 });

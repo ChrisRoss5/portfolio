@@ -1,6 +1,6 @@
 <template>
-  <div id="columns" :class="{ 'slide-enter-from-left': enterFromLeft }">
-    <TransitionGroup name="slide" appear>
+  <div id="columns">
+    <TransitionGroup name="slide">
       <template v-if="areProjects">
         <div
           v-for="(column, i) in projectsColumns"
@@ -34,12 +34,7 @@
 import { defineComponent, PropType } from "vue";
 import { Project, columns as projectsColumns } from "@/scripts/projects";
 import { SortedColumn } from "@/App.vue";
-
-export const aboutMeColumns = {
-  experience: ["General Experience", "Work Experience"],
-  accomplishments: ["Awards", "Certificates", "Articles"],
-  documents: ["CVs"],
-};
+import { sitemap } from "@/scripts/router";
 
 export default defineComponent({
   name: "ColumnsVue",
@@ -51,7 +46,7 @@ export default defineComponent({
   },
   emits: ["update:sortedColumn"],
   data() {
-    return { projectsColumns, enterFromLeft: false };
+    return { projectsColumns };
   },
   methods: {
     formatTitle(text: string) {
@@ -68,21 +63,14 @@ export default defineComponent({
   },
   computed: {
     aboutMeColumns(): string[] {
-      if (this.areProjects) return [];
-      return aboutMeColumns[this.pathEnding as keyof typeof aboutMeColumns];
+      const path = this.pathEnding as keyof typeof sitemap.about;
+      return this.areProjects || !path ? [] : sitemap.about[path].titles;
     },
   },
   watch: {
     $route() {
       if (this.areProjects)
         this.sort(this.isBrowserApp ? "weeklyUsers" : "name", false);
-    },
-    pathEnding(newVal: string, prevVal: string) {
-      if (this.areProjects) this.enterFromLeft = true;
-      else {
-        const keys = Object.keys(aboutMeColumns);
-        this.enterFromLeft = keys.indexOf(newVal) < keys.indexOf(prevVal);
-      }
     },
   },
 });

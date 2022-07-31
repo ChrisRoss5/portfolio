@@ -79,9 +79,6 @@ svg:not([unmodified]) {
   opacity: 0;
   transform: translateX(10%);
 }
-.slide-enter-from-left {
-  &.slide-enter-from,
-  .slide-enter-from {
-    transform: translateX(-10%) !important;
-  }
+.slide-enter-from-left .slide-enter-from {
+  transform: translateX(-10%) !important;
 }

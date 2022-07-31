@@ -64,6 +64,7 @@ export default defineComponent({
   border-radius: 6px;
   background: var(--d);
   box-shadow: 0 0 8px var(--special-a), 0 0 8px var(--special-b);
+  overflow: hidden;
 }
 .modal-header {
   position: relative;

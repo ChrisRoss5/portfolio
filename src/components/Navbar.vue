@@ -1,10 +1,15 @@
 <template>
-  <div id="navbar" :class="{ 'slide-enter-from-left': areProjects }">
+  <div id="navbar">
     <TransitionGroup name="slide" appear>
       <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
-        {{ value.split(" ")[0] }}
-        <br v-if="$mediaWidth.isBelow768px" />
-        {{ value.split(" ")[1] }}
+        <template v-if="$mediaWidth.isBelow768px && value.short">
+          {{ value.short }}
+        </template>
+        <template v-else>
+          {{ value.long.split(" ")[0] }}
+          <br v-if="$mediaWidth.isBelow768px" />
+          {{ value.long.split(" ")[1] }}
+        </template>
         <div
           :style="{ transform: `translateX(${transformX * 100}%)` }"
           :class="{ 'transform-transition': transformTransition }"
@@ -16,6 +21,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { sitemap } from "@/scripts/router";
 
 export default defineComponent({
   name: "NavbarVue",
@@ -75,13 +81,13 @@ export default defineComponent({
           );
         } else {
           this.$router.push(newPath);
-          this.transformTransition = true;
-          this.transformX += isRight ? -1 : 1;
         }
+        this.transformTransition = true;
+        this.transformX += isRight ? -1 : 1;
         setTimeout(() => {
           this.transformX = 0;
           this.transformTransition = false;
-        }, 0);
+        });
       },
       { passive: true }
     );
@@ -90,19 +96,8 @@ export default defineComponent({
     paths(): string[] {
       return Object.keys(this.routerLinks);
     },
-    routerLinks(): Record<string, string> {
-      return this.areProjects
-        ? {
-            extensions: "Browser Extensions",
-            themes: "Browser Themes",
-            web: "Web Apps",
-            desktop: "Desktop Apps",
-          }
-        : {
-            experience: "Experience",
-            accomplishments: "Accomplishments",
-            documents: "Documents",
-          };
+    routerLinks(): Record<string, { long: string; short?: string }> {
+      return sitemap[this.areProjects ? "projects" : "about"];
     },
   },
 });
@@ -113,7 +108,7 @@ export default defineComponent({
   display: flex;
   a {
     position: relative;
-    flex: 1;
+    flex: 1 1 0;
     text-align: center;
     padding: 20px 10px;
     transition: opacity 250ms, transform 250ms;
