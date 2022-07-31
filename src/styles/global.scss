@@ -24,6 +24,9 @@ a {
   text-decoration: none;
   color: var(--a);
 }
+ul {
+  margin-block-start: 0;
+}
 svg,
 img {
   width: 1.2rem;
@@ -66,7 +69,7 @@ svg:not([unmodified]) {
 .slide-enter-active {
   transition: opacity 350ms, transform 350ms;
   &.slide-move {
-    transition: opacity 350ms 350ms, transform 350ms !important;
+    transition: opacity 200ms 150ms, transform 350ms !important;
   }
 }
 .slide-leave-active {

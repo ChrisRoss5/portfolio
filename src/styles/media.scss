@@ -16,7 +16,7 @@
   }
 }
 @media screen and (max-width: 1440px) {
-  #dynamic-content > div {
+  #dynamic-content > div:not(#about) {
     padding: 0 !important;
   }
   #sidebar {
@@ -93,11 +93,15 @@
       flex: auto;
     }
   }
-  #columns > div {
+  #section-choice a {
+    flex: 1 1 0;
+  }
+  .are-projects #columns > div {
     flex: auto;
     &:first-child,
     &:not(.sortable) {
       display: none;
+      transition: none !important;
     }
   }
   #projects {
@@ -148,6 +152,18 @@
       flex: 1;
       text-align: center;
     }
+  }
+  #about > div {
+    flex-direction: column;
+    overflow: visible !important;
+    gap: 0 !important;
+    & > div:not(.about-title) {
+      overflow: visible !important;
+      padding: 1rem !important;
+    }
+  }
+  .about-title {
+    display: flex !important;
   }
 }
 @media (orientation: portrait) and (max-width: 1366px) {

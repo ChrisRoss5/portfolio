@@ -51,9 +51,9 @@ export default defineComponent({
         if (!isHoriz) return (cancelled = !(this.transformX = 0));
         const { width } = window.visualViewport;
         const perc = ((x0 - x1) / width) * this.paths.length;
-        const left = this.pathEnding == this.paths[0] ? 0 : -1;
-        const right =
-          this.pathEnding == this.paths[this.paths.length - 1] ? 0 : 1;
+        const { 0: first, [this.paths.length - 1]: last } = this.paths;
+        const left = this.pathEnding == first && this.areProjects ? 0 : -1;
+        const right = this.pathEnding == last && !this.areProjects ? 0 : 1;
         this.transformX = Math.max(left, Math.min(right, perc));
       },
       { passive: true }
@@ -67,10 +67,17 @@ export default defineComponent({
         if (!this.transformX) return;
         if (Math.abs(this.transformX) < 0.5) return (this.transformX = 0);
         const isRight = this.transformX > 0;
-        const idx = this.paths.indexOf(this.pathEnding) + (isRight ? 1 : -1);
-        this.$router.push(this.paths[idx]);
-        this.transformTransition = true;
-        this.transformX += isRight ? -1 : 1;
+        const idx = this.paths.indexOf(this.pathEnding);
+        const newPath = this.paths[idx + (isRight ? 1 : -1)];
+        if (!newPath) {
+          this.$router.push(
+            this.areProjects ? "/about/experience" : "/projects/desktop"
+          );
+        } else {
+          this.$router.push(newPath);
+          this.transformTransition = true;
+          this.transformX += isRight ? -1 : 1;
+        }
         setTimeout(() => {
           this.transformX = 0;
           this.transformTransition = false;

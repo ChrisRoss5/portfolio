@@ -35,7 +35,7 @@ import { defineComponent, PropType } from "vue";
 import { Project, columns as projectsColumns } from "@/scripts/projects";
 import { SortedColumn } from "@/App.vue";
 
-const aboutMeColumns = {
+export const aboutMeColumns = {
   experience: ["General Experience", "Work Experience"],
   accomplishments: ["Awards", "Certificates", "Articles"],
   documents: ["CVs"],
@@ -67,7 +67,7 @@ export default defineComponent({
     },
   },
   computed: {
-    aboutMeColumns(): any[] {
+    aboutMeColumns(): string[] {
       if (this.areProjects) return [];
       return aboutMeColumns[this.pathEnding as keyof typeof aboutMeColumns];
     },
@@ -100,10 +100,10 @@ export default defineComponent({
   & > div {
     flex: 1;
     @extend .flex-center;
+    transition: opacity 350ms, transform 350ms;
     &.sortable {
       cursor: pointer;
     }
-    transition: opacity 350ms, transform 350ms;
   }
   svg {
     width: 18px;

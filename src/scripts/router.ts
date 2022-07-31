@@ -1,6 +1,9 @@
-import Projects from "@/views/Projects.vue";
-import About from "@/views/About.vue";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import Projects from "@/views/Projects.vue";
+import AboutVue from "@/views/About.vue";
+import ExperienceVue from "@/components/about-me/Experience.vue";
+import AccomplishmentsVue from "@/components/about-me/Accomplishments.vue";
+import DocumentsVue from "@/components/about-me/Documents.vue";
 
 const component = {};
 const routes: Array<RouteRecordRaw> = [
@@ -17,11 +20,11 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/about",
-    component: About,
+    component: AboutVue,
     children: [
-      { path: "experience", component },
-      { path: "accomplishments", component },
-      { path: "documents", component },
+      { path: "experience", component: ExperienceVue },
+      { path: "accomplishments", component: AccomplishmentsVue },
+      { path: "documents", component: DocumentsVue },
       { path: ":pathMatch(.*)*", redirect: "/about/experience" },
     ],
   },

@@ -12,9 +12,12 @@
       @completed="animationCompleted = true"
     />
   </Transition>
-  <div id="dynamic-content">
+  <div id="dynamic-content" :class="{ 'are-projects': areProjects }">
     <NavbarVue />
-    <ColumnsVue v-model:sortedColumn="sortedColumn" />
+    <ColumnsVue
+      v-show="!$mediaWidth.isBelow768px || areProjects"
+      v-model:sortedColumn="sortedColumn"
+    />
     <router-view v-slot="{ Component }">
       <Transition name="slide">
         <component
