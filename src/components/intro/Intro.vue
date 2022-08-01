@@ -53,6 +53,7 @@ export default defineComponent({
   padding: 8vh 5vw 0;
   overflow: hidden;
   z-index: 0;
+  transition: height 1s;
   & > *:not(:first-child) {
     margin-bottom: 2%;
   }

@@ -44,6 +44,15 @@ svg:not([unmodified]) {
   align-items: center;
   justify-content: center;
 }
+@mixin about-narrow {
+  flex-direction: column;
+  overflow: visible !important;
+  gap: 0 !important;
+  & > div:not(.about-title):not(#pdf) {
+    overflow: visible !important;
+    padding: 1rem !important;
+  }
+}
 
 /* animations */
 

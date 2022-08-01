@@ -66,7 +66,13 @@ export const sitemap = {
     documents: {
       long: "Documents",
       short: "Docs",
-      titles: ["Competitions", "Education", "Other"],
+      titles: [
+        "CVs",
+        "Competitions",
+        "Certificates",
+        "Education",
+        "References",
+      ],
     },
   },
 };

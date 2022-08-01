@@ -1,5 +1,6 @@
 <template>
-  <div id="columns">
+  <div id="columns" v-show="pathEnding != 'documents' || !$pdfViewerEnabled">
+    <!-- todo  || !$mediaWidth.isBelow1366px -->
     <TransitionGroup name="slide">
       <template v-if="areProjects">
         <div
@@ -84,7 +85,7 @@ export default defineComponent({
   background: var(--e);
   user-select: none;
   white-space: nowrap;
-  height: calc(1rem + 40px);
+  height: $columnHeight;
   & > div {
     flex: 1;
     @extend .flex-center;

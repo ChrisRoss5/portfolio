@@ -1,8 +1,10 @@
 <template>
-  <div id="about">
+  <div id="about" :class="{ [pathEnding]: true }">
     <router-view v-slot="{ Component }">
       <Transition name="slide">
-        <component :is="Component" />
+        <KeepAlive>
+          <component :is="Component" />
+        </KeepAlive>
       </Transition>
     </router-view>
   </div>
@@ -15,22 +17,26 @@ export default defineComponent({ name: "AboutVue" });
 </script>
 
 <style lang="scss">
-#about > div {
-  display: flex;
-  gap: 2rem;
-  line-height: 1.5rem;
-  padding: 0 5vw;
-  overflow: hidden auto;
-  & > div:not(.about-title) {
-    padding: 2% 2% 0 0;
-    flex: 1 1 0;
-    overflow: auto;
-  }
-  a {
-    color: var(--special-b);
-    &::after {
-      content: "⧉";
-      margin: 0 3px 0 5px;
+#about {
+  position: relative;
+  flex: 1;
+  & > div {
+    display: flex;
+    gap: 2rem;
+    line-height: 1.5rem;
+    padding: 0 5vw;
+    overflow: hidden auto;
+    & > div:not(.about-title) {
+      padding: 2% 2% 0 0;
+      flex: 1 1 0;
+      overflow: auto;
+    }
+    a {
+      color: var(--special-b);
+      &::after {
+        content: "⧉";
+        margin: 0 3px 0 5px;
+      }
     }
   }
 }
@@ -38,7 +44,7 @@ export default defineComponent({ name: "AboutVue" });
   display: none;
   align-items: center;
   justify-content: center;
-  flex-basis: calc(1rem + 40px);
+  flex-basis: $columnHeight;
   background: var(--e);
   width: 200%;
   transform: translateX(-25%);

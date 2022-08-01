@@ -25,7 +25,7 @@
 }
 @media screen and (max-width: 1366px) {
   #app {
-    display: block !important;
+    grid-template: min-content/1fr !important;
     min-height: 100vh;
     height: auto !important;
   }
@@ -154,13 +154,7 @@
     }
   }
   #about > div {
-    flex-direction: column;
-    overflow: visible !important;
-    gap: 0 !important;
-    & > div:not(.about-title) {
-      overflow: visible !important;
-      padding: 1rem !important;
-    }
+    @include about-narrow;
   }
   .about-title {
     display: flex !important;

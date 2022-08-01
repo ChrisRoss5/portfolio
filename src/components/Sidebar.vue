@@ -85,8 +85,10 @@ export default defineComponent({
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden auto;
   z-index: 1;
+  white-space: pre;
+  transition: width 1s, padding 1s;
   & > div {
     flex: 1;
     display: flex;
@@ -102,7 +104,7 @@ export default defineComponent({
   user-select: none;
   justify-content: right;
   padding-right: 10px;
-  width: 2rem;
+  min-width: 2rem;
   background: var(--e);
   color: var(--number);
   animation: 0.5s number-enter forwards;
@@ -156,14 +158,5 @@ export default defineComponent({
   100% {
     opacity: 1;
   }
-}
-.collapsed {
-  // todo
-  max-width: 302px;
-  transition: 1s;
-  max-width: 0;
-  padding: 0;
-  white-space: pre;
-  overflow: hidden;
 }
 </style>

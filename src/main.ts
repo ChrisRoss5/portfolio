@@ -4,9 +4,11 @@ import router from "./scripts/router";
 import globalMixin from "./scripts/global-mixin";
 
 const app = createApp(App);
+const pdfViewerEnabled = (navigator as any).pdfViewerEnabled;
 const prefersDarkTheme = window.matchMedia("(prefers-color-scheme: dark)");
 const isBelow1366px = window.matchMedia("(max-width: 1366px)");
 const isBelow768px = window.matchMedia("(max-width: 768px)");
+app.config.globalProperties.$pdfViewerEnabled = pdfViewerEnabled;
 app.config.globalProperties.$prefersDarkTheme = prefersDarkTheme.matches;
 app.config.globalProperties.$mediaWidth = reactive({});
 app.config.globalProperties.$mediaWidth.isBelow1366px = isBelow1366px.matches;
@@ -27,6 +29,7 @@ app.use(router).mixin(globalMixin).mount("#app");
 
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
+    $pdfViewerEnabled: boolean;
     $prefersDarkTheme: boolean;
     $mediaWidth: {
       isBelow1366px: boolean;
