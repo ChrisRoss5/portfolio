@@ -54,6 +54,11 @@ export default defineComponent({
   overflow: hidden;
   z-index: 0;
   transition: height 1s;
+  background: radial-gradient(
+    ellipse at 70% 100%,
+    var(--c) 0 60%,
+    var(--special-a) 250%
+  );
   & > *:not(:first-child) {
     margin-bottom: 2%;
   }

@@ -1,34 +1,36 @@
 <template>
-  <div id="columns" v-show="pathEnding != 'documents' || !$pdfViewerEnabled">
-    <!-- todo  || !$mediaWidth.isBelow1366px -->
-    <TransitionGroup name="slide">
-      <template v-if="areProjects">
-        <div
-          v-for="(column, i) in projectsColumns"
-          :key="i"
-          v-show="!column.isBrowserApp || isBrowserApp"
-          :class="{ sortable: !column.unsortable, first: i == 0 }"
-          @click="!column.unsortable && sort(column.name)"
-        >
-          {{ formatTitle(column.name) }}
-          <Transition name="sort-icon">
-            <component
-              :is="'ArrowDownSVG'"
-              v-if="sortedColumn.name == column.name"
-              :style="{
-                transform: `scale(${sortedColumn.descending ? -1 : 1})`,
-              }"
-            />
-          </Transition>
-        </div>
-      </template>
-      <template v-else>
-        <div v-for="columnName in aboutMeColumns" :key="columnName">
-          {{ columnName }}
-        </div>
-      </template>
-    </TransitionGroup>
-  </div>
+  <Transition name="columns">
+    <div id="columns" v-show="pathEnding != 'documents' || !$pdfViewerEnabled">
+      <!-- todo  || !$mediaWidth.isBelow1366px -->
+      <TransitionGroup name="slide">
+        <template v-if="areProjects">
+          <div
+            v-for="(column, i) in projectsColumns"
+            :key="i"
+            v-show="!column.isBrowserApp || isBrowserApp"
+            :class="{ sortable: !column.unsortable, first: i == 0 }"
+            @click="!column.unsortable && sort(column.name)"
+          >
+            {{ formatTitle(column.name) }}
+            <Transition name="sort-icon">
+              <component
+                :is="'ArrowDownSVG'"
+                v-if="sortedColumn.name == column.name"
+                :style="{
+                  transform: `scale(${sortedColumn.descending ? -1 : 1})`,
+                }"
+              />
+            </Transition>
+          </div>
+        </template>
+        <template v-else-if="pathEnding != 'documents' || !$pdfViewerEnabled">
+          <div v-for="columnName in aboutMeColumns" :key="columnName">
+            {{ columnName }}
+          </div>
+        </template>
+      </TransitionGroup>
+    </div>
+  </Transition>
 </template>
 
 <script lang="ts">
@@ -86,6 +88,8 @@ export default defineComponent({
   user-select: none;
   white-space: nowrap;
   height: $columnHeight;
+  transition: opacity 1s, height 1s;
+  overflow: hidden;
   & > div {
     flex: 1;
     @extend .flex-center;
@@ -106,5 +110,10 @@ export default defineComponent({
   width: 0 !important;
   opacity: 0 !important;
   margin: 0 !important;
+}
+.columns-enter-from,
+.columns-leave-to {
+  height: 0 !important;
+  opacity: 0 !important;
 }
 </style>

@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Projects from "@/views/Projects.vue";
-import AboutVue from "@/views/About.vue";
-import ExperienceVue from "@/views/about-me/Experience.vue";
 import AccomplishmentsVue from "@/views/about-me/Accomplishments.vue";
-import EducationVue from "@/views/about-me/Education.vue";
 import DocumentsVue from "@/views/about-me/Documents.vue";
+import EducationVue from "@/views/about-me/Education.vue";
+import ExperienceVue from "@/views/about-me/Experience.vue";
+import AboutVue from "@/views/About.vue";
+import Projects from "@/views/Projects.vue";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const component = {};
 const routes: Array<RouteRecordRaw> = [
@@ -61,7 +61,7 @@ export const sitemap = {
     accomplishments: {
       long: "Accomplishments",
       short: "Accompl.",
-      titles: ["Awards", "Certificates", "Articles"],
+      titles: ["Competitions", "Certificates", "Articles"],
     },
     documents: {
       long: "Documents",

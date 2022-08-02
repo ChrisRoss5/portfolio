@@ -141,9 +141,9 @@ export default defineComponent({
   overflow: hidden auto;
   & > div {
     display: flex;
-    background: var(--d);
     border-bottom: 5px solid;
     & > div {
+      transition: background 150ms;
       flex: 1;
       @extend .flex-center;
       padding: var(--cell-padding);
@@ -186,7 +186,7 @@ export default defineComponent({
   text-align: left;
 }
 .table-move {
-  transition: transform 150ms;
+  transition: transform 250ms;
   &,
   * {
     animation: none !important;

@@ -1,5 +1,11 @@
 <template>
-  <div id="sidebar">
+  <div
+    id="sidebar"
+    @touchstart="hovering = true"
+    @touchend="hovering = false"
+    @mouseenter="hovering = true"
+    @mouseleave="hovering = false"
+  >
     <div v-for="(line, i) in lines" :key="i">
       <div class="number" :style="{ animationDelay: i * this.pause + 'ms' }">
         {{ i + 1 }}
@@ -25,54 +31,49 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import sidebar from "../scripts/sidebar.json";
-
-interface Line {
-  indents: number;
-  key?: string;
-  value?: string;
-  bracket?: boolean;
-  noComma?: boolean;
-}
-
-const lines: Line[] = [{ value: "{", bracket: true, indents: 0 }];
-const keys = Object.keys(sidebar);
-for (let i = 0; i < keys.length; i++) {
-  const key = keys[i];
-  const value = sidebar[key as keyof typeof sidebar];
-  const noComma = i == keys.length - 1;
-  let indents = 1;
-  if (typeof value == "string") lines.push({ key, value, indents });
-  else if (Array.isArray(value)) {
-    lines.push({ indents, key, value: "[", bracket: true });
-    for (let j = 0; j < value.length; j++) {
-      const noComma2 = j == value.length - 1;
-      lines.push({ value: value[j], indents: 2, noComma: noComma2 });
-    }
-    lines.push({ indents, value: "]", bracket: true, noComma });
-  } else {
-    lines.push({ indents, key, value: "{", bracket: true });
-    const keys2 = Object.keys(value);
-    for (let j = 0; j < keys2.length; j++) {
-      const key2 = keys2[j];
-      const value2 = value[key2 as keyof typeof value];
-      const noComma2 = j == keys2.length - 1;
-      lines.push({ key: key2, value: value2, indents: 2, noComma: noComma2 });
-    }
-    lines.push({ indents, value: "}", bracket: true, noComma });
-  }
-}
-lines.push({ value: "}", bracket: true, indents: 0 });
+import lines from "@/scripts/sidebar-converter";
 
 export default defineComponent({
   name: "SidebarVue",
   emits: ["completed"],
   data() {
-    return { lines, pause: 50 };
+    return {
+      lines,
+      pause: 50,
+      pause2: 400,
+      hovering: false,
+    };
   },
   mounted() {
-    if (this.$mediaWidth.isBelow1366px) this.$emit("completed");
-    else setTimeout(() => this.$emit("completed"), lines.length * this.pause);
+    if (this.$mediaWidth.isBelow1366px) this.animationCompleted();
+    else setTimeout(this.animationCompleted, lines.length * this.pause);
+  },
+  methods: {
+    animationCompleted() {
+      this.$emit("completed");
+    },
+    wordEmphasis(word: HTMLElement) {
+      if (!this.hovering) return;
+      word.style.textShadow = "none";
+      word.offsetWidth; // nosonar
+      word.style.textShadow = "0 0 0.8rem currentcolor";
+      setTimeout(() => {
+        word.style.textShadow = "none";
+        setTimeout(() => this.wordEmphasis(word), this.getRandPause());
+      }, this.pause2);
+    },
+    getRandPause() {
+      return Math.random() * 3 * this.pause2;
+    },
+  },
+  watch: {
+    hovering(newVal) {
+      if (!newVal) return;
+      const words = document.querySelectorAll(".key, .value");
+      for (const word of words as unknown as HTMLElement[]) {
+        setTimeout(() => this.wordEmphasis(word), this.getRandPause());
+      }
+    },
   },
 });
 </script>
@@ -81,7 +82,6 @@ export default defineComponent({
 #sidebar {
   grid-area: b;
   padding-right: 5vw;
-  background: var(--b);
   font-size: 0.75rem;
   display: flex;
   flex-direction: column;
@@ -89,6 +89,16 @@ export default defineComponent({
   z-index: 1;
   white-space: pre;
   transition: width 1s, padding 1s;
+  background: radial-gradient(
+      ellipse at 100% 0,
+      transparent 0 60%,
+      var(--special-b) 250%
+    ),
+    radial-gradient(
+      ellipse at 30% 100%,
+      transparent 0 60%,
+      var(--special-a) 300%
+    );
   & > div {
     flex: 1;
     display: flex;
@@ -128,6 +138,15 @@ export default defineComponent({
     transform: translateX(-3px);
     background: var(--dot);
   }
+}
+.key,
+.value {
+  will-change: text-shadow;
+  transform: translateZ(0);
+  transition: text-shadow 400ms;
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 .key {
   color: var(--key);

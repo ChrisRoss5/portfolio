@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="about-title">Awards</div>
+    <div class="about-title">Competitions</div>
     <div>
       Infokup competitions (High School):
       <ul>

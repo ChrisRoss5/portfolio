@@ -28,6 +28,7 @@
       <Transition name="slide">
         <component
           :is="Component"
+          class="content"
           :sortedColumn="areProjects ? sortedColumn : null"
         />
       </Transition>
@@ -97,13 +98,17 @@ export default defineComponent({
   grid-template:
     "a b"
     "c b" 1fr / 1fr;
-  background: var(--c);
+  background: var(--d);
 }
 #dynamic-content {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: var(--d);
+  background: radial-gradient(
+    ellipse at 30% 0,
+    var(--d) 0 60%,
+    var(--special-b) 250%
+  );
   & > div:not(#about) {
     padding: 0 5vw;
   }

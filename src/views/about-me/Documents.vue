@@ -1,14 +1,18 @@
 <template>
   <div :class="{ 'pdf-enabled': $pdfViewerEnabled }">
-    <div
-      v-if="!$mediaWidth.isBelow1366px && $pdfViewerEnabled"
-      id="pdf"
-      class="flex-center"
-    >
-      <iframe
-        v-if="loadFrame"
-        :src="`/docs/${currentDoc.title}/${currentDoc.file}.pdf#view=fit`"
-      />
+    <div v-if="!$mediaWidth.isBelow1366px && $pdfViewerEnabled" id="pdf">
+      <Transition name="reveal">
+        <iframe
+          v-if="frameReady"
+          v-show="frameLoaded"
+          :src="`/docs/${currentDoc.title}/${currentDoc.file}.pdf`"
+          @load="frameLoaded = true"
+        />
+        <!-- #view=fit -->
+      </Transition>
+      <Transition name="reveal">
+        <component v-show="!(frameLoaded && frameReady)" :is="'LoadingSVG'" />
+      </Transition>
     </div>
     <template v-for="{ title, files } of docs" :key="title">
       <div class="about-title">{{ title }}</div>
@@ -17,7 +21,7 @@
           v-for="file of files"
           :key="file"
           :class="{ 'file-active': currentDoc.file == file, file: true }"
-          @click="currentDoc = { title, file }"
+          @click="fileChanged({ title, file })"
         >
           {{ file }}
         </div>
@@ -45,7 +49,7 @@ export default defineComponent({
         },
         {
           title: "Certificates",
-          files: ["English B1+", "Oracle Academy (7)"],
+          files: ["Oracle Academy (7)", "English B1+"],
         },
         {
           title: "Education",
@@ -56,44 +60,62 @@ export default defineComponent({
           files: ["CARNET", "Mario Tretinjak"],
         },
       ],
-      intro: document.querySelector("#intro") as HTMLElement,
-      sidebar: document.querySelector("#sidebar") as HTMLElement,
+      intro: undefined as unknown as HTMLElement,
+      sidebar: undefined as unknown as HTMLElement,
+      content: undefined as unknown as HTMLElement,
       introHeight: "",
       sidebarWidth: "",
       sidebarPadding: "",
+      contentWidth: "",
       resetTimeout: 0,
       frameTimeout: 0,
-      loadFrame: false,
+      frameReady: false,
+      frameLoaded: false,
     };
+  },
+  mounted() {
+    this.intro = document.querySelector("#intro") as HTMLElement;
+    this.sidebar = document.querySelector("#sidebar") as HTMLElement;
+    this.content = document.querySelector(".content") as HTMLElement;
   },
   activated() {
     if (this.$mediaWidth.isBelow1366px || !this.$pdfViewerEnabled) return;
     clearTimeout(this.resetTimeout);
     clearTimeout(this.frameTimeout);
     this.reset();
-    this.loadFrame = false;
-    this.frameTimeout = setTimeout(() => (this.loadFrame = true), 1000);
-    this.intro.offsetWidth, this.sidebar.offsetWidth; // nosonar;
+    this.frameReady = false;
+    this.frameTimeout = setTimeout(() => (this.frameReady = true), 1000);
+    this.intro.offsetWidth; // nosonar;
     this.introHeight = getComputedStyle(this.intro).height;
     this.intro.style.height = this.introHeight;
-    this.sidebarWidth = getComputedStyle(this.sidebar).width;
+    ({ width: this.sidebarWidth, paddingRight: this.sidebarPadding } =
+      getComputedStyle(this.sidebar));
     this.sidebar.style.width = this.sidebarWidth;
-    this.sidebarPadding = this.sidebar.style.padding;
-    this.intro.offsetWidth, this.sidebar.offsetWidth; // nosonar;
+    this.intro.offsetWidth; // nosonar;
     this.intro.style.height = this.sidebar.style.width = "0";
     this.sidebar.style.padding = "0";
+    this.contentWidth = getComputedStyle(this.content).width;
   },
   deactivated() {
     if (this.$mediaWidth.isBelow1366px || !this.$pdfViewerEnabled) return;
     this.intro.style.height = this.introHeight;
     this.sidebar.style.width = this.sidebarWidth;
-    this.sidebar.style.padding = this.sidebarPadding;
+    this.sidebar.style.paddingRight = this.sidebarPadding;
+    this.content.style.maxWidth = this.contentWidth;
     this.resetTimeout = setTimeout(this.reset, 1000);
   },
   methods: {
     reset() {
       this.intro.style.height = this.sidebar.style.width = "";
       this.sidebar.style.padding = "";
+      this.content.style.maxWidth = "";
+    },
+    fileChanged(newFile: { title: string; file: string }) {
+      this.frameLoaded = false;
+      setTimeout(() => (this.currentDoc = newFile), 150);
+    },
+    iframeLoaded() {
+      console.log(1);
     },
   },
 });
@@ -142,10 +164,18 @@ export default defineComponent({
   padding: 0 !important;
   opacity: 0;
   animation: reveal 1s 1s forwards;
+  overflow: hidden !important;
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 iframe {
   width: 100%;
   height: 100%;
   border: none;
+  animation: reveal 1s;
 }
 </style>
