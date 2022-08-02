@@ -7,7 +7,7 @@
             v-for="(column, i) in projectsColumns"
             :key="i"
             v-show="!column.$isBrowserApp || $isBrowserApp"
-            :class="{ sortable: !column.unsortable, first: i == 0 }"
+            :class="{ hover: !column.unsortable, first: i == 0 }"
             @click="!column.unsortable && sort(column.name)"
           >
             {{ formatTitle(column.name) }}
@@ -92,10 +92,7 @@ export default defineComponent({
   & > div {
     flex: 1;
     @extend .flex-center;
-    transition: opacity 350ms, transform 350ms;
-    &.sortable {
-      cursor: pointer;
-    }
+    transition: color 150ms, opacity 350ms, transform 350ms;
   }
   svg {
     width: 18px;

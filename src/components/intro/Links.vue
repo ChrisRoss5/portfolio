@@ -67,12 +67,8 @@ export default defineComponent({
       gap: 30px;
     }
   }
-  a:hover {
-    color: var(--f);
-    svg,
-    svg path {
-      fill: var(--f);
-    }
+  a {
+    @extend .hover;
   }
 }
 #socials {

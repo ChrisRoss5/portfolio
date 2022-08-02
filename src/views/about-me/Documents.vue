@@ -5,7 +5,7 @@
         <iframe
           v-if="frameReady"
           v-show="frameLoaded"
-          :src="`/docs/${currentDoc.title}/${currentDoc.file}.pdf`"
+          :src="getDocPath(currentDoc)"
           @load="onFrameLoad"
         />
         <!-- #view=fit -->
@@ -30,7 +30,7 @@
         <a
           v-for="file of files"
           :key="file"
-          :href="`/docs/${title}/${file}.pdf`"
+          :href="getDocPath({ title, file })"
           target="_blank"
         >
           {{ file }}
@@ -119,6 +119,9 @@ export default defineComponent({
       this.intro.style.height = this.sidebar.style.width = "";
       this.sidebar.style.padding = "";
       this.content.style.maxWidth = "";
+    },
+    getDocPath(doc: { title: string; file: string }) {
+      return `/docs/${doc.title.toLowerCase()}/${doc.file}.pdf`;
     },
     fileChanged(newFile: { title: string; file: string }) {
       this.frameLoaded = false;

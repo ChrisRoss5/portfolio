@@ -1,9 +1,9 @@
-import AccomplishmentsVue from "@/views/about-me/Accomplishments.vue";
-import DocumentsVue from "@/views/about-me/Documents.vue";
-import EducationVue from "@/views/about-me/Education.vue";
-import ExperienceVue from "@/views/about-me/Experience.vue";
 import AboutVue from "@/views/About.vue";
 import Projects from "@/views/Projects.vue";
+const AccomplishmentsVue = () => import("@/views/about-me/Accomplishments.vue");
+const DocumentsVue = () => import("@/views/about-me/Documents.vue");
+const EducationVue = () => import("@/views/about-me/Education.vue");
+const ExperienceVue = () => import("@/views/about-me/Experience.vue");
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const component = {};

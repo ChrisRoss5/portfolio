@@ -8,7 +8,7 @@
       <div class="modal-container" :style="{ width, height }">
         <div class="modal-header">
           <slot name="header"></slot>
-          <div class="modal-close flex-center" @click="$emit('close')">
+          <div class="modal-close flex-center hover" @click="$emit('close')">
             <component :is="'CloseSVG'" />
           </div>
         </div>
@@ -82,16 +82,6 @@ export default defineComponent({
   top: 0;
   right: 0;
   bottom: 0;
-  img {
-    height: 1.2rem;
-    transition: transform 150ms;
-  }
-  &:hover {
-    cursor: pointer;
-    img {
-      transform: scale(0.75);
-    }
-  }
 }
 .modal-container {
   transition: transform 250ms;

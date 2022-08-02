@@ -34,15 +34,25 @@ img {
 }
 svg:not([unmodified]) {
   vertical-align: text-bottom;
-  &,
   path {
     fill: var(--a);
+    transition: fill 150ms;
   }
 }
 .flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.hover {
+  transition: color 150ms;
+  &:hover {
+    cursor: pointer;
+    color: var(--f);
+    path {
+      fill: var(--f);
+    }
+  }
 }
 @mixin about-narrow {
   flex-direction: column;

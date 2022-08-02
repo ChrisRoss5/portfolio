@@ -64,7 +64,6 @@ export default defineComponent({
   }
 }
 #logo {
-  display: inline;
   position: absolute;
   top: 0;
   right: 0;

@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
     <TransitionGroup name="slide" appear>
-      <router-link v-for="(value, key) in routerLinks" :key="key" :to="key">
+      <router-link v-for="(value, key) in routerLinks" class="hover" :key="key" :to="key">
         <template v-if="$mediaWidth.isBelow768px && value.short">
           {{ value.short }}
         </template>
@@ -111,7 +111,6 @@ export default defineComponent({
     flex: 1 1 0;
     text-align: center;
     padding: 20px 10px;
-    transition: opacity 250ms, transform 250ms;
     div {
       position: absolute;
       left: 0;

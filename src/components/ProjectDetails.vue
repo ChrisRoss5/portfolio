@@ -7,7 +7,6 @@
     @touchstart.passive="touchStart"
     @touchmove.passive="touchMove"
     @touchend.passive="touchEnd"
-
   >
     <template #header>
       <div id="modal-project-header" class="app-name">
@@ -37,14 +36,17 @@
       <div id="modal-project-body">
         <div id="modal-nav">
           <div
-            :class="{ disabled: projectIdx == 0 }"
+            :class="{ disabled: projectIdx == 0, hover: true }"
             @click="swipeProject(false)"
           >
             <component :is="'ArrowDownSVG'" style="transform: rotate(90deg)" />
             Previous
           </div>
           <div
-            :class="{ disabled: projectIdx == currentProjects.length - 1 }"
+            :class="{
+              disabled: projectIdx == currentProjects.length - 1,
+              hover: true,
+            }"
             @click="swipeProject(true)"
           >
             Next
@@ -175,13 +177,6 @@ export default defineComponent({
     &.disabled {
       pointer-events: none;
       opacity: 0.5;
-    }
-    &:hover {
-      cursor: pointer;
-      color: var(--f);
-      path {
-        fill: var(--f);
-      }
     }
   }
   border-radius: 0 0 6px 6px;
