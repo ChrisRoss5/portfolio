@@ -137,10 +137,13 @@
   .modal-container {
     width: 100% !important;
     height: 100% !important;
+    .app-name {
+      padding: 0 !important;
+    }
   }
   .modal-close {
     align-items: normal;
-    padding: 30px !important;
+    padding: 30px 40px !important;
   }
   #modal-project-header {
     flex-direction: column;

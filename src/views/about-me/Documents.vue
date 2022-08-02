@@ -1,12 +1,12 @@
 <template>
-  <div :class="{ 'pdf-enabled': $pdfViewerEnabled }">
-    <div v-if="!$mediaWidth.isBelow1366px && $pdfViewerEnabled" id="pdf">
+  <div :class="{ 'pdf-enabled': $pdfViewerReady }">
+    <div v-if="$pdfViewerReady" id="pdf">
       <Transition name="reveal">
         <iframe
           v-if="frameReady"
           v-show="frameLoaded"
           :src="`/docs/${currentDoc.title}/${currentDoc.file}.pdf`"
-          @load="frameLoaded = true"
+          @load="onFrameLoad"
         />
         <!-- #view=fit -->
       </Transition>
@@ -16,7 +16,7 @@
     </div>
     <template v-for="{ title, files } of docs" :key="title">
       <div class="about-title">{{ title }}</div>
-      <div>
+      <div v-if="$pdfViewerReady">
         <div
           v-for="file of files"
           :key="file"
@@ -25,6 +25,16 @@
         >
           {{ file }}
         </div>
+      </div>
+      <div v-else>
+        <a
+          v-for="file of files"
+          :key="file"
+          :href="`/docs/${title}/${file}.pdf`"
+          target="_blank"
+        >
+          {{ file }}
+        </a>
       </div>
     </template>
   </div>
@@ -79,7 +89,7 @@ export default defineComponent({
     this.content = document.querySelector(".content") as HTMLElement;
   },
   activated() {
-    if (this.$mediaWidth.isBelow1366px || !this.$pdfViewerEnabled) return;
+    if (!this.$pdfViewerReady) return;
     clearTimeout(this.resetTimeout);
     clearTimeout(this.frameTimeout);
     this.reset();
@@ -97,7 +107,7 @@ export default defineComponent({
     this.contentWidth = getComputedStyle(this.content).width;
   },
   deactivated() {
-    if (this.$mediaWidth.isBelow1366px || !this.$pdfViewerEnabled) return;
+    if (!this.$pdfViewerReady) return;
     this.intro.style.height = this.introHeight;
     this.sidebar.style.width = this.sidebarWidth;
     this.sidebar.style.paddingRight = this.sidebarPadding;
@@ -114,8 +124,8 @@ export default defineComponent({
       this.frameLoaded = false;
       setTimeout(() => (this.currentDoc = newFile), 150);
     },
-    iframeLoaded() {
-      console.log(1);
+    onFrameLoad() {
+      setTimeout(() => (this.frameLoaded = true));
     },
   },
 });
@@ -127,31 +137,35 @@ export default defineComponent({
   &::-webkit-scrollbar {
     display: none;
   }
-  .pdf-enabled {
-    @include about-narrow;
-    padding: 0;
-    height: 100%;
-    width: 15vw;
-    .about-title {
-      display: flex !important;
-      width: 100% !important;
-      transform: none !important;
-    }
-    .file {
-      cursor: pointer;
-    }
-    .file-active {
-      position: relative;
-      color: var(--special-b);
-      &::before {
-        content: "";
-        position: absolute;
-        left: -1rem;
-        top: 0;
-        bottom: 0;
-        background: var(--special-b);
-        width: 5px;
-      }
+  a {
+    display: block;
+    padding-bottom: 1rem;
+  }
+}
+.pdf-enabled {
+  @include about-narrow;
+  padding: 0 !important;
+  height: 100%;
+  width: 15vw;
+  .about-title {
+    display: flex !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+  .file {
+    cursor: pointer;
+  }
+  .file-active {
+    position: relative;
+    color: var(--special-b);
+    &::before {
+      content: "";
+      position: absolute;
+      left: -1rem;
+      top: 0;
+      bottom: 0;
+      background: var(--special-b);
+      width: 5px;
     }
   }
 }
@@ -176,6 +190,5 @@ iframe {
   width: 100%;
   height: 100%;
   border: none;
-  animation: reveal 1s;
 }
 </style>

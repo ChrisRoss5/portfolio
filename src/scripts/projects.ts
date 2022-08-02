@@ -23,14 +23,14 @@ export type Projects = {
 export interface Column {
   name: keyof Project;
   unsortable?: boolean;
-  isBrowserApp?: boolean;
+  $isBrowserApp?: boolean;
 }
 
 export const columns: Column[] = [
   { name: "name" },
   { name: "created" },
-  { name: "lastUpdated", isBrowserApp: true },
-  { name: "weeklyUsers", isBrowserApp: true },
+  { name: "lastUpdated", $isBrowserApp: true },
+  { name: "weeklyUsers", $isBrowserApp: true },
   { name: "links", unsortable: true },
   { name: "tech", unsortable: true },
 ];

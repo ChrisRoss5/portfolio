@@ -15,13 +15,13 @@
   <div
     id="dynamic-content"
     :class="{
-      'are-projects': areProjects,
+      'are-projects': $areProjects,
       'slide-enter-from-left': slideFromLeft,
     }"
   >
     <NavbarVue />
     <ColumnsVue
-      v-show="!$mediaWidth.isBelow768px || areProjects"
+      v-show="!$mediaWidth.isBelow768px || $areProjects"
       v-model:sortedColumn="sortedColumn"
     />
     <router-view v-slot="{ Component }">
@@ -29,7 +29,7 @@
         <component
           :is="Component"
           class="content"
-          :sortedColumn="areProjects ? sortedColumn : null"
+          :sortedColumn="$areProjects ? sortedColumn : null"
         />
       </Transition>
     </router-view>
@@ -81,9 +81,9 @@ export default defineComponent({
         document.body.style.overflow = newVal ? "hidden" : "auto";
       }
     },
-    pathEnding(newVal: string, prevVal: string) {
+    $pathEnding(newVal: string, prevVal: string) {
       this.slideFromLeft =
-        this.areProjects ||
+        this.$areProjects ||
         aboutMeKeys.indexOf(newVal) < aboutMeKeys.indexOf(prevVal);
     },
   },

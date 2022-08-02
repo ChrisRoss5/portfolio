@@ -1,13 +1,12 @@
 <template>
-  <Transition name="columns">
-    <div id="columns" v-show="pathEnding != 'documents' || !$pdfViewerEnabled">
-      <!-- todo  || !$mediaWidth.isBelow1366px -->
+  <Transition name="columns" :css="$pdfViewerReady">
+    <div id="columns" v-show="$pathEnding != 'documents' || !$pdfViewerReady">
       <TransitionGroup name="slide">
-        <template v-if="areProjects">
+        <template v-if="$areProjects">
           <div
             v-for="(column, i) in projectsColumns"
             :key="i"
-            v-show="!column.isBrowserApp || isBrowserApp"
+            v-show="!column.$isBrowserApp || $isBrowserApp"
             :class="{ sortable: !column.unsortable, first: i == 0 }"
             @click="!column.unsortable && sort(column.name)"
           >
@@ -23,7 +22,7 @@
             </Transition>
           </div>
         </template>
-        <template v-else-if="pathEnding != 'documents' || !$pdfViewerEnabled">
+        <template v-else-if="$pathEnding != 'documents' || !$pdfViewerReady">
           <div v-for="columnName in aboutMeColumns" :key="columnName">
             {{ columnName }}
           </div>
@@ -66,14 +65,14 @@ export default defineComponent({
   },
   computed: {
     aboutMeColumns(): string[] {
-      const path = this.pathEnding as keyof typeof sitemap.about;
-      return this.areProjects || !path ? [] : sitemap.about[path].titles;
+      const path = this.$pathEnding as keyof typeof sitemap.about;
+      return this.$areProjects || !path ? [] : sitemap.about[path].titles;
     },
   },
   watch: {
     $route() {
-      if (this.areProjects)
-        this.sort(this.isBrowserApp ? "weeklyUsers" : "name", false);
+      if (this.$areProjects)
+        this.sort(this.$isBrowserApp ? "weeklyUsers" : "name", false);
     },
   },
 });

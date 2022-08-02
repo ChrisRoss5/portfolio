@@ -1,5 +1,5 @@
 <template>
-  <div id="about" :class="{ [pathEnding]: true }">
+  <div id="about" :class="{ [$pathEnding]: true }">
     <router-view v-slot="{ Component }">
       <Transition name="slide">
         <KeepAlive>

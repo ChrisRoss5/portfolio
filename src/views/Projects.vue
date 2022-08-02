@@ -29,11 +29,15 @@
             <div v-if="app.lastUpdated">
               {{ app.lastUpdated.toLocaleDateString("en-CA") }}
             </div>
-            <div v-else-if="isBrowserApp"><component :is="'LoadingSVG'" /></div>
+            <div v-else-if="$isBrowserApp">
+              <component :is="'LoadingSVG'" />
+            </div>
           </Transition>
           <Transition name="reveal" mode="out-in">
             <div v-if="app.weeklyUsers">{{ formatCount(app.weeklyUsers) }}</div>
-            <div v-else-if="isBrowserApp"><component :is="'LoadingSVG'" /></div>
+            <div v-else-if="$isBrowserApp">
+              <component :is="'LoadingSVG'" />
+            </div>
           </Transition>
           <div class="icons links">
             <a
@@ -105,16 +109,16 @@ export default defineComponent({
   },
   computed: {
     currentProjects(): Project[] {
-      return this.projects[this.pathEnding as keyof Projects];
+      return this.projects[this.$pathEnding as keyof Projects];
     },
   },
   watch: {
-    pathEnding: {
+    $pathEnding: {
       handler(newVal: string, prevVal: string) {
         const keys = Object.keys(this.projects);
         const [i1, i2] = [keys.indexOf(newVal), keys.indexOf(prevVal)];
         this.rowsEnteringDirection = i1 < i2 || i2 == -1 ? "left" : "right";
-        if (this.isBrowserApp)
+        if (this.$isBrowserApp)
           for (const app of this.currentProjects) this.getBrowserAppInfo(app);
       },
       immediate: true,

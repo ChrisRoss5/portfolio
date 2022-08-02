@@ -58,8 +58,8 @@ export default defineComponent({
         const { width } = window.visualViewport;
         const perc = ((x0 - x1) / width) * this.paths.length;
         const { 0: first, [this.paths.length - 1]: last } = this.paths;
-        const left = this.pathEnding == first && this.areProjects ? 0 : -1;
-        const right = this.pathEnding == last && !this.areProjects ? 0 : 1;
+        const left = this.$pathEnding == first && this.$areProjects ? 0 : -1;
+        const right = this.$pathEnding == last && !this.$areProjects ? 0 : 1;
         this.transformX = Math.max(left, Math.min(right, perc));
       },
       { passive: true }
@@ -73,11 +73,11 @@ export default defineComponent({
         if (!this.transformX) return;
         if (Math.abs(this.transformX) < 0.5) return (this.transformX = 0);
         const isRight = this.transformX > 0;
-        const idx = this.paths.indexOf(this.pathEnding);
+        const idx = this.paths.indexOf(this.$pathEnding);
         const newPath = this.paths[idx + (isRight ? 1 : -1)];
         if (!newPath) {
           this.$router.push(
-            this.areProjects ? "/about/experience" : "/projects/desktop"
+            this.$areProjects ? "/about/experience" : "/projects/desktop"
           );
         } else {
           this.$router.push(newPath);
@@ -97,7 +97,7 @@ export default defineComponent({
       return Object.keys(this.routerLinks);
     },
     routerLinks(): Record<string, { long: string; short?: string }> {
-      return sitemap[this.areProjects ? "projects" : "about"];
+      return sitemap[this.$areProjects ? "projects" : "about"];
     },
   },
 });
