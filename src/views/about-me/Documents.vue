@@ -11,7 +11,11 @@
         <!-- #view=fit -->
       </Transition>
       <Transition name="reveal">
-        <component v-show="!(frameLoaded && frameReady)" :is="'LoadingSVG'" />
+        <component
+          v-show="!(frameLoaded && frameReady)"
+          :is="'LoadingSVG'"
+          class="abs-center"
+        />
       </Transition>
     </div>
     <template v-for="{ title, files } of docs" :key="title">
@@ -163,30 +167,19 @@ export default defineComponent({
     color: var(--special-b);
     &::before {
       content: "";
-      position: absolute;
-      left: -1rem;
-      top: 0;
-      bottom: 0;
+      @include abs-cover(absolute, 0, null, 0, -1rem);
       background: var(--special-b);
       width: 5px;
     }
   }
 }
 #pdf {
-  position: absolute;
-  top: 0;
-  left: 15vw;
-  right: 0;
-  bottom: 0;
+  @include abs-cover(absolute, 0, 0, 0, 15vw);
   padding: 0 !important;
   opacity: 0;
   animation: reveal 1s 1s forwards;
   overflow: hidden !important;
   svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
   }
 }
 iframe {

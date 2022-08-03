@@ -34,6 +34,7 @@ img {
 }
 svg:not([unmodified]) {
   vertical-align: text-bottom;
+  fill: var(--a);
   path {
     fill: var(--a);
     transition: fill 150ms;
@@ -43,6 +44,12 @@ svg:not([unmodified]) {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .hover {
   transition: color 150ms;
@@ -54,6 +61,21 @@ svg:not([unmodified]) {
     }
   }
 }
+@mixin abs-cover($position, $top, $right, $bottom, $left) {
+  position: $position;
+  @if $top {
+    top: $top;
+  }
+  @if $right {
+    right: $right;
+  }
+  @if $bottom {
+    bottom: $bottom;
+  }
+  @if $left {
+    left: $left;
+  }
+}
 @mixin about-narrow {
   flex-direction: column;
   overflow: visible !important;
@@ -61,6 +83,13 @@ svg:not([unmodified]) {
   & > div:not(.about-title):not(#pdf) {
     overflow: visible !important;
     padding: 1rem !important;
+  }
+}
+@mixin modal-cover {
+  width: 100% !important;
+  height: 100% !important;
+  .app-name {
+    padding: 0 !important;
   }
 }
 

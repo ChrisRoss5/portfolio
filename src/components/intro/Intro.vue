@@ -64,10 +64,7 @@ export default defineComponent({
   }
 }
 #logo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  @include abs-cover(absolute, 0, 0, 0, null);
   height: 100%;
   width: auto;
   transform: scale(1.01);

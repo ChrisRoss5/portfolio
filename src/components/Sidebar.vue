@@ -131,9 +131,7 @@ export default defineComponent({
   &:nth-child(1)::before,
   &:nth-child(3)::before {
     content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    @include abs-cover(absolute, 0, null, 0, null);
     width: 1px;
     transform: translateX(-3px);
     background: var(--dot);

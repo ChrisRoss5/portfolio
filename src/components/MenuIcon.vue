@@ -14,29 +14,23 @@ export default defineComponent({ name: "MenuIcon", emits: ["open"] });
 
 <style lang="scss">
 #menu-icon {
-  position: absolute;
-  top: 5vw;
-  right: 5vw;
+  @include abs-cover(absolute, 5vw, 5vw, null, null);
   height: 1.3rem;
   width: 1.3rem;
   cursor: pointer;
   z-index: 2;
   &::after {
     content: "";
-    position: absolute;
-    top: -5vw;
-    right: -5vw;
-    left: -5vw;
-    bottom: -5vw;
+    @include abs-cover(absolute, -5vw, -5vw, -5vw, -5vw);
   }
   div {
     position: absolute;
+    left: 0;
     height: 0.15rem;
     width: 100%;
     background: var(--a);
     border-radius: 1rem;
     opacity: 1;
-    left: 0;
     transform: rotate(0deg);
     transition: 0.5s;
     &:nth-child(1) {

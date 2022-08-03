@@ -84,24 +84,17 @@ export default defineComponent({
   &::before,
   &::after {
     content: "";
-    position: absolute;
     transform: scaleX(0);
     transition: transform 150ms;
     z-index: -1;
   }
   &:before {
-    top: -3px;
-    bottom: -3px;
-    left: -3px;
-    right: -3px;
+    @include abs-cover(absolute, -3px, -3px, -3px, -3px);
     border-radius: 6px;
     background: linear-gradient(to right, var(--special-a), var(--special-b));
   }
   &::after {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    @include abs-cover(absolute, 0, 0, 0, 0);
     border-radius: 4px;
     background: var(--d);
   }

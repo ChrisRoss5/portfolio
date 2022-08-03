@@ -47,11 +47,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .modal-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  @include abs-cover(fixed, 0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 99;
 }
@@ -63,7 +59,7 @@ export default defineComponent({
   background-color: #fff;
   border-radius: 6px;
   background: var(--d);
-  box-shadow: 0 0 8px var(--special-a), 0 0 8px var(--special-b);
+  box-shadow: -2px -2px 8px var(--special-a), 2px 2px 8px var(--special-b);
   overflow: hidden;
 }
 .modal-header {
@@ -77,11 +73,8 @@ export default defineComponent({
   flex: 1;
 }
 .modal-close {
-  position: absolute;
+  @include abs-cover(absolute, 0, 0, 0, null);
   padding: 0 40px;
-  top: 0;
-  right: 0;
-  bottom: 0;
 }
 .modal-container {
   transition: transform 250ms;

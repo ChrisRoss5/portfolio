@@ -112,10 +112,7 @@ export default defineComponent({
     text-align: center;
     padding: 20px 10px;
     div {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      @include abs-cover(absolute, null, 0, 0, 0);
       height: 0;
       background: linear-gradient(to right, var(--special-a), var(--special-b));
       &:not(.transform-transition) {

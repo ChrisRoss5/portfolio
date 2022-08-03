@@ -8,7 +8,7 @@
       v-for="theme in themes"
       :key="theme"
       @click="changeTheme(theme)"
-      :class="{ active: theme == currentTheme }"
+      :class="{ active: theme == currentTheme, hover: true }"
     >
       {{ theme }}
     </div>
@@ -82,9 +82,7 @@ export default defineComponent({
 
 <style lang="scss">
 #themes {
-  position: absolute;
-  top: 0;
-  left: 5vw;
+  @include abs-cover(absolute, 0, null, null, 5vw);
   display: flex;
   font-size: 0.75rem;
   gap: 1rem;
@@ -93,9 +91,10 @@ export default defineComponent({
   & > div {
     flex: 1;
     cursor: pointer;
-    transition: text-shadow 150ms;
+    transition: color 150ms, text-shadow 150ms;
     &.active {
-      text-shadow: 0 0 5px var(--a);
+      color: var(--f);
+      text-shadow: 0 0 10px var(--a);
     }
   }
 }

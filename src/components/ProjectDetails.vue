@@ -166,9 +166,7 @@ export default defineComponent({
   flex-direction: column;
 }
 #modal-nav {
-  position: absolute;
-  left: 40px;
-  top: 0;
+  @include abs-cover(absolute, 0, null, null, 40px);
   background: var(--e);
   display: flex;
   user-select: none;
