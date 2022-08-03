@@ -64,7 +64,7 @@ export default defineComponent({
       if (this.$mediaWidth.isBelow768px && this.$el) {
         this.$el.style.opacity = "1";
         this.$el.style.animation = "none";
-        this.$el.offsetWidth;
+        this.$el.offsetWidth; // nosonar
         this.$el.style.animation = "reveal 150ms 1s reverse forwards";
       }
     },

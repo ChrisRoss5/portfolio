@@ -108,7 +108,7 @@ svg:not([unmodified]) {
 
 .reveal-enter-active,
 .reveal-leave-active {
-  transition: opacity 150ms;
+  transition: opacity 150ms !important;
 }
 .reveal-enter-from,
 .reveal-leave-to {

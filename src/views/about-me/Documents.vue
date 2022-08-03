@@ -25,7 +25,7 @@
           v-for="file of files"
           :key="file"
           :class="{ 'file-active': currentDoc.file == file, file: true }"
-          @click="fileChanged({ title, file })"
+          @click="currentDoc.file != file && fileChanged({ title, file })"
         >
           {{ file }}
         </div>
@@ -99,13 +99,13 @@ export default defineComponent({
     this.reset();
     this.frameReady = false;
     this.frameTimeout = setTimeout(() => (this.frameReady = true), 1000);
-    this.intro.offsetWidth; // nosonar;
+    this.intro.offsetWidth; // nosonar
     this.introHeight = getComputedStyle(this.intro).height;
     this.intro.style.height = this.introHeight;
     ({ width: this.sidebarWidth, paddingRight: this.sidebarPadding } =
       getComputedStyle(this.sidebar));
     this.sidebar.style.width = this.sidebarWidth;
-    this.intro.offsetWidth; // nosonar;
+    this.intro.offsetWidth; // nosonar
     this.intro.style.height = this.sidebar.style.width = "0";
     this.sidebar.style.padding = "0";
     this.contentWidth = getComputedStyle(this.content).width;
@@ -179,8 +179,6 @@ export default defineComponent({
   opacity: 0;
   animation: reveal 1s 1s forwards;
   overflow: hidden !important;
-  svg {
-  }
 }
 iframe {
   width: 100%;
