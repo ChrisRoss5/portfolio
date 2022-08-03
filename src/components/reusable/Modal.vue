@@ -38,8 +38,7 @@ export default defineComponent({
   },
   watch: {
     modalVisible(newVal) {
-      if (this.$mediaWidth.isBelow1366px)
-        document.body.style.overflow = newVal ? "hidden" : "auto";
+      document.body.style.overflow = newVal ? "hidden" : "auto";
     },
   },
 });

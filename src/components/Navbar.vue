@@ -1,7 +1,12 @@
 <template>
   <div id="navbar">
     <TransitionGroup name="slide" appear>
-      <router-link v-for="(value, key) in routerLinks" class="hover" :key="key" :to="key">
+      <router-link
+        v-for="(value, key) in routerLinks"
+        class="hover"
+        :key="key"
+        :to="key"
+      >
         <template v-if="$mediaWidth.isBelow768px && value.short">
           {{ value.short }}
         </template>
@@ -75,19 +80,15 @@ export default defineComponent({
         const isRight = this.transformX > 0;
         const idx = this.paths.indexOf(this.$pathEnding);
         const newPath = this.paths[idx + (isRight ? 1 : -1)];
-        if (!newPath) {
-          this.$router.push(
-            this.$areProjects ? "/about/experience" : "/projects/desktop"
-          );
-        } else {
-          this.$router.push(newPath);
-        }
+        const timeout = newPath ? 0 : 150;
+        const [a, b] = ["/about/experience", "/projects/desktop"];
         this.transformTransition = true;
+        this.$router.push(newPath || (this.$areProjects ? a : b));
         this.transformX += isRight ? -1 : 1;
         setTimeout(() => {
           this.transformX = 0;
           this.transformTransition = false;
-        });
+        }, timeout);
       },
       { passive: true }
     );
