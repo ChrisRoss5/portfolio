@@ -56,7 +56,7 @@ export const sitemap = {
     },
     education: {
       long: "Education",
-      titles: ["High School", "University"],
+      titles: ["University", "High School"],
     },
     accomplishments: {
       long: "Accomplishments",

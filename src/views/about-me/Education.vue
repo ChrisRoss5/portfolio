@@ -1,5 +1,24 @@
 <template>
   <div>
+    <div class="about-title">University</div>
+    <div>
+      <div class="box">
+        <div class="box-title">Algebra University College,</div>
+        <div>
+          Zagreb
+          <span class="box-position">Software Engineer</span>
+        </div>
+        <div class="box-duration">SEPTEMBER 2021 - NOW</div>
+        <div>
+          Completed first year with 60/60 ECTS points.
+          <br />
+          <br />
+          ALGEBRA UNIVERSITY COLLEGE TITLE: <br />
+          bacc. ing. comp. Bachelor of Computer Engineering, sub-specialization
+          in Software Engineering.
+        </div>
+      </div>
+    </div>
     <div class="about-title">High School</div>
     <div>
       <div class="box">
@@ -26,25 +45,6 @@
           </span>
         </div>
         <div class="box-duration">SEPTEMBER 2017 - JUNE 2019</div>
-      </div>
-    </div>
-    <div class="about-title">University</div>
-    <div>
-      <div class="box">
-        <div class="box-title">Algebra University College,</div>
-        <div>
-          Zagreb
-          <span class="box-position">Software Engineer</span>
-        </div>
-        <div class="box-duration">SEPTEMBER 2021 - NOW</div>
-        <div>
-          Completed first year with 60/60 ECTS points.
-          <br />
-          <br />
-          ALGEBRA UNIVERSITY COLLEGE TITLE: <br />
-          bacc. ing. comp. Bachelor of Computer Engineering, sub-specialization
-          in Software Engineering.
-        </div>
       </div>
     </div>
   </div>

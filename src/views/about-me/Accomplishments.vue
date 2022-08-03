@@ -70,7 +70,7 @@
           >
         </li>
       </ul>
-      TŠŠB:
+      TŠSB:
       <ul>
         <li>
           Ponos škole
