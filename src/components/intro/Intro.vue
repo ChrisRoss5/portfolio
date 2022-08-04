@@ -26,7 +26,7 @@ export default defineComponent({
   props: { completed: Boolean },
   data() {
     return {
-      sentence: ", I'm Kristijan Rosandić, Software Engineer. WIP.",
+      sentence: ", I'm Kristijan Rosandić, Software Engineer.",
     };
   },
   mounted() {

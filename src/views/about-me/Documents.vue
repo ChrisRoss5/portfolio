@@ -50,30 +50,37 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "DocumentsVue",
   data() {
+    const docs = [
+      {
+        title: "CVs",
+        files: ["CV-en (2)", "CV-hr (2)"],
+      },
+      {
+        title: "Competitions",
+        files: ["AZOO (6)", "Idea of the Year", "INOVA (6)"],
+      },
+      {
+        title: "Certificates",
+        files: ["Oracle Academy (7)", "English B1+"],
+      },
+      {
+        title: "Education",
+        files: ["Diplomas (8)", "Europass-en (2)", "Europass-hr (2)"],
+      },
+      {
+        title: "References",
+        files: ["CARNET", "Mario Tretinjak"],
+      },
+    ];
+    let currentDoc = { title: "CVs", file: "CV-en (2)" };
+    const file = new URLSearchParams(location.hash.substring(1)).get("file");
+    if (file) {
+      let doc = docs.find((d) => d.files.includes(file));
+      if (doc) currentDoc = { title: doc.title, file };
+    }
     return {
-      currentDoc: { title: "CVs", file: "CV-en (2)" },
-      docs: [
-        {
-          title: "CVs",
-          files: ["CV-en (2)", "CV-hr (2)"],
-        },
-        {
-          title: "Competitions",
-          files: ["AZOO (6)", "Idea of the Year", "INOVA (6)"],
-        },
-        {
-          title: "Certificates",
-          files: ["Oracle Academy (7)", "English B1+"],
-        },
-        {
-          title: "Education",
-          files: ["Diplomas (8)", "Europass-en (2)", "Europass-hr (2)"],
-        },
-        {
-          title: "References",
-          files: ["CARNET", "Mario Tretinjak"],
-        },
-      ],
+      currentDoc,
+      docs,
       intro: undefined as unknown as HTMLElement,
       sidebar: undefined as unknown as HTMLElement,
       content: undefined as unknown as HTMLElement,
@@ -94,6 +101,7 @@ export default defineComponent({
   },
   activated() {
     if (!this.$pdfViewerReady) return;
+    location.hash = "file=" + this.currentDoc.file;
     clearTimeout(this.resetTimeout);
     clearTimeout(this.frameTimeout);
     this.reset();
@@ -129,6 +137,7 @@ export default defineComponent({
     },
     fileChanged(newFile: { title: string; file: string }) {
       this.frameLoaded = false;
+      location.hash = "file=" + newFile.file;
       setTimeout(() => (this.currentDoc = newFile), 150);
     },
     onFrameLoad() {
