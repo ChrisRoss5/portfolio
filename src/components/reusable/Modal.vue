@@ -44,7 +44,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .modal-mask {
   @include abs-cover(fixed, 0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);

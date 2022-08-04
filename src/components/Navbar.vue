@@ -37,6 +37,7 @@ export default defineComponent({
     };
   },
   mounted() {
+    const [a, b] = ["/about/experience", "/projects/desktop"];
     const contentEl = this.$el.parentElement as HTMLElement;
     let x0: number, y0: number, cancelled: boolean, isMultitouch: boolean;
     contentEl.addEventListener(
@@ -81,7 +82,6 @@ export default defineComponent({
         const idx = this.paths.indexOf(this.$pathEnding);
         const newPath = this.paths[idx + (isRight ? 1 : -1)];
         const timeout = newPath ? 0 : 150;
-        const [a, b] = ["/about/experience", "/projects/desktop"];
         this.transformTransition = true;
         this.$router.push(newPath || (this.$areProjects ? a : b));
         this.transformX += isRight ? -1 : 1;
