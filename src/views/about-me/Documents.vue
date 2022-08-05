@@ -5,8 +5,8 @@
         <iframe
           v-if="frameReady"
           v-show="frameLoaded"
-          :src="getDocPath(currentDoc)"
           @load="onFrameLoad"
+          ref="iframe"
         />
         <!-- #view=fit -->
       </Transition>
@@ -25,7 +25,7 @@
           v-for="file of files"
           :key="file"
           :class="{ 'file-active': currentDoc.file == file, file: true }"
-          @click="currentDoc.file != file && fileChanged({ title, file })"
+          @click="currentDoc.file != file && fileChanged(file)"
         >
           {{ file }}
         </div>
@@ -50,40 +50,34 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "DocumentsVue",
   data() {
-    const docs = [
-      {
-        title: "CVs",
-        files: ["CV-en (2)", "CV-hr (2)"],
-      },
-      {
-        title: "Competitions",
-        files: ["AZOO (6)", "Idea of the Year", "INOVA (6)"],
-      },
-      {
-        title: "Certificates",
-        files: ["Oracle Academy (7)", "English B1+"],
-      },
-      {
-        title: "Education",
-        files: ["Diplomas (8)", "Europass-en (2)", "Europass-hr (2)"],
-      },
-      {
-        title: "References",
-        files: ["CARNET", "Mario Tretinjak"],
-      },
-    ];
-    let currentDoc = { title: "CVs", file: "CV-en (2)" };
-    const file = new URLSearchParams(location.hash.substring(1)).get("file");
-    if (file) {
-      let doc = docs.find((d) => d.files.includes(file));
-      if (doc) currentDoc = { title: doc.title, file };
-    }
     return {
-      currentDoc,
-      docs,
+      currentDoc: { title: "CVs", file: "CV-en (2)" },
+      docs: [
+        {
+          title: "CVs",
+          files: ["CV-en (2)", "CV-hr (2)"],
+        },
+        {
+          title: "Competitions",
+          files: ["AZOO (6)", "Idea of the Year", "INOVA (6)"],
+        },
+        {
+          title: "Certificates",
+          files: ["Oracle Academy (7)", "English B1+"],
+        },
+        {
+          title: "Education",
+          files: ["Diplomas (8)", "Europass-en (2)", "Europass-hr (2)"],
+        },
+        {
+          title: "References",
+          files: ["CARNET", "Mario Tretinjak"],
+        },
+      ],
       intro: undefined as unknown as HTMLElement,
       sidebar: undefined as unknown as HTMLElement,
       content: undefined as unknown as HTMLElement,
+      iframeContentWindow: undefined as unknown as Window,
       introHeight: "",
       sidebarWidth: "",
       sidebarPadding: "",
@@ -101,12 +95,18 @@ export default defineComponent({
   },
   activated() {
     if (!this.$pdfViewerReady) return;
-    location.hash = "file=" + this.currentDoc.file;
-    clearTimeout(this.resetTimeout);
-    clearTimeout(this.frameTimeout);
+
     this.reset();
     this.frameReady = false;
-    this.frameTimeout = setTimeout(() => (this.frameReady = true), 1000);
+    this.frameTimeout = setTimeout(() => {
+      this.frameReady = true;
+      this.$nextTick(() => {
+        this.iframeContentWindow = (this.$refs
+          .iframe as HTMLIFrameElement)!.contentWindow!;
+        this.updateIframe();
+      });
+    }, 1000);
+    // Animations
     this.intro.offsetWidth; // nosonar
     this.introHeight = getComputedStyle(this.intro).height;
     this.intro.style.height = this.introHeight;
@@ -128,20 +128,43 @@ export default defineComponent({
   },
   methods: {
     reset() {
+      clearTimeout(this.resetTimeout);
+      clearTimeout(this.frameTimeout);
       this.intro.style.height = this.sidebar.style.width = "";
       this.sidebar.style.padding = "";
       this.content.style.maxWidth = "";
     },
+    updateIframe() {
+      const hash = "#file=" + this.currentDoc.file;
+      if (!location.hash) this.$router.replace({ hash });
+      else location.hash = hash;
+      const newUrl = this.getDocPath(this.currentDoc);
+      if (this.iframeContentWindow)
+        this.iframeContentWindow.location.replace(newUrl);
+    },
     getDocPath(doc: { title: string; file: string }) {
       return `/docs/${doc.title.toLowerCase()}/${doc.file}.pdf`;
     },
-    fileChanged(newFile: { title: string; file: string }) {
+    fileChanged(file: string) {
       this.frameLoaded = false;
-      location.hash = "file=" + newFile.file;
-      setTimeout(() => (this.currentDoc = newFile), 150);
+      setTimeout(() => (location.hash = "file=" + file), 150);
     },
     onFrameLoad() {
       setTimeout(() => (this.frameLoaded = true));
+    },
+  },
+  watch: {
+    $route: {
+      handler(newValue) {
+        const hash = newValue.hash.substring(1);
+        const file = new URLSearchParams(hash).get("file");
+        if (file) {
+          let doc = this.docs.find((d) => d.files.includes(file));
+          if (doc) this.currentDoc = { title: doc.title, file };
+          this.updateIframe();
+        }
+      },
+      immediate: true,
     },
   },
 });

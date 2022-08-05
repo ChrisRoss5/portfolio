@@ -56,7 +56,7 @@ export default defineComponent({
       if (!this.hovering) return;
       word.style.textShadow = "none";
       word.offsetWidth; // nosonar
-      word.style.textShadow = "0 0 0.8rem currentcolor";
+      word.style.textShadow = "0 0 0.8rem currentcolor, 0 0 0.4rem currentcolor";
       setTimeout(() => {
         word.style.textShadow = "none";
         setTimeout(() => this.wordEmphasis(word), this.getRandPause());
