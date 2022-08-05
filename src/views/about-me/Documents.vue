@@ -134,7 +134,7 @@ export default defineComponent({
       this.content.style.maxWidth = "";
     },
     updateIframe() {
-      const hash = "#file=" + this.currentDoc.file;
+      const hash = "#" + this.currentDoc.file;
       if (!location.hash) this.$router.replace({ hash });
       else location.hash = hash;
       const newUrl = this.getDocPath(this.currentDoc);
@@ -146,7 +146,7 @@ export default defineComponent({
     },
     fileChanged(file: string) {
       this.frameLoaded = false;
-      setTimeout(() => (location.hash = "file=" + file), 150);
+      setTimeout(() => (location.hash = file), 150);
     },
     onFrameLoad() {
       setTimeout(() => (this.frameLoaded = true));
@@ -155,8 +155,7 @@ export default defineComponent({
   watch: {
     $route: {
       handler(newValue) {
-        const hash = newValue.hash.substring(1);
-        const file = new URLSearchParams(hash).get("file");
+        const file = decodeURI(newValue.hash.substring(1));
         if (file) {
           let doc = this.docs.find((d) => d.files.includes(file));
           if (doc) this.currentDoc = { title: doc.title, file };
