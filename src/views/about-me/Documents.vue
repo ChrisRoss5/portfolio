@@ -95,7 +95,6 @@ export default defineComponent({
   },
   activated() {
     if (!this.$pdfViewerReady) return;
-
     this.reset();
     this.frameReady = false;
     this.frameTimeout = setTimeout(() => {

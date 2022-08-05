@@ -17,7 +17,7 @@
         </template>
         <div
           :style="{ transform: `translateX(${transformX * 100}%)` }"
-          :class="{ 'transform-transition': transformTransition }"
+          :class="{ 'is-touch-device': isTouchDevice }"
         ></div>
       </router-link>
     </TransitionGroup>
@@ -33,7 +33,10 @@ export default defineComponent({
   data() {
     return {
       transformX: 0,
-      transformTransition: false,
+      isTouchDevice:
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        (navigator as any).msMaxTouchPoints > 0,
     };
   },
   mounted() {
@@ -82,13 +85,9 @@ export default defineComponent({
         const idx = this.paths.indexOf(this.$pathEnding);
         const newPath = this.paths[idx + (isRight ? 1 : -1)];
         const timeout = newPath ? 0 : 150;
-        this.transformTransition = true;
         this.$router.push(newPath || (this.$areProjects ? a : b));
         this.transformX += isRight ? -1 : 1;
-        setTimeout(() => {
-          this.transformX = 0;
-          this.transformTransition = false;
-        }, timeout);
+        setTimeout(() => (this.transformX = 0), timeout);
       },
       { passive: true }
     );
@@ -116,7 +115,7 @@ export default defineComponent({
       @include abs-cover(absolute, null, 0, 0, 0);
       height: 0;
       background: linear-gradient(to right, var(--special-a), var(--special-b));
-      &:not(.transform-transition) {
+      &:not(.is-touch-device) {
         transition: height 150ms;
       }
     }
@@ -125,9 +124,9 @@ export default defineComponent({
       background: linear-gradient(to top, var(--e), var(--c));
       div {
         height: 5px;
-        transition: transform 100ms, height 150ms;
-        &.transform-transition {
-          transition: transform 100ms;
+        transition: transform 150ms, height 150ms;
+        &.is-touch-device {
+          transition: transform 150ms;
         }
       }
     }
