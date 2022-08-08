@@ -241,7 +241,7 @@ export const projects: Projects = {
         home: "https://kristijan.pages.dev",
         github: "https://github.com/ChrisRoss5/portfolio",
       },
-      tech: ["TypeScript", "Vue", "SCSS", "Cloudflare"],
+      tech: ["TypeScript", "Vue", "SCSS", "Cloudflare", "Google Analytics"],
       description: /* html */ `
       This is where you're at! I googled "kr logo", downloaded a .png, converted it to .svg,
       and modified the svg.`,
