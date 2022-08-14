@@ -91,7 +91,7 @@ export default defineComponent({
   mounted() {
     this.intro = document.querySelector("#intro") as HTMLElement;
     this.sidebar = document.querySelector("#sidebar") as HTMLElement;
-    this.content = document.querySelector("#content") as HTMLElement;
+    this.content = document.querySelector(".content") as HTMLElement;
   },
   activated() {
     if (!this.$pdfViewerReady) return;

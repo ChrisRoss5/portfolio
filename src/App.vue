@@ -28,7 +28,7 @@
       <Transition name="slide">
         <component
           :is="Component"
-          id="content"
+          class="content"
           :sortedColumn="$areProjects ? sortedColumn : null"
         />
       </Transition>
@@ -113,8 +113,8 @@ export default defineComponent({
     padding: 0 5vw;
   }
 }
-#content {
-  overflow: auto;
+.content {
+  overflow: hidden auto;
 }
 #themes-note {
   text-align: center;
