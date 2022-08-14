@@ -2,7 +2,7 @@
   width: 1rem;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--b);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--dot);
