@@ -6,7 +6,7 @@
           <div
             v-for="(column, i) in projectsColumns"
             :key="i"
-            v-show="!column.$isBrowserApp || $isBrowserApp"
+            v-show="!column.browserOnly || $isBrowserApp"
             :class="{ hover: !column.unsortable, first: i == 0 }"
             @click="!column.unsortable && sort(column.name)"
           >

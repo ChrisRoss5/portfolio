@@ -23,14 +23,14 @@ export type Projects = {
 export interface Column {
   name: keyof Project;
   unsortable?: boolean;
-  $isBrowserApp?: boolean;
+  browserOnly?: boolean;
 }
 
 export const columns: Column[] = [
   { name: "name" },
   { name: "created" },
-  { name: "lastUpdated", $isBrowserApp: true },
-  { name: "weeklyUsers", $isBrowserApp: true },
+  { name: "lastUpdated", browserOnly: true },
+  { name: "weeklyUsers", browserOnly: true },
   { name: "links", unsortable: true },
   { name: "tech", unsortable: true },
 ];
@@ -115,7 +115,7 @@ export const projects: Projects = {
       pinch-to-zoom functionality on touch screens, or the Windows Magnifier.
       It is the most advanced of all my apps
       and is reaching browsers' limits in several ways. I talk through them in detail on the
-      extension's test page, and you don't want to miss out if you love web tech!`,
+      extension's test page, and you don't want to miss it!`,
       screenshot: "SmoothZoom – Quick Page Zoom",
     },
     {
@@ -133,8 +133,8 @@ export const projects: Projects = {
       description: /* html */ `
       A browser extension that enables you to search for videos on Youtube™
       by Subtitles/CC in a specified language. Once you select the language,
-      the extension remembers it and highlights all video thumbnails that
-      have CC in that language, anywhere on youtube.`,
+      the extension stores it and highlights all video thumbnails that
+      have CC in specified language, anywhere on Youtube.`,
       screenshot: "Search by SubtitlesCC for Youtube™",
     },
   ],
@@ -273,7 +273,7 @@ export const projects: Projects = {
       },
       tech: ["Python", "Windows"],
       description: /* html */ `
-      My first GUI App! Fun with patterns! Created in Python with Tkinter GUI module.`,
+      My first GUI App! Created in Python with Tkinter GUI module.`,
       screenshot: "Patterns",
     },
   ],

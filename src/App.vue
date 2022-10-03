@@ -99,6 +99,7 @@ export default defineComponent({
     "a b"
     "c b" 1fr / 1fr;
   background: var(--d);
+  transition: opacity 150ms;
 }
 #dynamic-content {
   display: flex;

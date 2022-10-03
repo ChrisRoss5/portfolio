@@ -86,25 +86,46 @@ export default defineComponent({
       frameTimeout: 0,
       frameReady: false,
       frameLoaded: false,
+      noTransitionsSheet: null as HTMLElement | null,
     };
+  },
+  beforeRouteEnter(to, from) {
+    if (window.matchMedia("(max-width: 1366px)") && from.path != "/") return;
+    const style = document.createElement("style");
+    style.id = "no-transitions";
+    style.innerHTML = `
+      #intro, #columns { transition: none !important; }
+      #sidebar { transition: 1ms !important; }
+      #app { transition: none !important; opacity: 0; }`;
+    document.querySelector("head")!.appendChild(style);
   },
   mounted() {
     this.intro = document.querySelector("#intro") as HTMLElement;
     this.sidebar = document.querySelector("#sidebar") as HTMLElement;
     this.content = document.querySelector(".content") as HTMLElement;
+    this.noTransitionsSheet = document.querySelector("#no-transitions");
   },
   activated() {
+    if (this.noTransitionsSheet) {
+      setTimeout(() => {
+        this.noTransitionsSheet!.remove();
+        this.noTransitionsSheet = null;
+      }, 250);
+    }
     if (!this.$pdfViewerReady) return;
     this.reset();
     this.frameReady = false;
-    this.frameTimeout = setTimeout(() => {
-      this.frameReady = true;
-      this.$nextTick(() => {
-        this.iframeContentWindow = (this.$refs
-          .iframe as HTMLIFrameElement)!.contentWindow!;
-        this.updateIframe();
-      });
-    }, 1000);
+    this.frameTimeout = setTimeout(
+      () => {
+        this.frameReady = true;
+        this.$nextTick(() => {
+          this.iframeContentWindow = (this.$refs
+            .iframe as HTMLIFrameElement)!.contentWindow!;
+          this.updateIframe();
+        });
+      },
+      this.noTransitionsSheet ? 0 : 1000
+    );
     // Animations
     this.intro.offsetWidth; // nosonar
     this.introHeight = getComputedStyle(this.intro).height;
