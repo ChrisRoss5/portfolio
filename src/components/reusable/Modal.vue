@@ -66,6 +66,9 @@ export default defineComponent({
   padding: 20px 80px 20px 40px;
   font-size: 1.2rem;
   background: var(--e);
+  .app-name {
+    padding: 0 !important;
+  }
 }
 .modal-body {
   position: relative;
