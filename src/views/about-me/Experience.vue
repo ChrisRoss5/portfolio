@@ -24,9 +24,9 @@
         <li>Github Actions/Workflows</li>
         <li>Chrome Developer (Apps/Extensions/Themes)</li>
         <li>PayPal Developer</li>
-        <li>XAMPP/PHP</li>
-        <li>SSMS/SQL</li>
+        <li>XAMPP/PHP, SSMS/SQL</li>
         <li>Wordpress</li>
+        <li>Bootstrap</li>
         <li>jQuery</li>
       </ul>
     </div>

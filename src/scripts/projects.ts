@@ -238,7 +238,7 @@ export const projects: Projects = {
       name: "My Developer Portfolio",
       created: new Date("May 1, 2022"),
       links: {
-        home: "https://kristijan.pages.dev",
+        home: "https://k1k1.dev",
         github: "https://github.com/ChrisRoss5/portfolio",
       },
       tech: ["TypeScript", "Vue", "SCSS", "Cloudflare", "Google Analytics"],
@@ -246,6 +246,36 @@ export const projects: Projects = {
       This is where you're at! I googled "kr logo", downloaded a .png, converted it to .svg,
       and modified the svg.`,
       screenshot: "My Developer Portfolio",
+    },
+    {
+      img: "Algebra",
+      name: "ASIBP Projekt",
+      created: new Date("October 11, 2022"),
+      links: {
+        home: "https://asibp.k1k1.dev",
+        github: "https://github.com/ChrisRoss5/supit-projekt",
+      },
+      tech: ["JavaScript", "Firebase"],
+      description: /* html */ `
+      A college project from ASIBP (Autentikacijski sustavi i baze podataka) course.
+      The project's goal is to provide as many authentication methods as possible.
+      After signing in, users can save a message on the Firebase Realtime Database.`,
+      screenshot: "ASIBP Projekt",
+    },
+    {
+      img: "Algebra",
+      name: "SUPIT Projekt",
+      created: new Date("October 19, 2022"),
+      links: {
+        home: "https://supit.k1k1.dev",
+        github: "https://github.com/ChrisRoss5/firebase-auth",
+      },
+      tech: ["jQuery", "Bootstrap"],
+      description: /* html */ `
+      A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.
+      The project's goal is to master Bootstrap and jQuery by cloning a website
+      representing Algebra University College.`,
+      screenshot: "SUPIT Projekt",
     },
   ],
   desktop: [
