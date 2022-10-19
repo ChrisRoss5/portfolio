@@ -56,7 +56,11 @@ export default defineComponent({
       if (!this.hovering) return;
       word.style.textShadow = "none";
       word.offsetWidth; // nosonar
-      word.style.textShadow = "0 0 0.8rem currentcolor, 0 0 0.4rem currentcolor";
+      if (document.body.classList.contains("light"))
+        word.style.textShadow = "0 0 1rem currentcolor";
+      else
+        word.style.textShadow =
+          "0 0 0.6rem currentcolor, 0 0 0.4rem currentcolor";
       setTimeout(() => {
         word.style.textShadow = "none";
         setTimeout(() => this.wordEmphasis(word), this.getRandPause());

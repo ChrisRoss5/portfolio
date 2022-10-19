@@ -132,9 +132,9 @@ export const projects: Projects = {
       tech: ["TypeScript", "SCSS"],
       description: /* html */ `
       A browser extension that enables you to search for videos on Youtube™
-      by Subtitles/CC in a specified language. Once you select the language,
+      by Subtitles/CC in a specified language. Once you select a language,
       the extension stores it and highlights all video thumbnails that
-      have CC in specified language, anywhere on Youtube.`,
+      have CC in the specified language, anywhere on Youtube.`,
       screenshot: "Search by SubtitlesCC for Youtube™",
     },
   ],
