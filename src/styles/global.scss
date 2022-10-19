@@ -85,13 +85,6 @@ svg:not([unmodified]) {
     padding: 1rem !important;
   }
 }
-@mixin modal-cover {
-  width: 100% !important;
-  height: 100% !important;
-  .app-name {
-    padding: 0 !important;
-  }
-}
 
 /* animations */
 

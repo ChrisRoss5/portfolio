@@ -130,7 +130,8 @@
     left: 0;
   }
   .modal-container {
-    @include modal-cover;
+    width: 100% !important;
+    height: 100% !important;
   }
   .modal-close {
     align-items: normal;
@@ -164,7 +165,8 @@
 }
 @media (orientation: landscape) and (max-width: 1366px) and (max-height: 768px) {
   .modal-container {
-    @include modal-cover;
+    width: 100% !important;
+    height: 100% !important;
     overflow: auto !important;
   }
   #themes {

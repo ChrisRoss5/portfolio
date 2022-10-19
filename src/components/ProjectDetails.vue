@@ -129,7 +129,7 @@ export default defineComponent({
     swipeProject(right: boolean) {
       const newIdx = this.projectIdx + (right ? 1 : -1);
       const lastIdx = this.currentProjects.length - 1;
-      this.$emit("next", Math.max(0, Math.min(newIdx, lastIdx)));
+      this.$emit(0 <= newIdx && newIdx <= lastIdx ? "swipe" : "close", newIdx);
     },
   },
   computed: {

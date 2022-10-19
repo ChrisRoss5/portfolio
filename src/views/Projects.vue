@@ -64,7 +64,7 @@
       :modalProject="modalProject"
       :currentProjects="currentProjects"
       @close="modalOpen = false"
-      @next="modalProject = currentProjects[$event]"
+      @swipe="modalProject = currentProjects[$event]"
     />
   </div>
 </template>
