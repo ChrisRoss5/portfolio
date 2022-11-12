@@ -13,9 +13,9 @@
           Completed first year with 60/60 ECTS points.
           <br />
           <br />
-          ALGEBRA UNIVERSITY COLLEGE TITLE: <br />
-          bacc. ing. comp. Bachelor of Computer Engineering, sub-specialization
-          in Software Engineering.
+          To become: <br />
+          bacc. ing. comp. (Bachelor of Computer Engineering, sub-specialization
+          in Software Engineering)
         </div>
       </div>
     </div>

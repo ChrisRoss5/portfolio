@@ -90,7 +90,7 @@ export const projects: Projects = {
           "https://chrome.google.com/webstore/detail/mfaepkdaodjclepbclabjbigjeohfdje",
         github: "https://github.com/ChrisRoss5/Google-gifs-autoplay",
       },
-      tech: ["JSON"],
+      tech: ["JavaScript", "JSON"],
       description: /* html */ `
       A browser extension that autoplays gifs on Google™ Search Images.`,
       screenshot: "Gifs autoplay for Google™",
@@ -109,12 +109,12 @@ export const projects: Projects = {
       },
       tech: ["TypeScript", "SCSS"],
       description: /* html */ `
-      A browser extension that enables you to zoom anywhere, on any page,
+      A browser extension that enables zooming anywhere, on any page,
       without changing the page layout! Simply position the cursor and use the mouse wheel
       to zoom in/out at the desired location. You can compare this extension to
       pinch-to-zoom functionality on touch screens, or the Windows Magnifier.
       It is the most advanced of all my apps
-      and is reaching browsers' limits in several ways. I talk through them in detail on the
+      and reaches browser limits in several ways. I talk through them in detail on the
       extension's test page, and you don't want to miss it!`,
       screenshot: "SmoothZoom – Quick Page Zoom",
     },
@@ -131,7 +131,7 @@ export const projects: Projects = {
       },
       tech: ["TypeScript", "SCSS"],
       description: /* html */ `
-      A browser extension that enables you to search for videos on Youtube™
+      A browser extension that enables searching for videos on Youtube™
       by Subtitles/CC in a specified language. Once you select a language,
       the extension stores it and highlights all video thumbnails that
       have CC in the specified language, anywhere on Youtube.`,
@@ -213,7 +213,14 @@ export const projects: Projects = {
       name: "Network Planner Home",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://network-planner.com" },
-      tech: ["JavaScript", "Vue", "SCSS", "Firebase", "Paypal"],
+      tech: [
+        "JavaScript",
+        "Vue",
+        "SCSS",
+        "Firebase",
+        "Google Analytics",
+        "Paypal",
+      ],
       description: /* html */ `
       The homepage of Network Planner, where you can find all information about it,
       purchase plans, and manage your user account.
@@ -225,7 +232,7 @@ export const projects: Projects = {
       name: "Network Planner App",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://app.network-planner.com" },
-      tech: ["JavaScript", "Vue", "SCSS", "Firebase"],
+      tech: ["JavaScript", "Vue", "SCSS", "Firebase", "Google Analytics"],
       description: /* html */ `
       A web-mapping software for organizing locations into groups.
       By analyzing groups' statistics (computed properties of locations),
@@ -249,11 +256,11 @@ export const projects: Projects = {
     },
     {
       img: "Algebra",
-      name: "ASIBP Projekt",
+      name: "Project ASIBP",
       created: new Date("October 11, 2022"),
       links: {
         home: "https://asibp.k1k1.dev",
-        github: "https://github.com/ChrisRoss5/supit-projekt",
+        github: "https://github.com/ChrisRoss5/firebase-auth",
       },
       tech: ["JavaScript", "Firebase"],
       description: /* html */ `
@@ -264,13 +271,13 @@ export const projects: Projects = {
     },
     {
       img: "Algebra",
-      name: "SUPIT Projekt",
+      name: "Project SUPIT",
       created: new Date("October 19, 2022"),
       links: {
         home: "https://supit.k1k1.dev",
-        github: "https://github.com/ChrisRoss5/firebase-auth",
+        github: "https://github.com/ChrisRoss5/supit-projekt",
       },
-      tech: ["jQuery", "Bootstrap"],
+      tech: ["JavaScript", "jQuery", "Bootstrap"],
       description: /* html */ `
       A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.
       The project's goal is to master Bootstrap and jQuery by cloning a website

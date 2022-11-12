@@ -1,13 +1,12 @@
 {
-  "name": "Kristijan Rosandić \\ Kiki",
+  "name": "Kristijan Rosandić ~ Kiki",
   "version": "2002.5.8",
   "description": "Student",
   "homepage": "Algebra University College",
   "keywords": [
     "Problem solving",
     "Algorithms",
-    "UI/UX",
-    "Visual Design"
+    "UI/UX"
   ],
   "engines": {
     "html": "5",
@@ -28,9 +27,8 @@
     "os": "win10|win11",
     "editor": "vs|vsc|pycharm",
     "browser": "chrome",
-    "internet": "200mbps",
     "music": "kyle-landry",
-    "game": "smite"
+    "game": "smite|world-of-warships"
   },
   "workspaces": [
     "Google Cloud Platform",
