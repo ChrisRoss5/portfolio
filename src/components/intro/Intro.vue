@@ -2,7 +2,7 @@
   <div id="intro">
     <component :is="'LogoSVG'" id="logo" :class="{ completed }" />
     <div id="title">
-      <span id="hi" style="font-size: 4rem">Hi</span>
+      <!-- <span id="hi" style="font-size: 4rem">Hi</span> -->
       <span id="typewriter" ref="typewriter">
         <div v-for="(word, i) in sentence.split(' ')" :key="i">
           <span v-for="(letter, j) in Array.from(word)" :key="j">
@@ -26,7 +26,7 @@ export default defineComponent({
   props: { completed: Boolean },
   data() {
     return {
-      sentence: ", I'm Kristijan Rosandić, Software Engineer.",
+      sentence: "Kristijan Rosandić — Software Engineer Portfolio",
     };
   },
   mounted() {
@@ -72,16 +72,18 @@ export default defineComponent({
   will-change: filter;
   z-index: -1;
   &.completed {
-    filter: drop-shadow(-3px -3px 6px var(--special-a))
-      drop-shadow(3px 3px 6px var(--special-b));
+    filter: drop-shadow(-2px -2px 4px var(--special-a))
+      drop-shadow(2px 2px 4px var(--special-b));
   }
   path {
     fill: var(--d);
   }
 }
 #title {
-  font-size: 1.2rem;
-  letter-spacing: 0.2rem;
+  padding-right: 2rem;
+  font-size: 1.3rem;
+  letter-spacing: 0.1rem;
+  line-height: 2rem;
 }
 #typewriter > div {
   display: inline-block;
@@ -94,9 +96,10 @@ export default defineComponent({
     &[caret]::after {
       content: "";
       position: absolute;
+      top: 0;
       width: 0.3rem;
       height: 1rem;
-      transform: scaleY(2) translateX(-0.5rem);
+      transform: scaleY(2) translate(-0.4rem, 0);
       background: var(--a);
       box-shadow: 0 0 8px 0 var(--a);
     }

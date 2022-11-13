@@ -2,7 +2,7 @@ export interface Project {
   img: string;
   name: string;
   created: Date;
-  lastUpdated?: Date | null;
+  updated?: Date | null;
   weeklyUsers?: number;
   links: {
     chrome?: string;
@@ -29,7 +29,7 @@ export interface Column {
 export const columns: Column[] = [
   { name: "name" },
   { name: "created" },
-  { name: "lastUpdated", browserOnly: true },
+  { name: "updated", browserOnly: true },
   { name: "weeklyUsers", browserOnly: true },
   { name: "links", unsortable: true },
   { name: "tech", unsortable: true },
@@ -41,7 +41,7 @@ export const projects: Projects = {
       img: "e-Dnevnik Plus",
       name: "e-Dnevnik Plus",
       created: new Date("March 18, 2019"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
@@ -64,7 +64,7 @@ export const projects: Projects = {
       img: "e-Dnevnik Plus",
       name: "e-Dnevnik Plus za nastavnike",
       created: new Date("May 26, 2019"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
@@ -83,7 +83,7 @@ export const projects: Projects = {
       img: "Gifs autoplay for Google™",
       name: "Gifs autoplay for Google™",
       created: new Date("August 31, 2020"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
@@ -99,13 +99,15 @@ export const projects: Projects = {
       img: "SmoothZoom – Quick Page Zoom",
       name: "SmoothZoom – Quick Page Zoom",
       created: new Date("March 20, 2022"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
           "https://chrome.google.com/webstore/detail/nlloamlgdioincflcopfgkbikjgaiihg",
         firefox:
           "https://addons.mozilla.org/en-US/firefox/addon/smoothzoom-quick-page-zoom/",
+        home: "https://zoom.k1k1.dev",
+        github: "https://github.com/ChrisRoss5/SmoothZoom",
       },
       tech: ["TypeScript", "SCSS"],
       description: /* html */ `
@@ -113,16 +115,17 @@ export const projects: Projects = {
       without changing the page layout! Simply position the cursor and use the mouse wheel
       to zoom in/out at the desired location. You can compare this extension to
       pinch-to-zoom functionality on touch screens, or the Windows Magnifier.
-      It is the most advanced of all my apps
-      and reaches browser limits in several ways. I talk through them in detail on the
-      extension's test page, and you don't want to miss it!`,
+      It is my most advanced app and reaches several browser limits.
+      I talk through them in detail on the extension's 
+      <a class="new-tab-link" href="https://zoom.k1k1.dev/#author" target="_blank">
+      test page</a>`,
       screenshot: "SmoothZoom – Quick Page Zoom",
     },
     {
       img: "Search by SubtitlesCC for Youtube™",
       name: "Search by Subtitles/CC for Youtube™",
       created: new Date("March 8, 2022"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
@@ -143,7 +146,7 @@ export const projects: Projects = {
       img: "SpaceX",
       name: "SpaceX Animated New Tab",
       created: new Date("Sep 13, 2020"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
@@ -164,7 +167,7 @@ export const projects: Projects = {
       img: "SpaceX",
       name: "SpaceX Theme",
       created: new Date("Apr 24, 2022"),
-      lastUpdated: null,
+      updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
@@ -281,7 +284,7 @@ export const projects: Projects = {
       description: /* html */ `
       A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.
       The project's goal is to master Bootstrap and jQuery by cloning a website
-      representing Algebra University College.`,
+      representing Algebra University College in a video.`,
       screenshot: "SUPIT Projekt",
     },
   ],

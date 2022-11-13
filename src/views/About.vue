@@ -32,11 +32,7 @@ export default defineComponent({ name: "AboutVue" });
       overflow: auto;
     }
     a {
-      color: var(--special-b);
-      &::after {
-        content: "⧉";
-        margin: 0 3px 0 5px;
-      }
+      @extend .new-tab-link
     }
   }
 }

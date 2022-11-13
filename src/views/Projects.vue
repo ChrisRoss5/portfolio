@@ -26,8 +26,8 @@
           </div>
           <div>{{ app.created.toLocaleDateString("en-CA") }}</div>
           <Transition name="reveal" mode="out-in">
-            <div v-if="app.lastUpdated">
-              {{ app.lastUpdated.toLocaleDateString("en-CA") }}
+            <div v-if="app.updated">
+              {{ app.updated.toLocaleDateString("en-CA") }}
             </div>
             <div v-else-if="$isBrowserApp">
               <component :is="'LoadingSVG'" />
@@ -97,13 +97,13 @@ export default defineComponent({
       return n.toLocaleString() + (n % 1000 == 0 ? "+" : "");
     },
     getBrowserAppInfo(app: Project) {
-      if (!app.links.chrome || app.lastUpdated) return;
+      if (!app.links.chrome || app.updated) return;
       const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
       fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
         .then((result) => {
           app.weeklyUsers = result.weeklyUsers;
-          app.lastUpdated = new Date(result.lastUpdated);
+          app.updated = new Date(result.lastUpdated);
         });
     },
   },

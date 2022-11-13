@@ -61,6 +61,13 @@ svg:not([unmodified]) {
     }
   }
 }
+.new-tab-link {
+  color: var(--special-b);
+  &::after {
+    content: "⧉";
+    margin: 0 3px 0 5px;
+  }
+}
 @mixin abs-cover($position, $top, $right, $bottom, $left) {
   position: $position;
   @if $top {
