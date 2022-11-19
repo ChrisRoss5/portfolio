@@ -16,7 +16,7 @@ module.exports = {
   },
   chainWebpack: (config) =>
     config.plugin("html").tap((args) => {
-      args[0].title = "Kristijan Rosandić — Developer Portfolio";
+      args[0].title = "Kristijan Rosandić — Software Engineer Portfolio";
       return args;
     }),
 };
