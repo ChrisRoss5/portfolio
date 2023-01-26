@@ -46,7 +46,7 @@
               :href="value"
               :class="{ invert: /(github|home|download)/.test(key) }"
               target="_blank"
-              :download="value.endsWith('exe') ? '' : null"
+              :download="value?.endsWith('exe') ? '' : null"
             >
               <component :is="key + 'SVG'" unmodified />
             </a>
@@ -123,14 +123,17 @@ export default defineComponent({
       },
       immediate: true,
     },
-    sortedColumn(newVal: SortedColumn) {
-      if (newVal.isInitial) this.rowsEnteringDirection = false;
-      const name = newVal.name as keyof Project;
-      this.currentProjects.sort((a, b) => {
-        if (a[name]! < b[name]!) return newVal.descending ? -1 : 1;
-        if (a[name]! > b[name]!) return newVal.descending ? 1 : -1;
-        return 0;
-      });
+    sortedColumn: {
+      handler(newVal: SortedColumn) {
+        if (newVal.isInitial) this.rowsEnteringDirection = false;
+        const name = newVal.name as keyof Project;
+        this.currentProjects.sort((a, b) => {
+          if (a[name]! < b[name]!) return newVal.descending ? -1 : 1;
+          if (a[name]! > b[name]!) return newVal.descending ? 1 : -1;
+          return 0;
+        });
+      },
+      immediate: true,
     },
   },
 });

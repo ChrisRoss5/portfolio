@@ -116,7 +116,7 @@ export const projects: Projects = {
       to zoom in/out at the desired location. You can compare this extension to
       pinch-to-zoom functionality on touch screens, or the Windows Magnifier.
       It is my most advanced app and reaches several browser limits.
-      I talk through them in detail on the extension's 
+      I talk through them in detail on the extension's
       <a class="new-tab-link" href="https://zoom.k1k1.dev/#author" target="_blank">
       test page</a>`,
       screenshot: "SmoothZoom – Quick Page Zoom",
@@ -192,7 +192,14 @@ export const projects: Projects = {
         github:
           "https://github.com/ChrisRoss5/e-Dnevnik-Plus/tree/master/ednevnik.plus",
       },
-      tech: ["TypeScript", "Vue", "SCSS", "Google Analytics", "Paypal"],
+      tech: [
+        "Webpack",
+        "TypeScript",
+        "Vue",
+        "SCSS",
+        "Google Analytics",
+        "Paypal",
+      ],
       description: /* html */ `
       The homepage of e-Dnevnik Plus, where you can find all information about it and its versions.`,
       screenshot: "e-Dnevnik Plus Home",
@@ -204,7 +211,7 @@ export const projects: Projects = {
       links: {
         github: "https://github.com/ChrisRoss5/e-Dnevnik-Plus",
       },
-      tech: ["TypeScript", "Vue", "SCSS", "Google Analytics"],
+      tech: ["Webpack", "TypeScript", "Vue", "SCSS", "Google Analytics"],
       description: /* html */ `
       <b>e-Dnevnik Plus App</b> is my own version of e-Dnevnik that runs as a local page.
       It is my largest project so far.
@@ -217,6 +224,7 @@ export const projects: Projects = {
       created: new Date("Jan 17, 2021"),
       links: { home: "https://network-planner.com" },
       tech: [
+        "Webpack",
         "JavaScript",
         "Vue",
         "SCSS",
@@ -235,7 +243,14 @@ export const projects: Projects = {
       name: "Network Planner App",
       created: new Date("Jan 17, 2021"),
       links: { home: "https://app.network-planner.com" },
-      tech: ["JavaScript", "Vue", "SCSS", "Firebase", "Google Analytics"],
+      tech: [
+        "Webpack",
+        "JavaScript",
+        "Vue",
+        "SCSS",
+        "Firebase",
+        "Google Analytics",
+      ],
       description: /* html */ `
       A web-mapping software for organizing locations into groups.
       By analyzing groups' statistics (computed properties of locations),
@@ -251,7 +266,14 @@ export const projects: Projects = {
         home: "https://k1k1.dev",
         github: "https://github.com/ChrisRoss5/portfolio",
       },
-      tech: ["TypeScript", "Vue", "SCSS", "Cloudflare", "Google Analytics"],
+      tech: [
+        "Webpack",
+        "TypeScript",
+        "Vue",
+        "SCSS",
+        "Cloudflare",
+        "Google Analytics",
+      ],
       description: /* html */ `
       This is where you're at! I googled "kr logo", downloaded a .png, converted it to .svg,
       and modified the svg.`,
@@ -280,11 +302,23 @@ export const projects: Projects = {
         home: "https://supit.k1k1.dev",
         github: "https://github.com/ChrisRoss5/supit-projekt",
       },
-      tech: ["JavaScript", "jQuery", "Bootstrap"],
+      tech: [
+        "Vite",
+        "TypeScript",
+        "jQuery",
+        "Vue",
+        "React",
+        "Svelte",
+        "Bootstrap",
+        "Tailwind",
+        "PostCSS",
+        "Cloudflare"
+      ],
       description: /* html */ `
       A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.
       The project's goal is to master Bootstrap and jQuery by cloning a website
-      representing Algebra University College in a video.`,
+      representing Algebra University College from a video. I recreated the website
+      multiple times with other frameworks and libraries to test their performance.`,
       screenshot: "SUPIT Projekt",
     },
   ],

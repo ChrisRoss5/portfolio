@@ -47,7 +47,7 @@ export default defineComponent({
       socials: {
         Github: "https://github.com/ChrisRoss5",
         Facebook: "https://www.facebook.com/kristijan.rosandic.9/",
-        Linkedin:
+        LinkedIn:
           "https://www.linkedin.com/in/kristijan-rosandi%C4%87-a32589172/",
         Twitter: "https://twitter.com/RosRosandic",
         Youtube: "https://www.youtube.com/channel/UCiYn99aPlfjXYmulJaWju_A",

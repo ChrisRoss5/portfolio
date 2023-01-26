@@ -113,6 +113,8 @@
     .icons {
       position: relative;
       flex: 1 1 100%;
+      padding-left: 5rem;
+      padding-right: 5rem;
       &::before {
         @include abs-cover(absolute, 50%, null, null, 20px);
         transform: translateY(-50%);
