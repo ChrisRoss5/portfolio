@@ -70,10 +70,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { Projects, Project, projects } from "@/scripts/projects";
 import { SortedColumn } from "@/App.vue";
 import ProjectDetails from "@/components/ProjectDetails.vue";
+import { Project, Projects, projects } from "@/scripts/projects";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "ProjectsVue",
@@ -99,12 +99,21 @@ export default defineComponent({
     getBrowserAppInfo(app: Project) {
       if (!app.links.chrome || app.updated) return;
       const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
-      fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
+      return fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
         .then((result) => {
           app.weeklyUsers = result.weeklyUsers;
           app.updated = new Date(result.lastUpdated);
         });
+    },
+    sort(newVal: SortedColumn) {
+      if (newVal.isInitial) this.rowsEnteringDirection = false;
+      const name = newVal.name as keyof Project;
+      this.currentProjects.sort((a, b) => {
+        if (a[name]! < b[name]!) return newVal.descending ? -1 : 1;
+        if (a[name]! > b[name]!) return newVal.descending ? 1 : -1;
+        return 0;
+      });
     },
   },
   computed: {
@@ -119,19 +128,18 @@ export default defineComponent({
         const [i1, i2] = [keys.indexOf(newVal), keys.indexOf(prevVal)];
         this.rowsEnteringDirection = i1 < i2 || i2 == -1 ? "left" : "right";
         if (this.$isBrowserApp)
-          for (const app of this.currentProjects) this.getBrowserAppInfo(app);
+          Promise.all(this.currentProjects.map(this.getBrowserAppInfo)).then(
+            () =>
+              setTimeout(() => {
+                /* this.sort(this.sortedColumn) */
+              }, 500)
+          );
       },
       immediate: true,
     },
     sortedColumn: {
       handler(newVal: SortedColumn) {
-        if (newVal.isInitial) this.rowsEnteringDirection = false;
-        const name = newVal.name as keyof Project;
-        this.currentProjects.sort((a, b) => {
-          if (a[name]! < b[name]!) return newVal.descending ? -1 : 1;
-          if (a[name]! > b[name]!) return newVal.descending ? 1 : -1;
-          return 0;
-        });
+        this.sort(newVal);
       },
       immediate: true,
     },
