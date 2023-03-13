@@ -55,11 +55,9 @@ export default defineComponent({
       const result = text.replace(/([A-Z])/g, " $1");
       return result.charAt(0).toUpperCase() + result.slice(1);
     },
-    sort(name: keyof Project, descending?: boolean) {
+    sort(name: keyof Project, descending?: boolean, isInitial?: boolean) {
       const isSameColumn = name == this.sortedColumn.name;
-      const isInitial = descending == undefined;
-      if (isInitial)
-        descending = isSameColumn ? !this.sortedColumn.descending : false;
+      descending ||= isSameColumn ? !this.sortedColumn.descending : false;
       this.$emit("update:sortedColumn", { name, descending, isInitial });
     },
   },
@@ -72,7 +70,7 @@ export default defineComponent({
   watch: {
     $route() {
       if (this.$areProjects)
-        this.sort(this.$isBrowserApp ? "weeklyUsers" : "name", false);
+        this.sort(this.$isBrowserApp ? "weeklyUsers" : "name", false, true);
     },
   },
 });

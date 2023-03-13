@@ -48,12 +48,13 @@ import MenuIcon from "./components/MenuIcon.vue";
 import NavbarVue from "./components/Navbar.vue";
 import SidebarVue from "./components/Sidebar.vue";
 import ThemesVue from "./components/Themes.vue";
+import { Project } from "./scripts/projects";
 
 const aboutMeKeys = Object.keys(sitemap.about);
 const sortedColumn = {
-  name: "weeklyUsers",
+  name: "created" as keyof Project,
   descending: false,
-  isInitial: false,
+  isInitial: true,
 };
 export type SortedColumn = typeof sortedColumn;
 

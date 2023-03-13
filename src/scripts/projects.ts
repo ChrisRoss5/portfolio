@@ -140,7 +140,6 @@ export const projects: Projects = {
       have CC in the specified language, anywhere on Youtube.`,
       screenshot: "Search by SubtitlesCC for Youtube™",
     },
-
     {
       img: "SpaceX",
       name: "SpaceX Animated New Tab",
