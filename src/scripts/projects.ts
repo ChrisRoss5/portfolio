@@ -17,7 +17,7 @@ export interface Project {
 }
 
 export type Projects = {
-  [key in "extensions" | "themes" | "web" | "desktop"]: Project[];
+  [key in "extensions" | "web" | "desktop"]: Project[];
 };
 
 export interface Column {
@@ -140,8 +140,7 @@ export const projects: Projects = {
       have CC in the specified language, anywhere on Youtube.`,
       screenshot: "Search by SubtitlesCC for Youtube™",
     },
-  ],
-  themes: [
+
     {
       img: "SpaceX",
       name: "SpaceX Animated New Tab",
@@ -157,8 +156,7 @@ export const projects: Projects = {
       },
       tech: ["TypeScript"],
       description: /* html */ `
-      This is an extension but I labeled it as a theme because its main purpose is decorative.
-      It replaces every New Tab with my SpaceX page, on top of which are
+      A browser extension that replaces every New Tab with my SpaceX page, containing
       recently closed tabs and useful chrome shortcuts.
       You can control the video speed with mouse wheel.`,
       screenshot: "SpaceX Animated New Tab",
@@ -312,7 +310,7 @@ export const projects: Projects = {
         "Bootstrap",
         "Tailwind",
         "PostCSS",
-        "Cloudflare"
+        "Cloudflare",
       ],
       description: /* html */ `
       A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.

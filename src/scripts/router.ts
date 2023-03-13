@@ -17,7 +17,6 @@ const routes: Array<RouteRecordRaw> = [
     component: ProjectsVue,
     children: [
       { path: "extensions", component },
-      { path: "themes", component },
       { path: "web", component },
       { path: "desktop", component },
       { path: ":pathMatch(.*)*", redirect: "/projects/extensions" },
@@ -48,10 +47,9 @@ const router = createRouter({
 export default router;
 export const sitemap = {
   projects: {
-    extensions: { long: "Browser Extensions" },
-    themes: { long: "Browser Themes" },
-    web: { long: "Web Apps" },
-    desktop: { long: "Desktop Apps" },
+    extensions: { long: "Browser-Extensions & Themes" },
+    web: { long: "Web-Apps" },
+    desktop: { long: "Desktop-Apps" },
   },
   about: {
     experience: {

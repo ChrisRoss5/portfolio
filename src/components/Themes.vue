@@ -45,7 +45,7 @@ export default defineComponent({
     document.addEventListener(
       "touchend",
       (e) => {
-        if (e.touches.length || window.visualViewport.scale != 1) return;
+        if (e.touches.length || window.visualViewport?.scale != 1) return;
         if (isMultitouch) return (isMultitouch = false);
         const x1 = e.changedTouches[0].screenX;
         const y1 = e.changedTouches[0].screenY;

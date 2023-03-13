@@ -77,9 +77,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { Project } from "@/scripts/projects";
 import ModalVue from "@/components/reusable/Modal.vue";
+import { Project } from "@/scripts/projects";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "ProjectDetails",
@@ -117,7 +117,7 @@ export default defineComponent({
     },
     touchEnd(e: TouchEvent) {
       e.stopPropagation();
-      if (e.touches.length || window.visualViewport.scale != 1) return;
+      if (e.touches.length || window.visualViewport?.scale != 1) return;
       if (this.isMultitouch) return (this.isMultitouch = false);
       const x1 = e.changedTouches[0].screenX;
       const y1 = e.changedTouches[0].screenY;

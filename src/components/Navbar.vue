@@ -11,9 +11,9 @@
           {{ value.short }}
         </template>
         <template v-else>
-          {{ value.long.split(" ")[0] }}
+          {{ value.long.split("-")[0] }}
           <br v-if="$mediaWidth.isBelow768px" />
-          {{ value.long.split(" ")[1] }}
+          {{ value.long.split("-")[1] }}
         </template>
         <div
           :style="{ transform: `translateX(${transformX * 100}%)` }"
@@ -25,8 +25,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
 import { sitemap } from "@/scripts/router";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "NavbarVue",
@@ -57,7 +57,7 @@ export default defineComponent({
     contentEl.addEventListener(
       "touchmove",
       (e) => {
-        if (cancelled || isMultitouch || window.visualViewport.scale != 1)
+        if (cancelled || isMultitouch || window.visualViewport?.scale != 1)
           return (this.transformX = 0);
         const x1 = e.changedTouches[0].screenX;
         const y1 = e.changedTouches[0].screenY;
@@ -77,7 +77,7 @@ export default defineComponent({
       "touchend",
       (e) => {
         e.stopPropagation();
-        if (e.touches.length || window.visualViewport.scale != 1) return;
+        if (e.touches.length || window.visualViewport?.scale != 1) return;
         if (isMultitouch) return (isMultitouch = false);
         if (!this.transformX) return;
         if (Math.abs(this.transformX) < 0.5) return (this.transformX = 0);
@@ -110,6 +110,9 @@ export default defineComponent({
     position: relative;
     flex: 1 1 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 20px 10px;
     div {
       @include abs-cover(absolute, null, 0, 0, 0);

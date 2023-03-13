@@ -7,10 +7,10 @@
     @mouseleave="hovering = false"
   >
     <div v-for="(line, i) in lines" :key="i">
-      <div class="number" :style="{ animationDelay: i * this.pause + 'ms' }">
+      <div class="number" :style="{ animationDelay: i * pause + 'ms' }">
         {{ i + 1 }}
       </div>
-      <div class="line" :style="{ animationDelay: i * this.pause + 'ms' }">
+      <div class="line" :style="{ animationDelay: i * pause + 'ms' }">
         <div class="dot" v-for="i in line.indents * 2" :key="i">•</div>
         <div>
           <span v-if="line.indents == 0" class="root-bracket">
@@ -30,8 +30,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
 import lines from "@/scripts/sidebar-converter";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SidebarVue",

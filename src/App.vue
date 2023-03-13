@@ -40,14 +40,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import ThemesVue from "./components/Themes.vue";
-import MenuIcon from "./components/MenuIcon.vue";
-import IntroVue from "./components/intro/Intro.vue";
-import SidebarVue from "./components/Sidebar.vue";
-import NavbarVue from "./components/Navbar.vue";
-import ColumnsVue from "./components/Columns.vue";
 import { sitemap } from "@/scripts/router";
+import { defineComponent } from "vue";
+import ColumnsVue from "./components/Columns.vue";
+import IntroVue from "./components/intro/Intro.vue";
+import MenuIcon from "./components/MenuIcon.vue";
+import NavbarVue from "./components/Navbar.vue";
+import SidebarVue from "./components/Sidebar.vue";
+import ThemesVue from "./components/Themes.vue";
 
 const aboutMeKeys = Object.keys(sitemap.about);
 const sortedColumn = {
