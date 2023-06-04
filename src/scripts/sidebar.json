@@ -16,14 +16,15 @@
     "c#": ">=10",
     "c++": ">=11",
     "python": "3.x",
-    "java": "~11"
+    "java": "~11",
+    "t-sql": "*"
   },
   "dependencies": {
     "vue": "3.x",
     "vite": "latest",
     "webpack": "latest",
     "express": "latest",
-    ".NET": ">=6"
+    "dotnet": ">=6"
   },
   "devDependencies": {
     "os": "win10|win11",
