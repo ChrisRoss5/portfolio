@@ -73,7 +73,7 @@
 import { SortedColumn } from "@/App.vue";
 import ProjectDetails from "@/components/ProjectDetails.vue";
 import { Project, Projects, projects } from "@/scripts/projects";
-import { defineComponent, PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 
 export default defineComponent({
   name: "ProjectsVue",
@@ -128,13 +128,15 @@ export default defineComponent({
         const [i1, i2] = [keys.indexOf(newVal), keys.indexOf(prevVal)];
         this.rowsEnteringDirection = i1 < i2 || i2 == -1 ? "left" : "right";
         if (this.$isBrowserApp) {
-          Promise.all(this.currentProjects.map(this.getBrowserAppInfo)).then(
+          Promise.all(
+            this.currentProjects.map(this.getBrowserAppInfo)
+          ) /* .then(
             () =>
               setTimeout(
                 () => this.sort({ ...this.sortedColumn, isInitial: false }),
                 500
               )
-          );
+          ) */;
         }
       },
       immediate: true,

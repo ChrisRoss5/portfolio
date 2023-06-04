@@ -5,23 +5,25 @@
   "homepage": "Algebra University College",
   "keywords": [
     "Problem solving",
-    "Algorithms",
-    "UI/UX"
+    "Web development",
+    "UI and UX"
   ],
   "engines": {
     "html": "5",
     "css": "3",
     "typescript": "*",
     "javascript": ">=ES6",
+    "c#": ">=10",
     "c++": ">=11",
     "python": "3.x",
     "java": "~11"
   },
   "dependencies": {
     "vue": "3.x",
+    "vite": "latest",
     "webpack": "latest",
-    "sass": "latest",
-    "express": "latest"
+    "express": "latest",
+    ".NET": ">=6"
   },
   "devDependencies": {
     "os": "win10|win11",
@@ -32,7 +34,7 @@
   },
   "workspaces": [
     "Google Cloud Platform",
-    "GitHub/GitLab",
+    "Microsoft Azure",
     "Cloudflare"
   ]
 }
