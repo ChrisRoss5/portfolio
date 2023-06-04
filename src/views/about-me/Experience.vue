@@ -21,13 +21,13 @@
             <li>Firebase: Auth, Realtime Database, Hosting, Functions</li>
           </ul>
         </li>
-        <li>Github Actions/Workflows</li>
         <li>Chrome Developer (Apps/Extensions/Themes)</li>
         <li>PayPal Developer</li>
+        <li>Tailwind, Bootstrap</li>
+        <li>.NET (aspnet, windows forms)</li>
+        <li>Github Actions/Workflows</li>
         <li>XAMPP/PHP, SSMS/SQL</li>
         <li>Wordpress</li>
-        <li>Bootstrap</li>
-        <li>jQuery</li>
       </ul>
     </div>
     <div class="about-title">Work Experience</div>
