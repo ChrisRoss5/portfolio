@@ -16,7 +16,7 @@
                 :is="'ArrowDownSVG'"
                 v-if="sortedColumn.name == column.name"
                 :style="{
-                  transform: `scale(${sortedColumn.descending ? -1 : 1})`,
+                  transform: `scale(${sortedColumn.descending ? 1 : -1})`,
                 }"
               />
             </Transition>
@@ -33,10 +33,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from "vue";
-import { Project, columns as projectsColumns } from "@/scripts/projects";
 import { SortedColumn } from "@/App.vue";
+import { Project, columns as projectsColumns } from "@/scripts/projects";
 import { sitemap } from "@/scripts/router";
+import { PropType, defineComponent } from "vue";
 
 export default defineComponent({
   name: "ColumnsVue",
@@ -57,7 +57,7 @@ export default defineComponent({
     },
     sort(name: keyof Project, descending?: boolean, isInitial?: boolean) {
       const isSameColumn = name == this.sortedColumn.name;
-      descending ||= isSameColumn ? !this.sortedColumn.descending : false;
+      descending ||= isSameColumn ? !this.sortedColumn.descending : true;
       this.$emit("update:sortedColumn", { name, descending, isInitial });
     },
   },
@@ -69,8 +69,10 @@ export default defineComponent({
   },
   watch: {
     $route() {
-      if (this.$areProjects)
-        this.sort(this.$isBrowserApp ? "weeklyUsers" : "name", false, true);
+      if (!this.$areProjects) return;
+      console.log(this.$isBrowserApp);
+      if (this.$isBrowserApp) this.sort("weeklyUsers", true, true);
+      else this.sort("created", true, true);
     },
   },
 });

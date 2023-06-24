@@ -43,17 +43,17 @@
 import { sitemap } from "@/scripts/router";
 import { defineComponent } from "vue";
 import ColumnsVue from "./components/Columns.vue";
-import IntroVue from "./components/intro/Intro.vue";
 import MenuIcon from "./components/MenuIcon.vue";
 import NavbarVue from "./components/Navbar.vue";
 import SidebarVue from "./components/Sidebar.vue";
 import ThemesVue from "./components/Themes.vue";
+import IntroVue from "./components/intro/Intro.vue";
 import { Project } from "./scripts/projects";
 
 const aboutMeKeys = Object.keys(sitemap.about);
 const sortedColumn = {
   name: "created" as keyof Project,
-  descending: false,
+  descending: true,
   isInitial: true,
 };
 export type SortedColumn = typeof sortedColumn;

@@ -289,7 +289,35 @@ export const projects: Projects = {
       A college project from ASIBP (Autentikacijski sustavi i baze podataka) course.
       The project's goal is to provide as many authentication methods as possible.
       After signing in, users can save a message on the Firebase Realtime Database.`,
-      screenshot: "ASIBP Projekt",
+      screenshot: "ASIBP Project",
+    },
+    {
+      img: "Algebra",
+      name: "Project RWA",
+      created: new Date("June 24, 2023"),
+      links: {
+        home: "https://rwa.k1k1.dev",
+        github: "https://github.com/ChrisRoss5/RwaMovies",
+      },
+      tech: [
+        "NETCore",
+        "CSharp",
+        "JavaScript",
+        "jQuery",
+        "Bootstrap",
+        "AzureSqlServerDatabase",
+        "Azure",
+        "SendGrid",
+      ],
+      description: /* html */ `
+      A college project from RWA (Razvoj web aplikacija) course.
+      The project's goal is to master ASP.NET Core 6.0 and C# 10.0 by creating a full-stack
+      web application that is connected to a database.
+      The app is using the MVC pattern and is built with Razor Pages.
+      Some of the dependencies are Swashbuckle (Swagger for API), AutoMapper, JwtBearer, and EntityFrameworkCore.
+      It has been deployed to Azure (App Service, SQL Server, SQL Database)
+      and is using SendGrid, the world's largest cloud-based email delivery platform. `,
+      screenshot: "RWA Project",
     },
     {
       img: "Algebra",
@@ -316,7 +344,7 @@ export const projects: Projects = {
       The project's goal is to master Bootstrap and jQuery by cloning a website
       representing Algebra University College from a video. I recreated the website
       multiple times with other frameworks and libraries to test their performance.`,
-      screenshot: "SUPIT Projekt",
+      screenshot: "SUPIT Project",
     },
   ],
   desktop: [

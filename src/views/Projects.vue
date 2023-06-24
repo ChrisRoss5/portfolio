@@ -110,8 +110,8 @@ export default defineComponent({
       if (!col.isInitial) this.rowsEnteringDirection = false;
       const name = col.name as keyof Project;
       this.currentProjects.sort((a, b) => {
-        if (a[name]! < b[name]!) return col.descending ? -1 : 1;
-        if (a[name]! > b[name]!) return col.descending ? 1 : -1;
+        if (a[name]! < b[name]!) return col.descending ? 1 : -1;
+        if (a[name]! > b[name]!) return col.descending ? -1 : 1;
         return 0;
       });
     },
