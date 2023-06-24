@@ -40,7 +40,7 @@ export default defineComponent({ name: "AboutVue" });
   display: none;
   align-items: center;
   justify-content: center;
-  flex-basis: $columnHeight;
+  padding: var(--cell-padding);
   background: var(--e);
   width: 200%;
   transform: translateX(-25%);

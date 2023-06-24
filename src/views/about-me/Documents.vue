@@ -209,6 +209,8 @@ export default defineComponent({
     display: flex !important;
     width: 100% !important;
     transform: none !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
   .file {
     cursor: pointer;

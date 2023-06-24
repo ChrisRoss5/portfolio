@@ -47,7 +47,7 @@ const router = createRouter({
 export default router;
 export const sitemap = {
   projects: {
-    extensions: { long: "Browser-Extensions & Themes" },
+    extensions: { long: "Browser-Extensions" },
     web: { long: "Web-Apps" },
     desktop: { long: "Desktop-Apps" },
   },

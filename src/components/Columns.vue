@@ -86,12 +86,12 @@ export default defineComponent({
   background: var(--e);
   user-select: none;
   white-space: nowrap;
-  height: $columnHeight;
-  transition: opacity 1s, height 1s;
+  transition: opacity 1s;
   overflow: hidden;
   & > div {
     flex: 1;
     @extend .flex-center;
+    padding: var(--cell-padding);
     transition: color 150ms, opacity 350ms, transform 350ms;
   }
   svg {
@@ -109,7 +109,6 @@ export default defineComponent({
 }
 .columns-enter-from,
 .columns-leave-to {
-  height: 0 !important;
   opacity: 0 !important;
 }
 </style>

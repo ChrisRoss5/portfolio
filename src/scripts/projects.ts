@@ -305,6 +305,7 @@ export const projects: Projects = {
         "JavaScript",
         "jQuery",
         "Bootstrap",
+        "Swagger",
         "AzureSqlServerDatabase",
         "Azure",
         "SendGrid",

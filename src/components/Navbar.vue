@@ -113,7 +113,7 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 10px;
+    padding: var(--cell-padding);
     div {
       @include abs-cover(absolute, null, 0, 0, 0);
       height: 0;
