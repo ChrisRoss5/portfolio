@@ -287,7 +287,7 @@ export const projects: Projects = {
       tech: ["JavaScript", "Firebase"],
       description: /* html */ `
       A college project from ASIBP (Autentikacijski sustavi i baze podataka) course.
-      The project's goal is to provide as many authentication methods as possible.
+      The goal is to provide as many authentication methods as possible.
       After signing in, users can save a message on the Firebase Realtime Database.`,
       screenshot: "ASIBP Project",
     },
@@ -312,7 +312,7 @@ export const projects: Projects = {
       ],
       description: /* html */ `
       A college project from RWA (Razvoj web aplikacija) course.
-      The project's goal is to master ASP.NET Core 6.0 and C# 10.0 by creating a full-stack
+      The goal is to master ASP.NET Core 6.0 and C# 10.0 by creating a full-stack
       web application that is connected to a database.
       The app is using the MVC pattern and is built with Razor Pages.
       Some of the dependencies are Swashbuckle (Swagger for API), AutoMapper, JwtBearer, and EntityFrameworkCore.
@@ -342,7 +342,7 @@ export const projects: Projects = {
       ],
       description: /* html */ `
       A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.
-      The project's goal is to master Bootstrap and jQuery by cloning a website
+      The goal is to learn Bootstrap and jQuery by cloning a website
       representing Algebra University College from a video. I recreated the website
       multiple times with other frameworks and libraries to test their performance.`,
       screenshot: "SUPIT Project",
@@ -375,6 +375,41 @@ export const projects: Projects = {
       description: /* html */ `
       My first GUI App! Created in Python with Tkinter GUI module.`,
       screenshot: "Patterns",
+    },
+    {
+      img: "Algebra",
+      name: "TradingView Ideas",
+      created: new Date("Sep 8, 2023"),
+      links: {
+        github: "https://github.com/ChrisRoss5/JavaProject",
+      },
+      tech: ["Java", "SqlServerDatabase"],
+      description: /* html */ `
+      A college project from Java 1 course. The goal is to learn Java by creating
+      a desktop application that is connected to SQL Server database. With the freedom to
+      choose the topic, I decided to create a desktop application that fetches data from
+      <a class="new-tab-link" href="https://www.tradingview.com/widget/" target="_blank">TradingView</a>,
+      with fully responsive design.
+      Some of the dependencies are Jsoup, SwingX, jBCrypt, and Lombok.`,
+      screenshot: "TradingView Ideas",
+    },
+    {
+      img: "Algebra",
+      name: "OOP.NET Projects",
+      created: new Date("Aug 11, 2023"),
+      links: {
+        github: "https://github.com/ChrisRoss5/OOP.NET-projects",
+        download: "https://github.com/ChrisRoss5/OOP.NET-projects/releases",
+      },
+      tech: ["NETCore", "CSharp", "Windows"],
+      description: /* html */ `
+      Two college projects from OOP.NET course.
+      The goal is to learn Object-Oriented Programming in .NET Core 6 using
+      Windows Forms (WinForms - first project) and Windows Presentation Foundation
+      (WPF - second project).
+      Depending on the settings, apps can fetch data from the API or from the local files.
+      The only dependencies are Newtonsoft.Json and RestSharp.`,
+      screenshot: "OOP.NET Projects",
     },
   ],
 };

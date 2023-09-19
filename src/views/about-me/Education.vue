@@ -10,7 +10,7 @@
         </div>
         <div class="box-duration">SEPTEMBER 2021 - NOW</div>
         <div>
-          Completed first year with 60/60 ECTS points.
+          Completed two years with 120/120 ECTS points.
           <br />
           <br />
           To become: <br />
