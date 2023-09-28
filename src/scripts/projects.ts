@@ -387,7 +387,7 @@ export const projects: Projects = {
       description: /* html */ `
       A college project from Java 1 course. The goal is to learn Java by creating
       a desktop application that is connected to SQL Server database. With the freedom to
-      choose the topic, I decided to create a desktop application that fetches data from
+      choose a topic, I decided to create a desktop application that fetches data from
       <a class="new-tab-link" href="https://www.tradingview.com/widget/" target="_blank">TradingView</a>,
       with fully responsive design.
       Some of the dependencies are Jsoup, SwingX, jBCrypt, and Lombok.`,
