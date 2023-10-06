@@ -90,7 +90,7 @@ export const projects: Projects = {
           "https://chrome.google.com/webstore/detail/mfaepkdaodjclepbclabjbigjeohfdje",
         github: "https://github.com/ChrisRoss5/Google-gifs-autoplay",
       },
-      tech: ["JavaScript", "JSON"],
+      tech: ["TypeScript"],
       description: /* html */ `
       A browser extension that autoplays gifs on Google™ Search Images.`,
       screenshot: "Gifs autoplay for Google™",
