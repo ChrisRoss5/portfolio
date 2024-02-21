@@ -1,0 +1,4 @@
+name = "get-cws-item"
+main = "src/index.js"
+compatibility_date = "2024-02-19"
+workers_dev = true
