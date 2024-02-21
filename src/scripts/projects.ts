@@ -122,23 +122,22 @@ export const projects: Projects = {
       screenshot: "SmoothZoom – Quick Page Zoom",
     },
     {
-      img: "Search by SubtitlesCC for Youtube™",
-      name: "Search by Subtitles/CC for Youtube™",
-      created: new Date("March 8, 2022"),
+      img: "SpaceX",
+      name: "SpaceX Theme",
+      created: new Date("Apr 24, 2022"),
       updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
-          "https://chrome.google.com/webstore/detail/mapeihpdilaoodlmokclkmbabakgciad",
-        github: "https://github.com/ChrisRoss5/Youtube-Search-by-Subtitles",
+          "https://chrome.google.com/webstore/detail/odflhffolibhhfnkjolnchpfpoedebem",
+        firefox: "https://addons.mozilla.org/en-US/firefox/addon/spacex-theme/",
+        github:
+          "https://github.com/ChrisRoss5/SpaceX-Animated-New-Tab/tree/master/theme",
       },
-      tech: ["TypeScript", "SCSS"],
+      tech: ["JSON"],
       description: /* html */ `
-      A browser extension that enables searching for videos on Youtube™
-      by Subtitles/CC in a specified language. Once you select a language,
-      the extension stores it and highlights all video thumbnails that
-      have CC in the specified language, anywhere on Youtube.`,
-      screenshot: "Search by SubtitlesCC for Youtube™",
+      A theme encompassing everything into a beautiful SpaceX atmosphere.`,
+      screenshot: "SpaceX Theme",
     },
     {
       img: "SpaceX",
@@ -161,22 +160,23 @@ export const projects: Projects = {
       screenshot: "SpaceX Animated New Tab",
     },
     {
-      img: "SpaceX",
-      name: "SpaceX Theme",
-      created: new Date("Apr 24, 2022"),
+      img: "Search by SubtitlesCC for Youtube™",
+      name: "Search by Subtitles/CC for Youtube™",
+      created: new Date("March 8, 2022"),
       updated: null,
       weeklyUsers: 0,
       links: {
         chrome:
-          "https://chrome.google.com/webstore/detail/odflhffolibhhfnkjolnchpfpoedebem",
-        firefox: "https://addons.mozilla.org/en-US/firefox/addon/spacex-theme/",
-        github:
-          "https://github.com/ChrisRoss5/SpaceX-Animated-New-Tab/tree/master/theme",
+          "https://chrome.google.com/webstore/detail/mapeihpdilaoodlmokclkmbabakgciad",
+        github: "https://github.com/ChrisRoss5/Youtube-Search-by-Subtitles",
       },
-      tech: ["JSON"],
+      tech: ["TypeScript", "SCSS"],
       description: /* html */ `
-      A theme encompassing everything into a beautiful SpaceX atmosphere.`,
-      screenshot: "SpaceX Theme",
+      A browser extension that enables searching for videos on Youtube™
+      by Subtitles/CC in a specified language. Once you select a language,
+      the extension stores it and highlights all video thumbnails that
+      have CC in the specified language, anywhere on Youtube.`,
+      screenshot: "Search by SubtitlesCC for Youtube™",
     },
   ],
   web: [
@@ -286,7 +286,7 @@ export const projects: Projects = {
       },
       tech: ["JavaScript", "Firebase"],
       description: /* html */ `
-      A college project from ASIBP (Autentikacijski sustavi i baze podataka) course.
+      A project from ASIBP (Autentikacijski sustavi i baze podataka / Authentication systems and databases) course.
       The goal is to provide as many authentication methods as possible.
       After signing in, users can save a message on the Firebase Realtime Database.`,
       screenshot: "ASIBP Project",
@@ -311,7 +311,7 @@ export const projects: Projects = {
         "SendGrid",
       ],
       description: /* html */ `
-      A college project from RWA (Razvoj web aplikacija) course.
+      A project from RWA (Razvoj web aplikacija / Web app development) course.
       The goal is to master ASP.NET Core 6.0 and C# 10.0 by creating a full-stack
       web application that is connected to a database.
       The app is using the MVC pattern and is built with Razor Pages.
@@ -341,9 +341,9 @@ export const projects: Projects = {
         "Cloudflare",
       ],
       description: /* html */ `
-      A college project from SUPIT (Standardi u primjeni internetske tehnologije) course.
+      A project from SUPIT (Standardi u primjeni internetske tehnologije / Web standards) course.
       The goal is to learn Bootstrap and jQuery by cloning a website
-      representing Algebra University College from a video. I recreated the website
+      representing Algebra University from a video. I recreated the website
       multiple times with other frameworks and libraries to test their performance.`,
       screenshot: "SUPIT Project",
     },
@@ -385,7 +385,7 @@ export const projects: Projects = {
       },
       tech: ["Java", "SqlServerDatabase"],
       description: /* html */ `
-      A college project from Java 1 course. The goal is to learn Java by creating
+      A project from Java 1 course. The goal is to learn Java by creating
       a desktop application that is connected to SQL Server database. With the freedom to
       choose a topic, I decided to create a desktop application that fetches data from
       <a class="new-tab-link" href="https://www.tradingview.com/widget/" target="_blank">TradingView</a>,
@@ -403,7 +403,7 @@ export const projects: Projects = {
       },
       tech: ["NETCore", "CSharp", "Windows"],
       description: /* html */ `
-      Two college projects from OOP.NET course.
+      Two projects from OOP.NET course.
       The goal is to learn Object-Oriented Programming in .NET Core 6 using
       Windows Forms (WinForms - first project) and Windows Presentation Foundation
       (WPF - second project).

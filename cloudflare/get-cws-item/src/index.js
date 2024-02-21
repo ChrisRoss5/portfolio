@@ -42,7 +42,7 @@ async function handleRequest(request) {
 	let lastUpdateValue = html.substring(lastUpdateIndex, html.indexOf('"', lastUpdateIndex));
 	console.log('Last update value:', lastUpdateValue);
 
-  if (extensionIdIndex === -1 || userCountIndex === -1 || lastUpdateIndex === -1 || 1) {
+  if (extensionIdIndex === -1 || userCountIndex === -1 || lastUpdateIndex === -1) {
     // await sendErrorMail('Error parsing stats page');
     userCountValue = null;
     lastUpdateValue = null;

@@ -2,7 +2,7 @@
   <div>
     <div class="about-title">General Experience</div>
     <div id="general-experience">
-      I'm a versatile front-end developer with 4+ years of experience developing
+      I'm a versatile front-end developer with 5+ years of experience developing
       complex web apps and specializing in SPA development utilizing Vue
       ecosystem. Apart from the <em>"package.json"</em> about me, here are a few
       more technologies I worked with:

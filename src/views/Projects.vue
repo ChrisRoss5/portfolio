@@ -102,17 +102,25 @@ export default defineComponent({
       return fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
         .then((result) => {
-          app.weeklyUsers = result.weeklyUsers;
+          app.weeklyUsers = parseInt(result.weeklyUsers);
           app.updated = new Date(result.lastUpdated);
         });
     },
     sort(col: SortedColumn) {
       if (!col.isInitial) this.rowsEnteringDirection = false;
       const name = col.name as keyof Project;
+      console.log(this.currentProjects, this.currentProjects.length, name);
+
       this.currentProjects.sort((a, b) => {
-        if (a[name]! < b[name]!) return col.descending ? 1 : -1;
-        if (a[name]! > b[name]!) return col.descending ? -1 : 1;
-        return 0;
+        if (name == "name") {
+          if (col.descending) return a[name].localeCompare(b[name]);
+          return b[name].localeCompare(a[name]);
+        }
+        console.log(11);
+
+        return col.descending
+          ? (b[name]! as number) - (a[name]! as number)
+          : (a[name]! as number) - (b[name]! as number);
       });
     },
   },
@@ -128,15 +136,13 @@ export default defineComponent({
         const [i1, i2] = [keys.indexOf(newVal), keys.indexOf(prevVal)];
         this.rowsEnteringDirection = i1 < i2 || i2 == -1 ? "left" : "right";
         if (this.$isBrowserApp) {
-          Promise.all(
-            this.currentProjects.map(this.getBrowserAppInfo)
-          ) /* .then(
+          Promise.all(this.currentProjects.map(this.getBrowserAppInfo)).then(
             () =>
               setTimeout(
                 () => this.sort({ ...this.sortedColumn, isInitial: false }),
                 500
               )
-          ) */;
+          );
         }
       },
       immediate: true,
@@ -145,7 +151,6 @@ export default defineComponent({
       handler(newVal: SortedColumn) {
         this.sort(newVal);
       },
-      immediate: true,
     },
   },
 });

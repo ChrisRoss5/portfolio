@@ -3,7 +3,7 @@
     <div class="about-title">University</div>
     <div>
       <div class="box">
-        <div class="box-title">Algebra University College,</div>
+        <div class="box-title">Algebra University,</div>
         <div>
           Zagreb
           <span class="box-position">Software Engineer</span>
