@@ -103,7 +103,7 @@ export const projects: Projects = {
       weeklyUsers: 0,
       links: {
         chrome:
-          "https://chrome.google.com/webstore/detail/nlloamlgdioincflcopfgkbikjgaiihg",
+          "https://chromewebstore.google.com/detail/smoothzoom-%E2%80%93-quick-page-z/nlloamlgdioincflcopfgkbikjgaiihg",
         firefox:
           "https://addons.mozilla.org/en-US/firefox/addon/smoothzoom-quick-page-zoom/",
         home: "https://zoom.k1k1.dev",

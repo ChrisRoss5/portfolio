@@ -98,7 +98,10 @@ export default defineComponent({
     },
     getBrowserAppInfo(app: Project) {
       if (!app.links.chrome || app.updated) return;
-      const id = app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
+      const id = app.links.chrome.includes("smoothzoom") // CWS BUG
+        ? app.links.chrome
+        : app.links.chrome.slice(app.links.chrome.lastIndexOf("/") + 1);
+
       return fetch("https://get-cws-item.kristijanros.workers.dev/" + id)
         .then((response) => response.json())
         .then((result) => {

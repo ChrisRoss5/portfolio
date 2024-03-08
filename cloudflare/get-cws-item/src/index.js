@@ -12,10 +12,10 @@ addEventListener('fetch', (event) => {
 async function handleRequest(request) {
 	const url = new URL(request.url);
 	const extensionId = url.pathname.slice(1);
-	//const cwsUrl = `https://chromewebstore.google.com/detail/${extensionId}?hl=en`;
-	const statsUrl = `https://chrome-stats.com/d/${extensionId}`;
+	const cwsUrl = extensionId.startsWith('https') ? extensionId : `https://chromewebstore.google.com/detail/${extensionId}`;
+	// const statsUrl = `https://chrome-stats.com/d/${extensionId}`;
 
-	/* const headers = new Headers();
+	const headers = new Headers();
 	headers.append(
 		'User-Agent',
 		'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
@@ -25,12 +25,12 @@ async function handleRequest(request) {
 		method: 'GET',
 		headers: headers,
 		redirect: 'follow',
-	}; */
+	};
 
-	const response = await fetch(statsUrl);
+	const response = await fetch(cwsUrl, requestOptions);
 	const html = await response.text();
 
-	//const root = parse(html);
+	/* 	//const root = parse(html);
 	const extensionIdIndex = html.indexOf(`\\u002F${extensionId}",`);
 	console.log('Extension ID index:', extensionIdIndex);
 
@@ -42,11 +42,14 @@ async function handleRequest(request) {
 	let lastUpdateValue = html.substring(lastUpdateIndex, html.indexOf('"', lastUpdateIndex));
 	console.log('Last update value:', lastUpdateValue);
 
-  if (extensionIdIndex === -1 || userCountIndex === -1 || lastUpdateIndex === -1) {
-    // await sendErrorMail('Error parsing stats page');
-    userCountValue = null;
-    lastUpdateValue = null;
-  }
+	if (extensionIdIndex === -1 || userCountIndex === -1 || lastUpdateIndex === -1) {
+		// await sendErrorMail('Error parsing stats page');
+		userCountValue = null;
+		lastUpdateValue = null;
+	} */
+
+	const userCountValue = parseInt(/(\d{1,3}(?:,\d{3})*) users/.exec(html)[1].replaceAll(',', ''));
+	const lastUpdateValue = /Updated<\/div><div>(.*?)<\/div>/.exec(html)[1];
 
 	return new Response(
 		JSON.stringify({
@@ -73,7 +76,7 @@ async function sendErrorMail(data) {
 	try {
 		await env.SEB.send(message);
 	} catch (e) {
-    console.log('Error sending email:', e);
+		console.log('Error sending email:', e);
 	}
-  console.log('Email sent');
+	console.log('Email sent');
 }
