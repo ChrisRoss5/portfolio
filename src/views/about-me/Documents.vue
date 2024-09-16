@@ -163,7 +163,7 @@ export default defineComponent({
         this.iframeContentWindow.location.replace(newUrl);
     },
     getDocPath(doc: { title: string; file: string }) {
-      return `/docs/${doc.title.toLowerCase()}/${doc.file}.pdf`;
+      return `/docs/${doc.title.toLowerCase().replaceAll(" ", "-")}/${doc.file}.pdf`;
     },
     fileChanged(file: string) {
       this.frameLoaded = false;
