@@ -35,6 +35,10 @@
       <ul>
         <li>English B1+ Certificate</li>
       </ul>
+      Mensa.org member:
+      <ul>
+        <li>IQ >=135</li>
+      </ul>
     </div>
     <div class="about-title">Articles</div>
     <div>

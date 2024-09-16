@@ -2,7 +2,53 @@
   <div>
     <div class="about-title">General Experience</div>
     <div id="general-experience">
-      I'm a versatile front-end developer with 5+ years of experience developing
+      I'm a software engineer with 5+ years of experience developing successful,
+      highly-rated applications with large user bases, fueled by creative
+      problem-solving skills and a proactive mindset. Passionate about Vue.js
+      and building feature-rich SPAs using modern web technologies.
+      <br />
+      <br />
+      My primary Cloud platform is Google Cloud
+      <a href="https://googlecloudcheatsheet.withgoogle.com/" target="_blank">
+        (see cheatsheet)</a
+      >. I worked with:
+      <ul>
+        <li style="padding: 10px 0 0">
+          Compute: Cloud Run, Cloud Functions, App Engine
+        </li>
+        <li>Storage: Cloud Storage</li>
+        <li>Database: Cloud SQL, Cloud Firestore</li>
+        <li>
+          Data Analytics: BigQuery, BigQuery DTS, Looker Studio (formerly Data
+          Studio)
+        </li>
+        <li>AI/ML: Vertex AI</li>
+        <li>Identity: Cloud Identity, Identity Platform, Cloud IAM</li>
+        <li>
+          Firebase: Hosting, Auth, Realtime Database, Firestore, Storage,
+          Functions, ML Kit
+        </li>
+        <li>Workspace: Sheets API</li>
+        <li>Maps Platform: JS API, Geolocation API, Roads API, Places API</li>
+        <li>
+          Developer tools: Cloud SDK, Cloud Shell, Cloud Logging, Cloud
+          Monitoring
+        </li>
+      </ul>
+
+      Other Cloud platforms I worked with:
+      <ul>
+        <li>
+          Cloudflare: Full DNS management (connected with Namecheap), Pages
+          (hosting), Workers (functions), Wrangler CLI
+        </li>
+        <li>
+          Azure: App Service, App registration, Entra ID (formerly Active
+          Directory), SQL Server, SQL Database
+        </li>
+        <li>GitHub: Actions, Pages (hosting), Codespaces (IDE), gh CLI</li>
+      </ul>
+      <!-- I'm a versatile front-end developer with 5+ years of experience developing
       complex web apps and specializing in SPA development utilizing Vue
       ecosystem. Apart from the <em>"package.json"</em> about me, here are a few
       more technologies I worked with:
@@ -28,25 +74,34 @@
         <li>Github Actions/Workflows</li>
         <li>XAMPP/PHP, SSMS/SQL</li>
         <li>Wordpress</li>
-      </ul>
+      </ul> -->
     </div>
     <div class="about-title">Work Experience</div>
     <div>
       <div class="box">
         <div class="box-title">
-          CARNET - Croatian Academic and Research Network,
+          CARNET - Croatian Academic and Research Network
         </div>
         <div>
           Zagreb
-          <span class="box-position">Full-stack Developer</span>
+          <span class="box-position">Full-stack Software Engineer Intern</span>
         </div>
         <div class="box-duration">JULY 2020 - SEPTEMBER 2020</div>
         <div>
-          First-ever high-school student who worked for CARNET. Starting from
-          scratch, I was primarily building the front-end of a PHP application
-          with vanilla JS. The application is intended for CARNET Helpdesk and
-          is used for the organization of working hours, employee
-          administration, and salary calculations.
+          <ul>
+            <li>
+              Made history as CARNET's first high-school student employee.
+            </li>
+            <li>
+              Led the development of a PHP application for CARNET Help-desk,
+              improving work scheduling, staff management, and salary
+              calculations alongside a team member.
+            </li>
+            <li>
+              Utilized XAMPP, integrating PostgreSQL for database management,
+              and Phabricator/Git for version control.
+            </li>
+          </ul>
         </div>
       </div>
     </div>

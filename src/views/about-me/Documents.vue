@@ -51,23 +51,23 @@ export default defineComponent({
   name: "DocumentsVue",
   data() {
     return {
-      currentDoc: { title: "CVs", file: "CV-en (2)" },
+      currentDoc: { title: "CVs and Resumes", file: "Resume-en" },
       docs: [
         {
-          title: "CVs",
-          files: ["CV-en (2)", "CV-hr (2)"],
+          title: "CVs and Resumes",
+          files: ["Resume-en"],
         },
         {
           title: "Competitions",
-          files: ["AZOO (6)", "Idea of the Year", "INOVA (6)"],
+          files: ["AZOO (6)", "Idea of the Year 2021", "INOVA (6)"],
         },
         {
           title: "Certificates",
-          files: ["Oracle Academy (7)", "English B1+"],
+          files: ["Oracle Academy (7)", "English B1+", "Mensa"],
         },
         {
           title: "Education",
-          files: ["Diplomas (8)", "Europass-en (2)", "Europass-hr (2)"],
+          files: ["HS Diplomas (8)", "HS Europass-en (2)", "HS Europass-hr (2)"],
         },
         {
           title: "References",

@@ -49,12 +49,12 @@ export const sitemap = {
   projects: {
     extensions: { long: "Browser-Extensions" },
     web: { long: "Web-Apps" },
-    desktop: { long: "Desktop-Apps" },
+    desktop: { long: "Desktop-& Mobile Apps" },
   },
   about: {
     experience: {
       long: "Experience",
-      titles: ["General Experience", "Work Experience"],
+      titles: ["General", "Work Experience"],
     },
     education: {
       long: "Education",
@@ -69,7 +69,7 @@ export const sitemap = {
       long: "Documents",
       short: "Docs",
       titles: [
-        "CVs",
+        "CVs & Resumes",
         "Competitions",
         "Certificates",
         "Education",

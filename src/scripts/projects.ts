@@ -50,14 +50,14 @@ export const projects: Projects = {
       },
       tech: ["TypeScript"],
       description: /* html */ `
-      A browser extension containing two separate apps:
-      <b>e-Dnevnik Plus Classic</b> and <b>e-Dnevnik Plus App.</b><br><br>
-      <b>e-Dnevnik Plus Classic</b> injects additional features
-      into the Croatian e-Class register “e-Dnevnik” to help
-      students throughout primary and secondary school.
-      <b>e-Dnevnik Plus App</b> is my own version of e-Dnevnik that runs as a local page.
-      It has many more features, however, the user interface is completely different
-      and modernized compared to the Classic version.`,
+      A browser extension containing two separate apps for e-Dnevnik (national e-Class register):
+      <ul>
+        <li><b>e-Dnevnik Plus App</b> transforms e-Dnevnik into a standalone app,
+        featuring a complete redesign aimed at aiding students
+        throughout primary and secondary school.</li>
+        <li><b>e-Dnevnik Plus Classic</b> enhances the original e-Dnevnik with
+        additional features injected into pages.</li>
+      </ul>`,
       screenshot: "e-Dnevnik Plus popup",
     },
     {
@@ -75,8 +75,8 @@ export const projects: Projects = {
       },
       tech: ["JavaScript"],
       description: /* html */ `
-      A browser extension created for teachers who use their version of e-Dnevnik.
-      It injects additional features to help teachers grade their students.`,
+      A browser extension for teachers, enhancing their grading process with
+      additional functionalities to better assess students’ performance and save time.`,
       screenshot: "e-Dnevnik Plus za nastavnike",
     },
     {
@@ -92,7 +92,7 @@ export const projects: Projects = {
       },
       tech: ["TypeScript"],
       description: /* html */ `
-      A browser extension that autoplays gifs on Google™ Search Images.`,
+      A browser extension that autoplays gifs on Google™ Search Images, while also improving static image quality.`,
       screenshot: "Gifs autoplay for Google™",
     },
     {
@@ -111,14 +111,9 @@ export const projects: Projects = {
       },
       tech: ["TypeScript", "SCSS"],
       description: /* html */ `
-      A browser extension that enables zooming anywhere, on any page,
-      without changing the page layout! Simply position the cursor and use the mouse wheel
-      to zoom in/out at the desired location. You can compare this extension to
-      pinch-to-zoom functionality on touch screens, or the Windows Magnifier.
-      It is my most advanced app and reaches several browser limits.
-      I talk through them in detail on the extension's
-      <a class="new-tab-link" href="https://zoom.k1k1.dev/#author" target="_blank">
-      test page</a>`,
+      A browser extension that enables zooming into content (mouse pinch-to-zoom).
+      Try now without installation: <a class="new-tab-link" href="https://zoom.k1k1.dev/#author" target="_blank">
+      zoom.k1k1.dev</a>. Deployed on Cloudflare Pages.`,
       screenshot: "SmoothZoom – Quick Page Zoom",
     },
     {
@@ -154,9 +149,8 @@ export const projects: Projects = {
       },
       tech: ["TypeScript"],
       description: /* html */ `
-      A browser extension that replaces every New Tab with my SpaceX page, containing
-      recently closed tabs and useful chrome shortcuts.
-      You can control the video speed with mouse wheel.`,
+      A browser extension that replaces every New Tab with my SpaceX page,
+      containing recently closed tabs and useful chrome shortcuts.`,
       screenshot: "SpaceX Animated New Tab",
     },
     {
@@ -172,14 +166,49 @@ export const projects: Projects = {
       },
       tech: ["TypeScript", "SCSS"],
       description: /* html */ `
-      A browser extension that enables searching for videos on Youtube™
-      by Subtitles/CC in a specified language. Once you select a language,
-      the extension stores it and highlights all video thumbnails that
-      have CC in the specified language, anywhere on Youtube.`,
+      A browser extension that adds a search option to find videos with subtitles in the selected language.`,
       screenshot: "Search by SubtitlesCC for Youtube™",
     },
   ],
   web: [
+    {
+      img: "Algebra",
+      name: "Movie Web Shop",
+      created: new Date("Apr 29, 2024"),
+      links: {
+        home: "https://mws.k1k1.dev",
+        github: "https://github.com/ChrisRoss5/movie-web-shop-spring",
+      },
+      tech: [
+        "Spring",
+        "JavaScript",
+        "Java",
+        "SqlServerDatabase",
+        "Tailwind",
+        "DaisyUI",
+        "Docker",
+      ],
+      description: /* html */ `
+      College project (Java web programming S6): A dockerized Java Spring web shop,
+      deployed on GCP App Engine. Supports anonymous browsing, customer & admin roles,
+      cart management, purchase history & more.`,
+      screenshot: "Movie Web Shop",
+    },
+    {
+      img: "Kiki Storage",
+      name: "Kiki Storage",
+      created: new Date("Oct 23, 2023"),
+      links: {
+        home: "https://storage.k1k1.dev",
+        github: "https://github.com/ChrisRoss5/kiki-storage-web",
+      },
+      tech: ["Vite", "TypeScript", "Vue", "Tailwind", "PostCSS", "DaisyUI", "Firebase"],
+      description: /* html */ `
+      College project (Final thesis): A cloud storage app focused on front-end,
+      utilizing Firebase to its maximum extent for a real-time,
+      highly customizable cloud file explorer.`,
+      screenshot: "Kiki Storage Web",
+    },
     {
       img: "e-Dnevnik Plus",
       name: "e-Dnevnik Plus Home",
@@ -272,8 +301,7 @@ export const projects: Projects = {
         "Google Analytics",
       ],
       description: /* html */ `
-      This is where you're at! I googled "kr logo", downloaded a .png, converted it to .svg,
-      and modified the svg.`,
+      Kristijan Rosandić — Software Engineer Portfolio. Deployed on Cloudflare Pages.`,
       screenshot: "My Developer Portfolio",
     },
     {
@@ -284,11 +312,11 @@ export const projects: Projects = {
         home: "https://asibp.k1k1.dev",
         github: "https://github.com/ChrisRoss5/firebase-auth",
       },
-      tech: ["JavaScript", "Firebase"],
+      tech: ["JavaScript", "Firebase", "IdentityPlatform"],
       description: /* html */ `
-      A project from ASIBP (Autentikacijski sustavi i baze podataka / Authentication systems and databases) course.
-      The goal is to provide as many authentication methods as possible.
-      After signing in, users can save a message on the Firebase Realtime Database.`,
+      College project (Authentication systems and databases S3): A web app providing as many
+      authentication methods as possible using Google Identity Platform and Firebase.
+      Custom OIDC provider included.`,
       screenshot: "ASIBP Project",
     },
     {
@@ -306,18 +334,16 @@ export const projects: Projects = {
         "jQuery",
         "Bootstrap",
         "Swagger",
+        "GoogleCloudRun",
         "AzureSqlServerDatabase",
         "Azure",
         "SendGrid",
+        "Docker",
       ],
       description: /* html */ `
-      A project from RWA (Razvoj web aplikacija / Web app development) course.
-      The goal is to master ASP.NET Core 6.0 and C# 10.0 by creating a full-stack
-      web application that is connected to a database.
-      The app is using the MVC pattern and is built with Razor Pages.
-      Some of the dependencies are Swashbuckle (Swagger for API), AutoMapper, JwtBearer, and EntityFrameworkCore.
-      It has been deployed to Azure (App Service, SQL Server, SQL Database)
-      and is using SendGrid, the world's largest cloud-based email delivery platform. `,
+      College project (Development of web applications S4): A dockerized ASP.NET Core 6 app,
+      deployed on GCP Cloud Run. Supports user & admin roles with CRUD for many entities,
+      full API support & much more.`,
       screenshot: "RWA Project",
     },
     {
@@ -341,14 +367,27 @@ export const projects: Projects = {
         "Cloudflare",
       ],
       description: /* html */ `
-      A project from SUPIT (Standardi u primjeni internetske tehnologije / Web standards) course.
-      The goal is to learn Bootstrap and jQuery by cloning a website
-      representing Algebra University from a video. I recreated the website
-      multiple times with other frameworks and libraries to test their performance.`,
+      College project (Internet technology S3): 6 versions of the same web app -
+      built and compared UX & DX: jQuery, Vue, Vue Full, React, React Full, Svelte.
+      Deployed on Cloudflare Pages.`,
       screenshot: "SUPIT Project",
     },
   ],
   desktop: [
+    {
+      img: "Kiki Storage",
+      name: "Kiki Storage",
+      created: new Date("Jun 23, 2024"),
+      links: {
+        github: "https://github.com/ChrisRoss5/kiki-storage-android",
+      },
+      tech: ["Kotlin", "Firebase", "Android"],
+      description: /* html */ `
+      College project (App development for mobile devices S5):
+      A cloud storage app with excellent file management, using storage and camera access
+      for file uploads and attachments for chat with Gemini AI.`,
+      screenshot: "Kiki Storage Android",
+    },
     {
       img: "Evaluator",
       name: "Infokup Evaluator",
@@ -358,10 +397,8 @@ export const projects: Projects = {
       },
       tech: ["Python", "Windows"],
       description: /* html */ `
-      A desktop application for evaluating competitive programming solutions written
-      in C, C++, and Python. Used for the national Infokup coding competition in the
-      Algorithms category. The executable has to be in the same directory with solutions
-      and the test folder. Created in Python with Tkinter GUI module.`,
+      A Tkinter desktop app for evaluating competitive programming solutions written
+      in C, C++, and Python. Used for the national Infokup coding competition in the Algorithms category.`,
       screenshot: "Evaluator",
     },
     {
@@ -373,7 +410,8 @@ export const projects: Projects = {
       },
       tech: ["Python", "Windows"],
       description: /* html */ `
-      My first GUI App! Created in Python with Tkinter GUI module.`,
+      My first GUI app! It shows all combinations for unlocking an Android phone, with display options and more features.
+      Built with the Tkinter GUI module and SQLite database for saving user settings.`,
       screenshot: "Patterns",
     },
     {
@@ -383,19 +421,16 @@ export const projects: Projects = {
       links: {
         github: "https://github.com/ChrisRoss5/JavaProject",
       },
-      tech: ["Java", "SqlServerDatabase"],
+      tech: ["Java", "SqlServerDatabase", "RSS", "Desktop"],
       description: /* html */ `
-      A project from Java 1 course. The goal is to learn Java by creating
-      a desktop application that is connected to SQL Server database. With the freedom to
-      choose a topic, I decided to create a desktop application that fetches data from
-      <a class="new-tab-link" href="https://www.tradingview.com/widget/" target="_blank">TradingView</a>,
-      with fully responsive design.
-      Some of the dependencies are Jsoup, SwingX, jBCrypt, and Lombok.`,
+      College project (Java programming S4): A Java Swing app fetching
+      <a class="new-tab-link" href="https://www.tradingview.com/widget/" target="_blank">TradingView</a> data via RSS,
+      with a fully responsive design. Supports user & admin roles with CRUD for ideas, authors, symbols & markets.`,
       screenshot: "TradingView Ideas",
     },
     {
       img: "Algebra",
-      name: "OOP.NET Projects",
+      name: "Fifa World Cup",
       created: new Date("Aug 11, 2023"),
       links: {
         github: "https://github.com/ChrisRoss5/OOP.NET-projects",
@@ -403,12 +438,9 @@ export const projects: Projects = {
       },
       tech: ["NETCore", "CSharp", "Windows"],
       description: /* html */ `
-      Two projects from OOP.NET course.
-      The goal is to learn Object-Oriented Programming in .NET Core 6 using
-      Windows Forms (WinForms - first project) and Windows Presentation Foundation
-      (WPF - second project).
-      Depending on the settings, apps can fetch data from the API or from the local files.
-      The only dependencies are Newtonsoft.Json and RestSharp.`,
+      College project (OOP.NET S4): Two Windows apps with shared preferences,
+      showcasing FIFA World Cup 2016 results. Built with .NET Core 6 using
+      Windows Forms and Windows Presentation Foundation (WPF).`,
       screenshot: "OOP.NET Projects",
     },
   ],

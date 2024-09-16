@@ -13,6 +13,7 @@
     "css": "3",
     "typescript": "*",
     "javascript": ">=ES6",
+    "kotlin": ">=2",
     "c#": ">=10",
     "c++": ">=11",
     "python": "3.x",
@@ -27,8 +28,8 @@
     "dotnet": ">=6"
   },
   "devDependencies": {
-    "os": "win10|win11",
-    "editor": "vs|vsc|pycharm",
+    "os": "win11",
+    "editor": "vsc|vs|intellij",
     "browser": "chrome",
     "music": "kyle-landry",
     "game": "smite|world-of-warships"

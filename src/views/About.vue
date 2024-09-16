@@ -32,7 +32,7 @@ export default defineComponent({ name: "AboutVue" });
       overflow: auto;
     }
     a {
-      @extend .new-tab-link
+      @extend .new-tab-link;
     }
   }
 }
@@ -50,6 +50,10 @@ export default defineComponent({ name: "AboutVue" });
   background: var(--b);
   padding: 1rem;
   margin-bottom: 1rem;
+  ul {
+    padding: 0 0 0 1rem;
+    margin: 0;
+  }
 }
 .box-title {
   font-weight: bold;
