@@ -1,0 +1,211 @@
+%-------------------------
+% Resume in Latex
+% Author: Kristijan Rosandić
+% Based off of: https://github.com/sb2nov/resume
+% License: MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+\usepackage{ulem}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+%\usepackage{fontawesome}
+\usepackage{fontawesome5}
+%\usepackage{graphicx}
+\usepackage{svg}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% \includesvg[width=11pt]{favicon-black.svg} 
+\begin{center}
+    \textbf{\Huge \scshape Kristijan Rosandić} \\ \vspace{1pt}
+    \small +385 97-703-8899 $|$ \href{mailto:kristijan.ros@gmail.com}{\uline{kristijan.ros@gmail.com}} $|$ 
+    \href{https://linkedin.com/in/k1k1}{\uline{linkedin.com/in/k1k1}} $|$
+    \href{https://github.com/ChrisRoss5}{\uline{github.com/ChrisRoss5}} $|$
+    \href{https://k1k1.dev}{\uline{k1k1.dev}}
+\end{center}
+
+\section{Summary}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+  \item {
+      Software engineer with 5+ years of experience developing successful, highly-rated applications with large user bases, fueled by creative problem-solving skills and a proactive mindset. Passionate about Vue.js and building feature-rich SPAs using modern web technologies.
+        %driven by a knack for problem-solving and taking initiative. %Focused on delivering innovative and user-friendly solutions that address real-world challenges.
+  }
+ \end{itemize}
+
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Algebra University}{Sep 2021 -- Sep 2024}
+      {Bachelor in Computer Engineering}{Zagreb, Croatia}
+    \resumeItemListStart
+        \resumeItem{Awarded a \textbf{100\% three-year scholarship} for unmatched academic excellence (\textbf{sole top student} eligible).}
+        \resumeItem{Excelled in all project-based courses by exceeding expectations, dockerizing applications and deploying them across Google Cloud (Firebase, App Engine, Cloud Run), Azure, and Cloudflare.}
+       % \resumeItem{Excelled at projects with various tech stacks: ASP.NET Core/EF, WinForms, WPF, Java EE, Java Spring, Android/Kotlin, JS/HTML/CSS/Bootstrap/jQuery, Python/Django/ML, SQL Server, MongoDB. }
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\section{Personal Projects}
+    \resumeSubHeadingListStart
+        \resumeProjectHeading
+          {\href{https://ednevnik.plus}{\textbf{e-Dnevnik Plus} \faLink} \emph{Vue, Vuex, SCSS, ChartJS, Google Analytics, BigQuery}}{Mar 2019 -- Present}
+          \resumeItemListStart
+            \resumeItem{Achieved \textbf{170,000+ WAU} (Weekly Active Users) with \textbf{5/5 rating} across two Chrome extensions.}
+            \resumeItem{Transformed the national e-Class register "e-Dnevnik" into a standalone app integrated into a Chrome extension, featuring a complete redesign aimed at aiding students throughout primary and secondary school.}
+            \resumeItem{Developed a separate extension for teachers to enhance the grading process and save thousands of hours.}
+            \resumeItem{Used Google's BigQuery and GoogleSQL for in-depth analysis of over 100 million custom events from GA4.}
+          \resumeItemListEnd
+        \resumeProjectHeading
+          {\href{https://network-planner.com}{\textbf{Network Planner} \faLink}  \emph{Vue, Vuex, SCSS, SheetJS, Firebase, Node.js, PayPal}}{Jan 2021 -- Present}
+          \resumeItemListStart
+            \resumeItem{Developed a web app for organizing locations into groups and routing for large businesses such as MOLGroup.}
+            \resumeItem{Integrated Google Maps JS, Geocoding, Roads \& Places APIs to deliver a comprehensive mapping solution.}
+          \resumeItemListEnd      
+        \resumeProjectHeading
+              {\href{https://storage.k1k1.dev}{\textbf{Kiki Storage} \faLink} \emph{Vue, Pinia, Tailwind, VueFire, Firebase, Node.js, Android}}{Sep 2023 -- Present}
+          \resumeItemListStart
+            \resumeItem{Developed a real-time highly customizable Cloud File Explorer, leveraging all three Firebase databases.}
+             \resumeItem{Implemented PWA functionalities and compared web technologies with an Android app made in Kotlin.}
+          \resumeItemListEnd
+        \resumeProjectHeading
+              {\href{https://supit.k1k1.dev}{\textbf{Project SUPIT} \faLink} \emph{Vue, React, Svelte, jQuery, Tailwind, Bootstrap}}{Dec 2022 -- Feb 2023}
+          \resumeItemListStart
+            \resumeItem{Developed and evaluated 6 versions of the same web app, analyzing performance and developer experience.}
+          \resumeItemListEnd
+        \resumeProjectHeading
+          {\href{https://zoom.k1k1.dev}{\textbf{SmoothZoom – Quick Page Zoom} \faLink} \emph{TypeScript, SCSS}}{Mar 2022 -- Present}
+          \resumeItemListStart
+            \resumeItem{Achieved \textbf{2,000+ WAU} with an extension that enables zooming into content (mouse pinch-to-zoom).}
+            %\resumeItem{Pushed browser limits by optimizing zoom functionality with advanced stylesheet parsing to handle fixed-position elements and synchronizing zoom across nested frames.}
+          \resumeItemListEnd      
+        \resumeProjectHeading
+            {\href{https://chromewebstore.google.com/detail/gifs-autoplay-for-google/mfaepkdaodjclepbclabjbigjeohfdje}{\textbf{Gifs autoplay for Google™}\faLink} \emph{TypeScript}}{Aug 2020 -- Present}
+          \resumeItemListStart
+            \resumeItem{Achieved \textbf{27,000+ WAU} with an extension that animates gifs on Google Image Search.}
+          \resumeItemListEnd      
+    \resumeSubHeadingListEnd
+
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Full-stack Software Engineer Intern}{Jul 2020 -- Sep 2020}
+      {CARNET - Croatian Academic and Research Network}{Zagreb, Croatia}
+      \resumeItemListStart
+        \resumeItem{Made history as CARNET's first high-school student employee.}
+        \resumeItem{Led the development of a PHP application for CARNET Help-desk, improving work scheduling, staff management, and salary calculations alongside a team member.}
+        \resumeItem{Utilized XAMPP, integrating PostgreSQL for database management, and Phabricator/Git for version control.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+      
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: TypeScript, JavaScript, Kotlin, Java, C\#, C++, Python, SQL} \\
+     \textbf{Frameworks}{: Vue, Svelte, React, ASP.NET Core \& Entity Framework, Java Spring, Django, Express.js} \\
+     \textbf{Libraries}{: Pinia, Vuex, Router, VueFire, Redux, SvelteKit, DaisyUI, Tailwind, Bootstrap, jQuery} \\ 
+     \textbf{Developer Tools}{: Vite, Webpack, SCSS, PostCSS, VS, VSC, Android Studio, IntelliJ IDEA, NetBeans, SSMS} \\  % VS Code, Visual Studio, IntelliJ, 
+     \textbf{Cloud providers}{: Google Cloud Platform, Cloudflare, Microsoft Azure, GitHub Actions} \\
+     \textbf{Other}{: Docker, Android, Windows Presentation Foundation, WinForms, Java Swing }
+    }}
+ \end{itemize}
+
+% After your Technical Skills section
+
+% \footnotesize Hobbies: I love playing Smite on PC and table tennis is my favorite physical activity!
+
+
+
+\end{document}
