@@ -1,8 +1,8 @@
 {
   "name": "Kristijan Rosandić ~ Kiki",
   "version": "2002.5.8",
-  "description": "Student",
-  "homepage": "Algebra University",
+  "description": "Vue.js enthusiast",
+  "homepage": "Happening.xyz",
   "keywords": [
     "Problem solving",
     "Web development",
@@ -23,13 +23,13 @@
   "dependencies": {
     "vue": "3.x",
     "vite": "latest",
-    "webpack": "latest",
     "express": "latest",
     "dotnet": ">=6"
   },
   "devDependencies": {
-    "os": "win11",
-    "editor": "vsc|vs|intellij",
+    "os": "win11|ubuntuWSL",
+    "ide": "intellij|vs",
+    "editor": "vsc",
     "browser": "chrome",
     "music": "kyle-landry",
     "game": "smite|world-of-warships"

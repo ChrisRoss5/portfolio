@@ -11,6 +11,9 @@
           <span>&nbsp;</span>
         </div>
       </span>
+      <span id="last-updated" v-show="showLastUpdated">
+        Updated: {{ new Date("2025-03-26").toLocaleDateString() }}</span
+      >
     </div>
     <LinksVue />
   </div>
@@ -27,6 +30,7 @@ export default defineComponent({
   data() {
     return {
       sentence: "Kristijan Rosandić — Software Engineer Portfolio",
+      showLastUpdated: false,
     };
   },
   mounted() {
@@ -41,6 +45,7 @@ export default defineComponent({
       } else {
         letterEls[i - 1].setAttribute("last", "");
         clearInterval(interval);
+        this.showLastUpdated = true;
       }
     }, 25);
   },
@@ -106,6 +111,24 @@ export default defineComponent({
     &[last]::after {
       animation: reveal 150ms 8 alternate forwards;
     }
+  }
+}
+#last-updated {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.05rem;
+  line-height: 0;
+  color: var(--special-a);
+  text-wrap: nowrap;
+  opacity: 0;
+  margin-left: 0.2rem;
+  transform: translateX(-1rem);
+  animation: reveal-last-updated 250ms forwards;
+}
+@keyframes reveal-last-updated {
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 </style>

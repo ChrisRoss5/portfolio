@@ -51,11 +51,11 @@ export default defineComponent({
   name: "DocumentsVue",
   data() {
     return {
-      currentDoc: { title: "CVs and Resumes", file: "Resume-en" },
+      currentDoc: { title: "CVs and Resumes", file: "Resume-en (2024)" },
       docs: [
         {
           title: "CVs and Resumes",
-          files: ["Resume-en"],
+          files: ["Resume-en (2024)"],
         },
         {
           title: "Competitions",
@@ -67,7 +67,11 @@ export default defineComponent({
         },
         {
           title: "Education",
-          files: ["HS Diplomas (8)", "HS Europass-en (2)", "HS Europass-hr (2)"],
+          files: [
+            "HS Diplomas (8)",
+            "HS Europass-en (2)",
+            "HS Europass-hr (2)",
+          ],
         },
         {
           title: "References",
@@ -163,7 +167,9 @@ export default defineComponent({
         this.iframeContentWindow.location.replace(newUrl);
     },
     getDocPath(doc: { title: string; file: string }) {
-      return `/docs/${doc.title.toLowerCase().replaceAll(" ", "-")}/${doc.file}.pdf`;
+      return `/docs/${doc.title.toLowerCase().replaceAll(" ", "-")}/${
+        doc.file
+      }.pdf`;
     },
     fileChanged(file: string) {
       this.frameLoaded = false;

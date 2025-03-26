@@ -24,10 +24,10 @@
             {{ app.name }}
             <component :is="'InfoSVG'" />
           </div>
-          <div>{{ app.created.toLocaleDateString("en-CA") }}</div>
+          <div>{{ app.created.toLocaleDateString() }}</div>
           <Transition name="reveal" mode="out-in">
             <div v-if="app.updated">
-              {{ app.updated.toLocaleDateString("en-CA") }}
+              {{ app.updated.toLocaleDateString() }}
             </div>
             <div v-else-if="$isBrowserApp">
               <component :is="'LoadingSVG'" />
