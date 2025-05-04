@@ -109,10 +109,10 @@
 
 \begin{document}
 
-% \includesvg[width=11pt]{favicon-black.svg} 
+% \includesvg[width=11pt]{favicon-black.svg}
 \begin{center}
     \textbf{\Huge \scshape Kristijan Rosandić} \\ \vspace{1pt}
-    \small +385 97-703-8899 $|$ \href{mailto:kristijan.ros@gmail.com}{\uline{kristijan.ros@gmail.com}} $|$ 
+    \small +385 97-703-8899 $|$ \href{mailto:kristijan.ros@gmail.com}{\uline{kristijan.ros@gmail.com}} $|$
     \href{https://linkedin.com/in/k1k1}{\uline{linkedin.com/in/k1k1}} $|$
     \href{https://github.com/ChrisRoss5}{\uline{github.com/ChrisRoss5}} $|$
     \href{https://k1k1.dev}{\uline{k1k1.dev}}
@@ -153,7 +153,7 @@
           \resumeItemListStart
             \resumeItem{Developed a web app for organizing locations into groups and routing for large businesses such as MOLGroup.}
             \resumeItem{Integrated Google Maps JS, Geocoding, Roads \& Places APIs to deliver a comprehensive mapping solution.}
-          \resumeItemListEnd      
+          \resumeItemListEnd
         \resumeProjectHeading
               {\href{https://storage.k1k1.dev}{\textbf{Kiki Storage} \faLink} \emph{Vue, Pinia, Tailwind, VueFire, Firebase, Node.js, Android}}{Sep 2023 -- Present}
           \resumeItemListStart
@@ -170,18 +170,18 @@
           \resumeItemListStart
             \resumeItem{Achieved \textbf{2,000+ WAU} with an extension that enables zooming into content (mouse pinch-to-zoom).}
             %\resumeItem{Pushed browser limits by optimizing zoom functionality with advanced stylesheet parsing to handle fixed-position elements and synchronizing zoom across nested frames.}
-          \resumeItemListEnd      
+          \resumeItemListEnd
         \resumeProjectHeading
             {\href{https://chromewebstore.google.com/detail/gifs-autoplay-for-google/mfaepkdaodjclepbclabjbigjeohfdje}{\textbf{Gifs autoplay for Google™}\faLink} \emph{TypeScript}}{Aug 2020 -- Present}
           \resumeItemListStart
             \resumeItem{Achieved \textbf{27,000+ WAU} with an extension that animates gifs on Google Image Search.}
-          \resumeItemListEnd      
+          \resumeItemListEnd
     \resumeSubHeadingListEnd
 
 \section{Experience}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Full-stack Software Engineer Intern}{Jul 2020 -- Sep 2020}
+      {Fullstack Software Engineer Intern}{Jul 2020 -- Sep 2020}
       {CARNET - Croatian Academic and Research Network}{Zagreb, Croatia}
       \resumeItemListStart
         \resumeItem{Made history as CARNET's first high-school student employee.}
@@ -189,14 +189,14 @@
         \resumeItem{Utilized XAMPP, integrating PostgreSQL for database management, and Phabricator/Git for version control.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
-      
+
 \section{Technical Skills}
  \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
      \textbf{Languages}{: TypeScript, JavaScript, Kotlin, Java, C\#, C++, Python, SQL} \\
      \textbf{Frameworks}{: Vue, Svelte, React, ASP.NET Core \& Entity Framework, Java Spring, Django, Express.js} \\
-     \textbf{Libraries}{: Pinia, Vuex, Router, VueFire, Redux, SvelteKit, DaisyUI, Tailwind, Bootstrap, jQuery} \\ 
-     \textbf{Developer Tools}{: Vite, Webpack, SCSS, PostCSS, VS, VSC, Android Studio, IntelliJ IDEA, NetBeans, SSMS} \\  % VS Code, Visual Studio, IntelliJ, 
+     \textbf{Libraries}{: Pinia, Vuex, Router, VueFire, Redux, SvelteKit, DaisyUI, Tailwind, Bootstrap, jQuery} \\
+     \textbf{Developer Tools}{: Vite, Webpack, SCSS, PostCSS, VS, VSC, Android Studio, IntelliJ IDEA, NetBeans, SSMS} \\  % VS Code, Visual Studio, IntelliJ,
      \textbf{Cloud providers}{: Google Cloud Platform, Cloudflare, Microsoft Azure, GitHub Actions} \\
      \textbf{Other}{: Docker, Android, Windows Presentation Foundation, WinForms, Java Swing }
     }}

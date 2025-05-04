@@ -87,9 +87,9 @@
         </div>
         <div>
           Zagreb
-          <span class="box-position">Frontend Engineer</span>
+          <span class="box-position">Front-end Software Engineer</span>
         </div>
-        <div class="box-duration">JANUARY 2020 - NOW</div>
+        <div class="box-duration">JANUARY 2025 - NOW</div>
         <div>
           <ul>
             <li>Working on SuperTesta web IDE & other tools for QA.</li>
