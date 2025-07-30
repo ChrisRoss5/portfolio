@@ -10,7 +10,7 @@
         </div>
         <div class="box-duration">SEPTEMBER 2021 - SEPTEMBER 2024</div>
         <div>
-          Title: bacc. ing. comp. (Bachelor of Computer Engineering<!-- ,
+          Title: bacc. ing. comp. (bachelor in applied computer engineering<!-- ,
           sub-specialization in Software Engineering -->)
           <br />
           <ul>
@@ -50,6 +50,31 @@
               Reply Code Challenge, and Hacknite.
             </li>
           </ul>
+          <div class="box special-box">
+            <div class="box-title">
+              Erasmus+ Mobility Project in Ireland, Bray
+            </div>
+            <div class="box-duration" style="padding-top: 0">MARCH 2020</div>
+            <div>
+              <ul>
+                <li>
+                  Participated in a two-week digital marketing project where my
+                  schoolmates and I developed a
+                  <a href="https://braycroats.wordpress.com/" target="_blank"
+                    >WordPress website (BrayCroats)</a
+                  >
+                  under the guidance of
+                  <a
+                    href="https://www.linkedin.com/in/robertmoloney"
+                    target="_blank"
+                    >Robert Moloney</a
+                  >. Due to the COVID-19 pandemic being declared during the
+                  project, we returned home early after completing 8 out of 14
+                  planned days.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div class="box">
@@ -75,3 +100,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({ name: "EducationVue" });
 </script>
+
+<style lang="scss">
+.special-box {
+  margin-top: 1rem;
+  border-radius: 6px;
+  border: 2px solid var(--e);
+}
+</style>

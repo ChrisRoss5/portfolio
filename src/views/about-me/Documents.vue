@@ -51,31 +51,39 @@ export default defineComponent({
   name: "DocumentsVue",
   data() {
     return {
-      currentDoc: { title: "CVs and Resumes", file: "Resume-en (2024)" },
+      currentDoc: { title: "CVs and Resumes", file: "Resume EN (2024)" },
       docs: [
         {
           title: "CVs and Resumes",
-          files: ["Resume-en (2024)"],
+          files: ["Resume EN (2024)"],
         },
         {
           title: "Competitions",
-          files: ["AZOO (6)", "Idea of the Year 2021", "INOVA (6)"],
+          files: [
+            "AZOO (2019-2021) [6]",
+            "INOVA (2020-2021) [6]",
+            "Idea of the Year (2021)",
+          ],
         },
         {
           title: "Certificates",
-          files: ["Oracle Academy (7)", "English B1+", "Mensa"],
+          files: ["Oracle Academy (2021) [7]", "Mensa (2024)"],
         },
         {
           title: "Education",
           files: [
-            "HS Diplomas (8)",
-            "HS Europass-en (2)",
-            "HS Europass-hr (2)",
+            "UNI Diploma EN (2024)",
+            "UNI Diploma Supplement EN (2024) [17]",
+            "UNI Diploma HR (2024)",
+            "UNI Diploma Supplement HR (2024) [17]",
+            "HS Diplomas & Commendations (2017-2021) [8]",
+            "HS Europass EN (2021) [2]",
+            "HS Europass HR (2021) [2]",
           ],
         },
         {
           title: "References",
-          files: ["CARNET", "Mario Tretinjak"],
+          files: ["CARNET (2021)", "Mario Tretinjak (2021)"],
         },
       ],
       intro: undefined as unknown as HTMLElement,
@@ -208,9 +216,10 @@ export default defineComponent({
 }
 .pdf-enabled {
   @include about-narrow;
+  overflow: hidden auto !important;
   padding: 0 !important;
   height: 100%;
-  width: 15vw;
+  width: 20vw;
   .about-title {
     display: flex !important;
     width: 100% !important;
@@ -233,7 +242,7 @@ export default defineComponent({
   }
 }
 #pdf {
-  @include abs-cover(absolute, 0, 0, 0, 15vw);
+  @include abs-cover(absolute, 0, 0, 0, 20vw);
   padding: 0 !important;
   opacity: 0;
   animation: reveal 1s 1s forwards;

@@ -21,7 +21,7 @@
     </div>
     <div class="about-title">Certificates</div>
     <div>
-      Oracle Academy Courses:
+      Oracle Academy Courses (2021):
       <ul>
         <li>Database Foundations</li>
         <li>Database Programming with PL/SQL</li>
@@ -31,11 +31,14 @@
         <li>Java Programming</li>
         <li>Artificial Intelligence with Machine Learning in Java</li>
       </ul>
-      Erasmus+ Project:
+      <!-- Erasmus+ Project:
       <ul>
         <li>English B1+ Certificate</li>
-      </ul>
-      Mensa.org member:
+      </ul> -->
+      Mensa.org member (2024) (<a
+        href="mailto:kristijan.rosandic@member.mensa.org"
+        >kristijan.rosandic@member.mensa.org</a
+      >):
       <ul>
         <li>IQ >=135</li>
       </ul>

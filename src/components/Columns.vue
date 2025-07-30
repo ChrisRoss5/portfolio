@@ -52,7 +52,9 @@ export default defineComponent({
   },
   methods: {
     formatTitle(text: string) {
-      const result = text.replace(/([A-Z])/g, " $1");
+      let result = text.replace(/([A-Z])/g, " $1");
+      if (text == "weeklyUsers") result = "Users last week";
+
       return result.charAt(0).toUpperCase() + result.slice(1);
     },
     sort(name: keyof Project, descending?: boolean, isInitial?: boolean) {

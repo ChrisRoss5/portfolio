@@ -12,7 +12,7 @@
         </div>
       </span>
       <span id="last-updated" v-show="showLastUpdated">
-        Updated: {{ new Date("2025-03-26").toLocaleDateString() }}</span
+        Updated: {{ new Date("2025-07-30").toLocaleDateString() }}</span
       >
     </div>
     <LinksVue />
